@@ -9,6 +9,6 @@ type Props = {
 
 const color = ['#6B6B6B', '#FFFFFF'];
 
-export function TextDefault({ title, variant = '#6B6B6B' }: Props) {
+export function TextAton({ title, variant = '#6B6B6B' }: Props) {
   return <Text style={[styles.eventDate, { color: variant }]}>{title}</Text>;
 }

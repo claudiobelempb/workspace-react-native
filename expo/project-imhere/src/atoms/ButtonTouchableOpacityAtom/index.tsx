@@ -7,7 +7,7 @@ type Props = {
   variant?: string;
 };
 
-export function ButtonTouchableOpacity({
+export function ButtonTouchableOpacityAton({
   onPress,
   title,
   variant = '#31CF67'

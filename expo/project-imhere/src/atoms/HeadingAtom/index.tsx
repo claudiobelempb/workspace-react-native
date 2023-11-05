@@ -4,6 +4,6 @@ import { styles } from './styles';
 type Props = {
   title: string;
 };
-export function HeadingDefault({ title }: Props) {
+export function HeadingAton({ title }: Props) {
   return <Text style={styles.eventName}>{title}</Text>;
 }

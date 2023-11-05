@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    marginTop: 36,
-    marginBottom: 42,
+  constainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    marginBottom: 32
   },
-  content: {}
+  content: {
+    flexDirection: 'column'
+  }
 });
