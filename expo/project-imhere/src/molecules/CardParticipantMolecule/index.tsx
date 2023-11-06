@@ -8,15 +8,17 @@ type Props = {
   onParticipantRemove: () => void;
 };
 
-export function ParticipantMolecule({ name, onParticipantRemove }: Props) {
+export function CardParticipantMolecule({ name, onParticipantRemove }: Props) {
   return (
     <View style={styles.container}>
-      <TextAton title={name} variant='#FFF' />
-      <ButtonTouchableOpacityAton
-        title='-'
-        onPress={onParticipantRemove}
-        variant='#E23C44'
-      />
+      <View style={styles.container}>
+        <TextAton title={name} variant='#FFF' />
+        <ButtonTouchableOpacityAton
+          title='-'
+          onPress={onParticipantRemove}
+          variant='#E23C44'
+        />
+      </View>
     </View>
   );
 }

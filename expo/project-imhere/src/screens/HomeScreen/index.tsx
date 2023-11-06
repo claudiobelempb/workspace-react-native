@@ -3,8 +3,9 @@ import { Alert, FlatList } from 'react-native';
 import { ButtonTouchableOpacityAton } from '../../atoms/ButtonTouchableOpacityAtom';
 import { TextAton } from '../../atoms/TextAtom';
 import { TextInputAtom } from '../../atoms/TextInputAtom';
-import { HeaderMolecule } from '../../molecules/HeaderMolecule';
-import { ParticipantMolecule } from '../../molecules/ParticipantMolecule';
+import { HeaderOrganisms } from '../../organisms/HeaderOrganism';
+import { ParticipantOrganisms } from '../../organisms/ParticipantOrganism';
+import { ContainerTemplate } from '../../templates/ContainerTemplate';
 import { FormTemplate } from '../../templates/FormTemplate';
 
 type Participant = string[];
@@ -40,14 +41,16 @@ export function HomeScreen() {
     }
     setParticipants(prevState => [...prevState, participantName]);
     setParticipantName('');
-    console.warn(participants);
   }
 
-  function handleParticipantRemove(participant: string) {
-    return Alert.alert('Remover', `Remover o participante ${participant}?`, [
+  function handleParticipantRemove(name: string) {
+    return Alert.alert('Remover', `Remover o participante ${name}?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Deletado!')
+        onPress: () =>
+          setParticipants(prevState =>
+            prevState.filter(particioant => particioant !== name)
+          )
       },
       {
         text: 'Não',
@@ -57,8 +60,8 @@ export function HomeScreen() {
   }
 
   return (
-    <>
-      <HeaderMolecule title={title} data={data} />
+    <ContainerTemplate>
+      <HeaderOrganisms title={title} data={data} />
       <FormTemplate>
         <TextInputAtom
           onChangeText={text => setParticipantName(text)}
@@ -72,7 +75,7 @@ export function HomeScreen() {
         data={participants}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <ParticipantMolecule
+          <ParticipantOrganisms
             name={item}
             onParticipantRemove={() => handleParticipantRemove(item)}
           />
@@ -80,12 +83,13 @@ export function HomeScreen() {
         ListEmptyComponent={() => (
           <>
             <TextAton
+              aling='center'
               variant='#FFF'
               title='Ninguém chegou no evento ainda? Adicione participantes a sua lista de presença.'
             />
           </>
         )}
       />
-    </>
+    </ContainerTemplate>
   );
 }

@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 16,
-    paddingLeft: 16,
-    marginBottom: 10
+    paddingLeft: 8
   }
 });

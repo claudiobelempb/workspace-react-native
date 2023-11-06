@@ -7,7 +7,8 @@ type Props = {
   title: string;
   data: string;
 };
-export function HeaderMolecule({ title, data }: Props) {
+
+export function InputButtonMolecule({ data, title }: Props) {
   return (
     <View style={styles.container}>
       <HeadingAton title={title} />
