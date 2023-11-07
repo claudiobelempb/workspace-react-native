@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={ThemeDefault}>
-      <StatusBar style='light' />
+      <StatusBar style='light' translucent />
       {fontsLoaded ? <HomeScreen /> : <LoadingAtom />}
     </ThemeProvider>
   );

@@ -5,8 +5,7 @@ export const StyledContainer = styled.View`
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
-    position: relative;
+    background-color: ${theme.COLORS.GRAY_600};
   `}
 `;
 
