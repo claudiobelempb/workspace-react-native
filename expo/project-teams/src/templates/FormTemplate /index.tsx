@@ -4,6 +4,6 @@ import { StyledContainer } from './styles';
 type Prpops = {
   children: ReactNode;
 };
-export function ContainerTemplate({ children }: Prpops) {
+export function FormTemplate({ children }: Prpops) {
   return <StyledContainer>{children}</StyledContainer>;
 }
