@@ -10,7 +10,7 @@ import { SectionTemplate } from '@templates/SectionTemplate';
 export function CreateTurmaScreen() {
   return (
     <ContainerTemplate>
-      <HeaderOrganism />
+      <HeaderOrganism direction='space-between' isIcon />
       <ContentTemplate>
         <SectionTemplate>
           <SectionTurmaOrganism

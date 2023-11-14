@@ -1,15 +1,6 @@
-import { ReactNode } from 'react';
-import { View } from 'react-native';
-
+import { typeDefault } from '@typesDefault/typesDefault';
 import { HeadingContainer } from './styles';
-type Props = {
-  children: ReactNode;
-};
 
-export function HeadingAton({ children }: Props) {
-  return (
-    <View>
-      <HeadingContainer>{children}</HeadingContainer>
-    </View>
-  );
+export function HeadingAton({ ...props }: typeDefault) {
+  return <HeadingContainer {...props}>{props.children}</HeadingContainer>;
 }

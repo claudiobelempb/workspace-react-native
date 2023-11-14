@@ -1,9 +1,6 @@
-import { ReactNode } from 'react';
-import { Container } from './styles';
+import { typeDefault } from '@typesDefault/typesDefault';
+import { StyledContainer } from './styles';
 
-type Prpops = {
-  children: ReactNode;
-};
-export function ContentTemplate({ children }: Prpops) {
-  return <Container>{children}</Container>;
+export function ContentTemplate({ ...props }: typeDefault) {
+  return <StyledContainer {...props}>{props.children}</StyledContainer>;
 }

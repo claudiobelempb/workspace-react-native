@@ -1,9 +1,15 @@
-import { ImageProps } from 'react-native';
+import { typeDefault } from '@typesDefault/typesDefault';
 import styled, { css } from 'styled-components/native';
 
-export const ContainerImage = styled.Image<ImageProps>`
+export const StyledContainer = styled.Image<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: ${props.width}px;
-    height: ${props.height}px;
+    ${props.width &&
+    css`
+      width: ${props.width}px;
+    `}
+    ${props.height &&
+    css`
+      height: ${props.height}px;
+    `}
   `}
 `;

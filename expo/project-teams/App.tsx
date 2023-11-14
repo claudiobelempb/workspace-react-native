@@ -1,4 +1,3 @@
-import { HomeScreen } from '@screens/HomeScreen';
 import ThemeDefault from '@themes/ThemeDefault';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
@@ -9,6 +8,7 @@ import {
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto';
+import { HomeScreen } from '@screens/HomeScreen';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });

@@ -16,15 +16,22 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       flex: ${props.flex && undefined};
     `}
+
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
-      : theme.variant.gray_600};
-    flex-direction: ${props.direction ? props.direction : 'center'};
-    justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
-    align-items: ${props.alingItems ? props.alingItems : 'center'};
+      : theme.variant.transparent};
+    flex-direction: ${props.direction ? props.direction : 'column'};
+    justify-content: ${props.justifyContent
+      ? props.justifyContent
+      : 'flex-start'};
+    align-items: ${props.alingItems ? props.alingItems : 'flex-start'};
     align-content: ${props.alingContent ? props.alingContent : 'flex-start'};
-    align-self: ${props.alignSelf ? props.alignSelf : 'center'};
+    align-self: ${props.alignSelf ? props.alignSelf : 'flex-start'};
     flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
+    ${props.padding &&
+    css`
+      gap: ${props.padding ? props.padding : 0}px;
+    `}
     ${props.gap &&
     css`
       gap: ${props.gap ? props.basis : 0}px;
@@ -61,5 +68,8 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       border-radius: 5px;
     `}
+    background-color: ${props.variantBackgroud
+      ? theme.variant[props.variantBackgroud]
+      : theme.variant.transparent};
   `}
 `;

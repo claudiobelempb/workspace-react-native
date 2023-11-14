@@ -1,19 +1,27 @@
+import { typeDefault } from '@typesDefault/typesDefault';
 import styled, { css } from 'styled-components/native';
 
-export const StyledContainer = styled.TouchableOpacity`
+export const TouchableOpacityContainer = styled.TouchableOpacity<typeDefault>`
   ${({ theme, ...props }) => css`
-    height: 56px;
-    background-color: ${theme.COLORS.GREEN_700};
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    ${props.width &&
+    css`
+      width: ${props.width}px;
+    `}
+    ${props.height &&
+    css`
+      height: ${props.height}px;
+    `}
+    background-color: ${props.variantBackgroud
+      ? theme.variant[props.variantBackgroud]
+      : theme.variant.transparent};
     border-radius: 5px;
-  `}
-`;
-
-export const StyledText = styled.Text`
-  ${({ theme, ...props }) => css`
-    font-size: ${theme.FONTS.SIZE.M16};
-    color: #ffffff;
-    font-weight: bold;
+    ${props.isActive &&
+    css`
+      border: 1px solid
+        ${props.variantBorder
+          ? theme.variant[props.variantBorder]
+          : theme.variant.green_500};
+    `}
   `}
 `;

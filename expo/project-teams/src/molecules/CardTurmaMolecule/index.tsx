@@ -1,13 +1,11 @@
 import InconTurma from '@assets/Icons.png';
-import { ImageAtom } from '@atoms/ImageAton';
 import { TextAton } from '@atoms/TextAtom';
-import { StyledContainer } from './styles';
+import { ButtonImageMolecule } from '@molecules/ButtonImageMolecule';
 
 export function CardTurmaMolecule() {
   return (
-    <StyledContainer>
-      <ImageAtom source={InconTurma} width={32} height={32} />
-      <TextAton variant='#FFFFFF'>Nome da turma</TextAton>
-    </StyledContainer>
+    <ButtonImageMolecule source={InconTurma} width={32} height={32}>
+      <TextAton variantBackgroud='white'>Nome da turma</TextAton>
+    </ButtonImageMolecule>
   );
 }

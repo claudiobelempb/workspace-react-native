@@ -9,7 +9,7 @@ export const StyledContainer = styled.TouchableOpacity`
     column-gap: 16px;
     padding-left: 16px;
     border-radius: 5px;
-    background-color: ${theme.COLORS.GRAY_400};
-    margin-bottom: 10px;
+    background-color: ${theme.variant.gray_400};
+    //margin-bottom: 10px;
   `}
 `;

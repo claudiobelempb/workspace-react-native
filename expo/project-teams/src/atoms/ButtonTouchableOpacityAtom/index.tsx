@@ -1,21 +1,12 @@
-import { StyledContainer, StyledText } from './styles';
+import { BoxTemplate } from '@templates/BoxTemplate';
+import { TouchableOpacityContainer } from './styles';
 
-type Props = {
-  onPress: () => void;
-  title: string;
-  variant?: string;
-};
+import { typeDefault } from '@typesDefault/typesDefault';
 
-export function ButtonTouchableOpacityAton({
-  onPress,
-  title,
-  variant = '#31CF67'
-}: Props) {
+export function ButtonTouchableOpacityAton({ ...props }: typeDefault) {
   return (
-    <>
-      <StyledContainer onPress={onPress}>
-        <StyledText>{title}</StyledText>
-      </StyledContainer>
-    </>
+    <TouchableOpacityContainer {...props}>
+      <BoxTemplate>{props.children}</BoxTemplate>
+    </TouchableOpacityContainer>
   );
 }
