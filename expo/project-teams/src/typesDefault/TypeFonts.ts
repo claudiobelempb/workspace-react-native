@@ -19,12 +19,12 @@ export type TypeFontSize =
   | 'x40'
   | 'xl80';
 
-export type TypeFontFamily =
-  | 'Roboto'
-  | 'Roboto Mono'
-  | 'baloo'
-  | 'oswald'
-  | 'plusJakarta';
+export type TypeFontFamily = {
+  roboto: {
+    regular: 'Roboto_400Regular';
+    bold: 'Roboto_700Bold';
+  };
+};
 
 export type TypeFontStyle =
   | 'normal'

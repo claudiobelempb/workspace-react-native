@@ -30,8 +30,10 @@ const ThemeDefault = {
     lineHeight: '160%',
 
     fontFamily: {
-      regular: 'Roboto_400Regular',
-      bold: 'Roboto_700Bold'
+      roboto: {
+        regular: 'Roboto_400Regular',
+        bold: 'Roboto_700Bold'
+      }
     }
   },
   padding: {

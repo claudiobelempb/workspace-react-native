@@ -10,7 +10,8 @@ export const StyledText = styled.Text<typeDefault>`
     font-size: ${props.fontSize
       ? theme.fonts.size[props.fontSize]
       : theme.fonts.size.m16}px;
-    font-weight: ${props.fontWeigh ? props.fontWeigh : '400'};
     text-align: ${props.textAlign ? props.textAlign : 'left'};
+    font-family: ${theme.fonts.fontFamily.roboto.regular};
+    font-weight: ${props.fontWeigh ? props.fontWeigh : '400'};
   `}
 `;

@@ -14,6 +14,8 @@ import { VariantObjValue } from './TypeVariant';
 export type typeDefault = {
   onPress?: () => void;
   title?: string;
+  name?: string;
+  mensagem?: string;
   description?: string;
   titleButton?: string;
   titleText?: string;
@@ -22,6 +24,7 @@ export type typeDefault = {
   child?: number;
   variantBackgroud?: VariantObjValue;
   variantColor?: VariantObjValue;
+  variantIconColor?: VariantObjValue;
   variantBorder?: VariantObjValue;
   variantPlaceholder?: VariantObjValue;
   /**FONTS */
@@ -33,9 +36,21 @@ export type typeDefault = {
   fontSize?: TypeFontSize;
   /**PADDING */
   padding?: number;
+  paddingTop?: number;
+  paddingRight?: number;
+  paddingLeft?: number;
+  paddingBottom?: number;
+  paddingX?: number;
+  paddingY?: number;
 
   /**MARGIN */
-  nargin?: number;
+  margin?: number;
+  marginTop?: number;
+  marginRight?: number;
+  marginLeft?: number;
+  marginBottom?: number;
+  marginX?: number;
+  marginY?: number;
 
   data?: ArrayLike<unknown> | null | undefined;
   renderItem?: ListRenderItem<unknown> | null | undefined;

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { StyledContainer } from './styles';
 
-type Prpops = {
+type Props = {
   children: ReactNode;
 };
-export function SectionTemplate({ children }: Prpops) {
+export function SectionTemplate({ children }: Props) {
   return <StyledContainer>{children}</StyledContainer>;
 }

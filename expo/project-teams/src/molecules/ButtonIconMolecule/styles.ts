@@ -6,7 +6,8 @@ type Props = typeDefault & IconProps;
 export const StyledContainer = styled(CaretLeft).attrs<Props>(
   ({ theme, ...props }) => ({
     color: theme.variant.white,
-    size: 32
+    size: 32,
+    weight: 'fill'
   })
 )`
   ${({ theme, ...props }) => css``}

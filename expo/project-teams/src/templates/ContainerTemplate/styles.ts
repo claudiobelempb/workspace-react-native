@@ -61,5 +61,59 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       border-radius: 5px;
     `}
+
+     /*PADDING */
+     ${props.padding &&
+    css`
+      padding: ${props.padding}px;
+    `}
+    ${props.paddingTop &&
+    css`
+      padding-top: ${props.paddingTop}px;
+    `}
+    ${props.paddingRight &&
+    css`
+      padding-right: ${props.paddingRight}px;
+    `}
+    ${props.paddingLeft &&
+    css`
+      padding-left: ${props.paddingLeft}px;
+    `}
+    ${props.paddingBottom &&
+    css`
+      padding-bottom: ${props.paddingBottom}px;
+    `}
+
+    ${props.paddingX &&
+    css`
+      padding: ${props.paddingX}px 0px;
+    `}
+
+    ${props.paddingY &&
+    css`
+      padding: 0px ${props.paddingY}px;
+    `}
+
+    /*MARGIN */
+    ${props.margin &&
+    css`
+      margin: ${props.margin}px;
+    `}
+    ${props.marginTop &&
+    css`
+      margin-top: ${props.marginTop}px;
+    `}
+    ${props.marginRight &&
+    css`
+      margin-right: ${props.marginRight}px;
+    `}
+    ${props.marginLeft &&
+    css`
+      margin-left: ${props.marginLeft}px;
+    `}
+    ${props.marginBottom &&
+    css`
+      margin-bottom: ${props.marginBottom}px;
+    `}
   `}
 `;

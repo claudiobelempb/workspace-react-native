@@ -8,15 +8,18 @@ import {
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto';
-import { HomeScreen } from '@screens/HomeScreen';
+import { CreateGroupScreen } from '@screens/CreateGroupScreen';
+import { SafeAreaView } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
-    <ThemeProvider theme={ThemeDefault}>
-      <StatusBar style='light' translucent />
-      {fontsLoaded ? <HomeScreen /> : <LoadingAtom />}
-    </ThemeProvider>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ThemeProvider theme={ThemeDefault}>
+        <StatusBar style='light' translucent />
+        {fontsLoaded ? <CreateGroupScreen /> : <LoadingAtom />}
+      </ThemeProvider>
+    </SafeAreaView>
   );
 }

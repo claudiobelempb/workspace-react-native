@@ -7,22 +7,21 @@ import { ImageProps } from 'react-native';
 
 type Props = ImageProps & typeDefault;
 
-export function ButtonImageMolecule({ ...props }: Props) {
+export function ButtonImageTextMolecule({ ...props }: Props) {
   return (
     <ButtonTouchableOpacityAton
       {...props}
-      onPress={() => console.log('ButtonImageMolecule')}
-      alingItems='center'
-      justifyContent='center'
+      onPress={() => console.log('Button')}
+      height={54}
     >
       <BoxTemplate
-        direction='row'
         columnGap={10}
+        direction='row'
         alingItems='center'
-        isBorderRadius
+        justifyContent='center'
       >
-        <ImageAtom width={32} height={32} {...props} />
-        <TextAton>{props.title}</TextAton>
+        <ImageAtom {...props} />
+        <TextAton variantBackgroud='white'>{props.title}</TextAton>
       </BoxTemplate>
     </ButtonTouchableOpacityAton>
   );

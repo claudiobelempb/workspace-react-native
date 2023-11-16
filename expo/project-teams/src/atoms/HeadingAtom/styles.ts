@@ -10,7 +10,7 @@ export const HeadingContainer = styled.Text<typeDefault>`
     font-size: ${props.fontSize
       ? theme.fonts.size[props.fontSize]
       : theme.fonts.size.l24}px;
-    font-weight: ${props.fontWeigh ? props.fontWeigh : '700'};
     text-align: ${props.textAlign ? props.textAlign : 'left'};
+    font-family: ${theme.fonts.fontFamily.roboto.bold};
   `}
 `;

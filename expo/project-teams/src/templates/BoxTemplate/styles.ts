@@ -16,7 +16,6 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       flex: ${props.flex && undefined};
     `}
-
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.transparent};
@@ -68,8 +67,49 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       border-radius: 5px;
     `}
-    background-color: ${props.variantBackgroud
-      ? theme.variant[props.variantBackgroud]
-      : theme.variant.transparent};
+
+       /*PADDING */
+    ${props.padding &&
+    css`
+      padding: ${props.padding}px;
+    `}
+    ${props.paddingTop &&
+    css`
+      padding-top: ${props.paddingTop}px;
+    `}
+    ${props.paddingRight &&
+    css`
+      padding-right: ${props.paddingRight}px;
+    `}
+    ${props.paddingLeft &&
+    css`
+      padding-left: ${props.paddingLeft}px;
+    `}
+    ${props.paddingBottom &&
+    css`
+      padding-bottom: ${props.paddingBottom}px;
+    `}
+
+    /*MARGIN */
+    ${props.margin &&
+    css`
+      margin: ${props.margin}px;
+    `}
+    ${props.marginTop &&
+    css`
+      margin-top: ${props.marginTop}px;
+    `}
+    ${props.marginRight &&
+    css`
+      margin-right: ${props.marginRight}px;
+    `}
+    ${props.marginLeft &&
+    css`
+      margin-left: ${props.marginLeft}px;
+    `}
+    ${props.marginBottom &&
+    css`
+      margin-bottom: ${props.marginBottom}px;
+    `}
   `}
 `;

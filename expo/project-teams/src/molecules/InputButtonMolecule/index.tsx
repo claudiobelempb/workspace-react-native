@@ -1,22 +1,31 @@
-import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { TextInputAtom } from '@atoms/TextInputAtom';
+import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { BoxTemplate } from '@templates/BoxTemplate';
-import { ContentTemplate } from '@templates/ContentTemplate';
 
 export function InputButtonMolecule() {
   return (
-    <ContentTemplate>
-      <BoxTemplate>
+    <BoxTemplate
+      direction='row'
+      height={56}
+      variantBackgroud='gray_700'
+      isBorderRadius
+    >
+      <BoxTemplate flex={8}>
         <TextInputAtom
           placeholder='Nome do participante'
           variantPlaceholder={'gray_300'}
+          variantBackgroud='transparent'
         />
       </BoxTemplate>
-      <BoxTemplate>
-        <ButtonTouchableOpacityAton onPress={() => console.log('InputButton')}>
+      <BoxTemplate flex={1}>
+        <ButtonTextMolecule
+          variantColor='white'
+          onPress={() => console.log('InputButton')}
+          padding={5}
+        >
           +
-        </ButtonTouchableOpacityAton>
+        </ButtonTextMolecule>
       </BoxTemplate>
-    </ContentTemplate>
+    </BoxTemplate>
   );
 }

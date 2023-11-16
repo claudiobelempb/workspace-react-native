@@ -7,13 +7,14 @@ export function ButtonTextMolecule({ ...props }: typeDefault) {
   return (
     <ButtonTouchableOpacityAton {...props}>
       <BoxTemplate
-        variantBackgroud='green_700'
-        alingItems='center'
         justifyContent='center'
-        height={56}
+        padding={10}
         isBorderRadius
+        height={56}
       >
-        <TextAton textAlign='center'>{props.children}</TextAton>
+        <TextAton textAlign='center' fontSize='s14' fontWeigh='bold'>
+          {props.children}
+        </TextAton>
       </BoxTemplate>
     </ButtonTouchableOpacityAton>
   );
