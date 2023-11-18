@@ -8,8 +8,10 @@ type Props = TouchableOpacityProps & typeDefault;
 
 export function ButtonTouchableOpacityAton({ ...props }: Props) {
   return (
-    <TouchableOpacityContainer {...props}>
-      <BoxTemplate>{props.children}</BoxTemplate>
-    </TouchableOpacityContainer>
+    <BoxTemplate {...props}>
+      <TouchableOpacityContainer {...props}>
+        {props.children}
+      </TouchableOpacityContainer>
+    </BoxTemplate>
   );
 }

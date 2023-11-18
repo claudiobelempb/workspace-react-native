@@ -7,9 +7,15 @@ type Props = TouchableOpacityProps & typeDefault;
 export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
   ${({ theme, ...props }) => css`
     width: 100%;
-
-    //min-height: 56px;
-    //max-height: 56px;
+    flex: 1;
+    flex-direction: ${props.direction ? props.direction : 'row'};
+    justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
+    align-items: ${props.alingContent ? props.alingItems : 'center'};
+    align-self: ${props.alignSelf ? props.alignSelf : 'center'};
+    min-height: ${props.minHeight ? props.minHeight : 56}px;
+    max-height: ${props.maxHeight ? props.maxHeight : 56}px;
+    padding: ${props.padding ? props.padding : 0}px;
+    border-radius: ${props.radius ? props.radius : 6}px;
     ${props.width &&
     css`
       width: ${props.width}px;

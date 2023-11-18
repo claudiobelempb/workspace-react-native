@@ -1,38 +1,47 @@
 import { TextAton } from '@atoms/TextAtom';
 import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { BoxTemplate } from '@templates/BoxTemplate';
+import { useState } from 'react';
+import { FlatList } from 'react-native';
 
-export function TimesModule() {
+type Props = {
+  countPlayers: number;
+};
+
+export function TimesModule({ countPlayers }: Props) {
+  const [team, setTeam] = useState('Time A');
+
   return (
     <BoxTemplate direction='row' alingItems='center'>
-      <BoxTemplate flex={5} direction='row' columnGap={10}>
-        <ButtonTextMolecule
-          variantBackgroud='transparent'
-          width={70}
-          onPress={() => console.log('Times')}
-          isActive
-        >
-          TIME A
-        </ButtonTextMolecule>
-        <ButtonTextMolecule
-          fontSize={'s14'}
-          width={70}
-          onPress={() => console.log('Times')}
-          direction='row'
-        >
-          TIME B
-        </ButtonTextMolecule>
-      </BoxTemplate>
+      <FlatList
+        data={['Time A', 'Time B', 'Time C']}
+        keyExtractor={item => item}
+        renderItem={item => (
+          <ButtonTextMolecule
+            direction='row'
+            width={70}
+            minHeight={40}
+            maxHeight={40}
+            onPress={() => setTeam(item.item)}
+            isActive={item.item === team}
+            title={item.item}
+            textAlign='center'
+            textTransform='uppercase'
+            fontSize='s14'
+          />
+        )}
+        horizontal
+      />
+
       <BoxTemplate
         direction='row'
-        flex={1}
+        width={56}
         height={56}
         alingItems='center'
         justifyContent='center'
-        padding={10}
       >
         <TextAton fontSize='s14' textAlign='right' variantColor='white'>
-          2
+          {countPlayers}
         </TextAton>
       </BoxTemplate>
     </BoxTemplate>

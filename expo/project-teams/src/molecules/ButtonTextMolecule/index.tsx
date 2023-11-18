@@ -5,16 +5,14 @@ import { typeDefault } from '@typesDefault/typesDefault';
 
 export function ButtonTextMolecule({ ...props }: typeDefault) {
   return (
-    <ButtonTouchableOpacityAton {...props}>
+    <ButtonTouchableOpacityAton {...props} marginRight={10}>
       <BoxTemplate
+        alingItems='center'
         justifyContent='center'
-        padding={10}
-        isBorderRadius
+        direction='row'
         height={56}
       >
-        <TextAton textAlign='center' fontSize='s14' fontWeigh='bold'>
-          {props.children}
-        </TextAton>
+        <TextAton {...props}>{props.title}</TextAton>
       </BoxTemplate>
     </ButtonTouchableOpacityAton>
   );

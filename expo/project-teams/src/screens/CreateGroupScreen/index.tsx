@@ -8,10 +8,10 @@ import { ContentTemplate } from '@templates/ContentTemplate';
 export function CreateGroupScreen() {
   return (
     <ContainerTemplate flex={1} paddingLeft={24} paddingRight={24}>
-      <ContentTemplate flex={1} marginTop={20}>
+      <ContentTemplate flex={1} marginTop={30}>
         <HeaderOrganism direction='space-between' isIcon />
       </ContentTemplate>
-      <ContentTemplate flex={1}>
+      <ContentTemplate marginBottom={30}>
         <SectionTurmaOrganism
           isIcon
           title='Nova Turma'
@@ -22,7 +22,6 @@ export function CreateGroupScreen() {
         <TextInputAtom
           onChangeText={() => console.log('Text')}
           placeholder='Nome da turma'
-          placeholderTextColor={'#7C7C8A'}
           variantBackgroud='gray_700'
         />
         <ButtonTextMolecule
@@ -30,11 +29,8 @@ export function CreateGroupScreen() {
           variantBackgroud='green_500'
           variantColor='white'
           textAlign='center'
-          justifyContent='center'
-          height={56}
-        >
-          Criar
-        </ButtonTextMolecule>
+          title='Criar'
+        />
       </ContentTemplate>
     </ContainerTemplate>
   );

@@ -13,5 +13,9 @@ export const StyledText = styled.Text<typeDefault>`
     text-align: ${props.textAlign ? props.textAlign : 'left'};
     font-family: ${theme.fonts.fontFamily.roboto.regular};
     font-weight: ${props.fontWeigh ? props.fontWeigh : '400'};
+    ${props.textTransform &&
+    css`
+      text-transform: ${props.textTransform};
+    `}
   `}
 `;

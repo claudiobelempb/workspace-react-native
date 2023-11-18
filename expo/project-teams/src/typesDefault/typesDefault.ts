@@ -64,7 +64,14 @@ export type typeDefault = {
   unit?: 'px' | '%' | 'rem' | 'vw' | 'vh';
   value?: number;
   width?: number;
+  maxWidth?: number;
+  minWidth?: number;
   height?: number;
+  maxHeight?: number;
+  minHeight?: number;
+  border?: number;
+  radius?: number;
+
   isActive?: boolean;
   isIcon?: boolean;
   isIconLeft?: boolean;

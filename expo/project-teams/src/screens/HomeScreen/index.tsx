@@ -28,10 +28,8 @@ export function HomeScreen() {
           variantBackgroud='green_500'
           variantColor='white'
           textAlign='center'
-          padding={10}
-        >
-          Criar nova turma
-        </ButtonTextMolecule>
+          title='Criar nova turma'
+        />
       </ContentTemplate>
     </ContainerTemplate>
   );

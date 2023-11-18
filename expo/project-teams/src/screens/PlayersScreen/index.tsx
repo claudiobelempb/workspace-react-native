@@ -9,29 +9,36 @@ import { BoxTemplate } from '@templates/BoxTemplate';
 import { IconTextButtonMolecule } from '@molecules/IconTextButtonMolecule';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
+import { useState } from 'react';
 
-export function ParticipantScreen() {
+export function PlayersScreen() {
+  const [players, setPlayers] = useState([
+    'Kaike',
+    'Kevin',
+    'Gorete',
+    'Cláudio'
+  ]);
+
   return (
-    <ContainerTemplate flex={1} padding={20}>
-      <ContentTemplate marginTop={15}>
+    <ContainerTemplate flex={1} padding={20} rowGap={10}>
+      <ContentTemplate>
         <HeaderOrganism isIcon />
       </ContentTemplate>
-
-      <ContentTemplate marginBottom={15}>
+      <ContentTemplate>
         <SectionTurmaOrganism
           isIcon
           title='Nome da turma'
           description='adicione a galera e separe os times'
         />
       </ContentTemplate>
-      <ContentTemplate marginBottom={15}>
+      <ContentTemplate>
         <InputButtonMolecule />
       </ContentTemplate>
 
-      <ContentTemplate marginBottom={15}>
-        <TimesModule />
+      <ContentTemplate>
+        <TimesModule countPlayers={players.length} />
       </ContentTemplate>
-      <ContentTemplate marginBottom={15} flex={1}>
+      <ContentTemplate flex={1}>
         <FlatListAtom
           data={[1]}
           renderItem={item => (
@@ -51,16 +58,15 @@ export function ParticipantScreen() {
           )}
         />
       </ContentTemplate>
-      <ContentTemplate marginBottom={10}>
+      <ContentTemplate>
         <ButtonTextMolecule
           onPress={() => console.log('Participant')}
           variantBackgroud='green_500'
           variantColor='white'
           textAlign='center'
-          padding={5}
-        >
-          Remover turma
-        </ButtonTextMolecule>
+          title=' Remover turma'
+          minHeight={56}
+        />
       </ContentTemplate>
     </ContainerTemplate>
   );

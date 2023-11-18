@@ -1,18 +1,15 @@
 import { HeadingAton } from '@atoms/HeadingAtom';
-import { ImageAtom } from '@atoms/ImageAton';
 import { TextAton } from '@atoms/TextAtom';
 
-import ImageGrup from '@assets/Icons.png';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
+import { UsersThree } from 'phosphor-react-native';
 
 export function SectionTurmaOrganism({ ...props }: typeDefault) {
   return (
     <>
-      <BoxTemplate alingItems='center'>
-        {props.isIcon && (
-          <ImageAtom source={ImageGrup} width={56} height={56} />
-        )}
+      <BoxTemplate alingItems='center' marginBottom={30}>
+        {props.isIcon && <UsersThree size={56} color={'#00B37E'} />}
       </BoxTemplate>
       <BoxTemplate>
         <HeadingAton textAlign='center'>{props.title}</HeadingAton>

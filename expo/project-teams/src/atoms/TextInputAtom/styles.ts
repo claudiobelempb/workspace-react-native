@@ -1,19 +1,18 @@
 import { typeDefault } from '@typesDefault/typesDefault';
-import { TextInputProps } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 
 import styled, { css } from 'styled-components/native';
 
 type Props = TextInputProps & typeDefault;
 
-export const StyledContainer = styled.TextInput.attrs(
-  ({ theme, ...props }) => ({
-    placeholderTextColor: theme.variant.gray_300
-  })
-)<Props>`
+export const StyledContainer = styled(TextInput)<Props>`
   ${({ theme, ...props }) => css`
-    width: 100%;
-    padding-left: 16px;
-    border-radius: 5px;
+    flex: 1;
+    flex-direction: ${props.direction ? props.direction : 'row'};
+    min-height: ${props.minHeight ? props.minHeight : 56}px;
+    max-height: ${props.maxHeight ? props.maxHeight : 56}px;
+    padding: ${props.padding ? props.padding : 16}px;
+    border-radius: ${props.radius ? props.radius : 6}px;
     ${props.width &&
     css`
       width: ${props.width}px;
@@ -22,7 +21,6 @@ export const StyledContainer = styled.TextInput.attrs(
     css`
       height: ${props.height}px;
     `}
-    height: 56px;
     color: ${props.variantColor
       ? theme.variant[props.variantColor]
       : theme.variant.white};

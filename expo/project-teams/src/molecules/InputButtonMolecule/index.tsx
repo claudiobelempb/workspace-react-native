@@ -1,30 +1,32 @@
+import { IconAtom } from '@atoms/IconAtom';
 import { TextInputAtom } from '@atoms/TextInputAtom';
-import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
+import { ButtonIconMolecule } from '@molecules/ButtonIconMolecule';
 import { BoxTemplate } from '@templates/BoxTemplate';
+import { useTheme } from 'styled-components';
 
 export function InputButtonMolecule() {
+  const { variant } = useTheme();
+
   return (
     <BoxTemplate
       direction='row'
-      height={56}
       variantBackgroud='gray_700'
       isBorderRadius
+      radius={6}
+      justifyContent='space-between'
     >
-      <BoxTemplate flex={8}>
+      <BoxTemplate flex={1}>
         <TextInputAtom
           placeholder='Nome do participante'
-          variantPlaceholder={'gray_300'}
-          variantBackgroud='transparent'
+          variantBackgroud='gray_700'
+          autoCorrect={false}
         />
       </BoxTemplate>
-      <BoxTemplate flex={1}>
-        <ButtonTextMolecule
-          variantColor='white'
-          onPress={() => console.log('InputButton')}
-          padding={5}
-        >
-          +
-        </ButtonTextMolecule>
+
+      <BoxTemplate width={40}>
+        <ButtonIconMolecule onPress={() => console.log('InputButtonMolecule')}>
+          <IconAtom icon='Plus' size={24} color={variant.green_700} />
+        </ButtonIconMolecule>
       </BoxTemplate>
     </BoxTemplate>
   );
