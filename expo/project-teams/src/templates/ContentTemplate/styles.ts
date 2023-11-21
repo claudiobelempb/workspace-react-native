@@ -3,30 +3,49 @@ import styled, { css } from 'styled-components/native';
 
 export const StyledContainer = styled.View<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: 100%;
+    background-color: ${props.variantBackgroud
+      ? theme.variant[props.variantBackgroud]
+      : theme.variant.transparent};
+    flex-direction: ${props.direction ? props.direction : 'column'};
+    justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
+    align-items: ${props.alingItems ? props.alingItems : 'center'};
+    align-content: ${props.alingContent ? props.alingContent : 'center'};
+    align-self: ${props.alignSelf ? props.alignSelf : 'center'};
+    flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
+
+    ${props.isWidth &&
+    css`
+      width: 100%;
+    `}
     ${props.width &&
     css`
       width: ${props.width}px;
+    `}
+    ${props.minWidth &&
+    css`
+      min-width: ${props.minWidth}px;
+    `}
+    ${props.maxWidth &&
+    css`
+      max-width: ${props.maxWidth}px;
+    `}
+    ${props.isHeight &&
+    css`
+      height: 100%;
     `}
     ${props.height &&
     css`
       height: ${props.height}px;
     `}
-    ${props.flex &&
+    ${props.minHeight &&
     css`
-      flex: ${props.flex && undefined};
+      min-height: ${props.minHeight}px;
     `}
-    background-color: ${props.variantBackgroud
-      ? theme.variant[props.variantBackgroud]
-      : theme.variant.transparent};
-    flex-direction: ${props.direction ? props.direction : 'column'};
-    justify-content: ${props.justifyContent
-      ? props.justifyContent
-      : 'flex-start'};
-    align-items: ${props.alingItems ? props.alingItems : 'flex-start'};
-    align-content: ${props.alingContent ? props.alingContent : 'flex-start'};
-    align-self: ${props.alignSelf ? props.alignSelf : 'flex-start'};
-    flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
+    ${props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight}px;
+    `}
+    
     ${props.gap &&
     css`
       gap: ${props.gap ? props.basis : 0}px;
@@ -57,7 +76,7 @@ export const StyledContainer = styled.View<typeDefault>`
     `}
     ${props.flex &&
     css`
-      flex: ${props.flex ? props.flex : 0};
+      flex: ${props.flex};
     `}
     ${props.isBorderRadius &&
     css`

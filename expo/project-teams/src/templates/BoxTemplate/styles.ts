@@ -3,19 +3,6 @@ import styled, { css } from 'styled-components/native';
 
 export const StyledContainer = styled.View<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: 100%;
-    ${props.width &&
-    css`
-      width: ${props.width}px;
-    `}
-    ${props.height &&
-    css`
-      height: ${props.height}px;
-    `}
-    ${props.flex &&
-    css`
-      flex: ${props.flex && undefined};
-    `}
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.transparent};
@@ -27,89 +14,128 @@ export const StyledContainer = styled.View<typeDefault>`
     align-content: ${props.alingContent ? props.alingContent : 'flex-start'};
     align-self: ${props.alignSelf ? props.alignSelf : 'flex-start'};
     flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
-    ${props.padding &&
+    ${props.flex &&
+    css`
+      flex: ${props.flex};
+    `}
+    ${props.isWidth &&
+    css`
+      width: 100%;
+    `}
+      ${props.width &&
+    css`
+      width: ${props.width}px;
+    `}
+      ${props.minWidth &&
+    css`
+      min-width: ${props.minWidth}px;
+    `}
+      ${props.maxWidth &&
+    css`
+      max-width: ${props.maxWidth}px;
+    `}
+      ${props.isHeight &&
+    css`
+      height: 100%;
+    `}
+      ${props.height &&
+    css`
+      height: ${props.height}px;
+    `}
+      ${props.minHeight &&
+    css`
+      min-height: ${props.minHeight}px;
+    `}
+      ${props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight}px;
+    `}
+      ${props.padding &&
     css`
       gap: ${props.padding ? props.padding : 0}px;
     `}
-    ${props.gap &&
+      ${props.gap &&
     css`
       gap: ${props.gap ? props.basis : 0}px;
     `}
-    ${props.rowGap &&
+      ${props.rowGap &&
     css`
       gap: ${props.rowGap ? props.rowGap : 0}px;
     `}
-    ${props.columnGap &&
+      ${props.columnGap &&
     css`
       gap: ${props.columnGap ? props.columnGap : 0}px;
     `}
-    ${props.order &&
+      ${props.order &&
     css`
       order: ${props.order ? props.order : 0};
     `}
-    ${props.grow &&
+      ${props.grow &&
     css`
       flex-grow: ${props.grow ? props.grow : 0};
     `}
-    ${props.shrink &&
+      ${props.shrink &&
     css`
       flex-shrink: ${props.shrink ? props.shrink : 0};
     `}
-    ${props.basis &&
+      ${props.basis &&
     css`
       flex-basis: ${props.basis ? props.basis : 0}px;
     `}
-    ${props.flex &&
+      ${props.flex &&
     css`
       flex: ${props.flex ? props.flex : 0};
     `}
-    ${props.isBorderRadius &&
+      ${props.isBorderRadius &&
     css`
       border-radius: 5px;
     `}
-
-       /*PADDING */
-    ${props.padding &&
+      /*PADDING */
+      ${props.padding &&
     css`
       padding: ${props.padding}px;
     `}
-    ${props.paddingTop &&
+      ${props.paddingTop &&
     css`
       padding-top: ${props.paddingTop}px;
     `}
-    ${props.paddingRight &&
+      ${props.paddingRight &&
     css`
       padding-right: ${props.paddingRight}px;
     `}
-    ${props.paddingLeft &&
+      ${props.paddingLeft &&
     css`
       padding-left: ${props.paddingLeft}px;
     `}
-    ${props.paddingBottom &&
+      ${props.paddingBottom &&
     css`
       padding-bottom: ${props.paddingBottom}px;
     `}
-
-    /*MARGIN */
-    ${props.margin &&
+      /*MARGIN */
+      ${props.margin &&
     css`
       margin: ${props.margin}px;
     `}
-    ${props.marginTop &&
+      ${props.marginTop &&
     css`
       margin-top: ${props.marginTop}px;
     `}
-    ${props.marginRight &&
+      ${props.marginRight &&
     css`
       margin-right: ${props.marginRight}px;
     `}
-    ${props.marginLeft &&
+      ${props.marginLeft &&
     css`
       margin-left: ${props.marginLeft}px;
     `}
-    ${props.marginBottom &&
+      ${props.marginBottom &&
     css`
       margin-bottom: ${props.marginBottom}px;
-    `}
+    `};
   `}
+`;
+
+export const StyledContent = styled.View<typeDefault>`
+  //width: 100%;
+  //background-color: red;
 `;

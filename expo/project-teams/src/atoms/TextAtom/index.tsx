@@ -1,10 +1,6 @@
 import { typeDefault } from '@typesDefault/typesDefault';
 import { StyledText } from './styles';
 
-export function TextAton({ ...props }: typeDefault) {
-  return (
-    <StyledText alingContent='center' {...props}>
-      {props.children}
-    </StyledText>
-  );
+export function TextAtom({ ...props }: typeDefault) {
+  return <StyledText {...props}>{props.children}</StyledText>;
 }

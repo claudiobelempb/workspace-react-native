@@ -3,19 +3,6 @@ import styled, { css } from 'styled-components/native';
 
 export const StyledContainer = styled.View<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: 100%;
-    ${props.width &&
-    css`
-      width: ${props.width}px;
-    `}
-    ${props.height &&
-    css`
-      height: ${props.height}px;
-    `}
-    ${props.flex &&
-    css`
-      flex: ${props.flex && undefined};
-    `}
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.gray_600};
@@ -25,6 +12,42 @@ export const StyledContainer = styled.View<typeDefault>`
     align-content: ${props.alingContent ? props.alingContent : 'flex-start'};
     align-self: ${props.alignSelf ? props.alignSelf : 'center'};
     flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
+    padding: 20px;
+    width: 100%;
+    flex: 1;
+    ${props.isWidth &&
+    css`
+      width: 100%;
+    `}
+    ${props.width &&
+    css`
+      width: ${props.width}px;
+    `}
+    ${props.minWidth &&
+    css`
+      min-width: ${props.minWidth}px;
+    `}
+    ${props.maxWidth &&
+    css`
+      max-width: ${props.maxWidth}px;
+    `}
+    ${props.isHeight &&
+    css`
+      height: 100%;
+    `}
+    ${props.height &&
+    css`
+      height: ${props.height}px;
+    `}
+    ${props.minHeight &&
+    css`
+      min-height: ${props.minHeight}px;
+    `}
+    ${props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight}px;
+    `}
+   
     ${props.gap &&
     css`
       gap: ${props.gap ? props.basis : 0}px;

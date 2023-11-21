@@ -64,8 +64,10 @@ export type typeDefault = {
   unit?: 'px' | '%' | 'rem' | 'vw' | 'vh';
   value?: number;
   width?: number;
+  isWidth?: boolean;
   maxWidth?: number;
   minWidth?: number;
+  isHeight?: boolean;
   height?: number;
   maxHeight?: number;
   minHeight?: number;

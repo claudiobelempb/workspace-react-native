@@ -3,12 +3,13 @@ import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { IconAtom } from '@atoms/IconAtom';
 import { ImageAtom } from '@atoms/ImageAton';
 import { ButtonIconMolecule } from '@molecules/ButtonIconMolecule';
-import { BoxTemplate } from '@templates/BoxTemplate';
+import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 
 export function HeaderOrganism({ ...props }: typeDefault) {
   return (
-    <BoxTemplate
+    <ContentTemplate
+      isWidth
       direction='row'
       justifyContent={props.isIcon ? 'space-between' : 'center'}
       alingItems='center'
@@ -31,6 +32,6 @@ export function HeaderOrganism({ ...props }: typeDefault) {
       >
         <ImageAtom source={BrandImage} width={46} height={55} />
       </ButtonTouchableOpacityAton>
-    </BoxTemplate>
+    </ContentTemplate>
   );
 }

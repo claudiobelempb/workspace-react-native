@@ -3,7 +3,17 @@ import styled, { css } from 'styled-components/native';
 
 export const StyledText = styled.Text<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: 100%;
+    ${props.isWidth &&
+    css`
+      width: 100%;
+    `}
+    ${props.isHeight &&
+    css`
+      height: 100%;
+    `}
+    background-color: ${props.variantBackgroud
+      ? theme.variant[props.variantBackgroud]
+      : theme.variant.transparent};
     color: ${props.variantColor
       ? theme.variant[props.variantColor]
       : theme.variant.white};

@@ -1,19 +1,27 @@
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
-import { TextAton } from '@atoms/TextAtom';
-import { BoxTemplate } from '@templates/BoxTemplate';
+import { TextAtom } from '@atoms/TextAtom';
 import { typeDefault } from '@typesDefault/typesDefault';
 
 export function ButtonTextMolecule({ ...props }: typeDefault) {
   return (
-    <ButtonTouchableOpacityAton {...props} marginRight={10}>
-      <BoxTemplate
-        alingItems='center'
-        justifyContent='center'
-        direction='row'
-        height={56}
+    <ButtonTouchableOpacityAton
+      minHeight={props.minHeight}
+      padding={props.padding}
+      isWidth={props.isWidth}
+      isBorderRadius={props.isBorderRadius}
+      variantBackgroud={props.variantBackgroud}
+      onPress={props.onPress}
+      isActive={props.isActive}
+    >
+      <TextAtom
+        variantColor={props.variantColor}
+        textAlign={props.textAlign}
+        textTransform={props.textTransform}
+        isWidth={props.isWidth}
+        isHeight={props.isHeight}
       >
-        <TextAton {...props}>{props.title}</TextAton>
-      </BoxTemplate>
+        {props.title}
+      </TextAtom>
     </ButtonTouchableOpacityAton>
   );
 }

@@ -1,22 +1,25 @@
 import { HeadingAton } from '@atoms/HeadingAtom';
-import { TextAton } from '@atoms/TextAtom';
+import { TextAtom } from '@atoms/TextAtom';
 
 import { BoxTemplate } from '@templates/BoxTemplate';
+import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { UsersThree } from 'phosphor-react-native';
 
 export function SectionTurmaOrganism({ ...props }: typeDefault) {
   return (
-    <>
-      <BoxTemplate alingItems='center' marginBottom={30}>
+    <ContentTemplate isWidth marginBottom={32}>
+      <BoxTemplate marginBottom={32} alignSelf='center'>
         {props.isIcon && <UsersThree size={56} color={'#00B37E'} />}
       </BoxTemplate>
-      <BoxTemplate>
-        <HeadingAton textAlign='center'>{props.title}</HeadingAton>
-        <TextAton textAlign='center' variantColor='gray_300'>
+      <BoxTemplate isWidth>
+        <HeadingAton textAlign='center' isWidth>
+          {props.title}
+        </HeadingAton>
+        <TextAtom isWidth variantColor='gray_300' textAlign='center'>
           {props.description}
-        </TextAton>
+        </TextAtom>
       </BoxTemplate>
-    </>
+    </ContentTemplate>
   );
 }

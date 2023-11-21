@@ -1,6 +1,6 @@
 import { CardGroupMolecule } from '@molecules/CardGroupMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
-import { BoxTemplate } from '@templates/BoxTemplate';
+import { ContentTemplate } from '@templates/ContentTemplate';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 
@@ -20,9 +20,12 @@ export function CardGroupOrganism() {
     <FlatList
       data={groups}
       renderItem={item => (
-        <BoxTemplate marginBottom={10}>
-          <CardGroupMolecule title={item.item.name} />
-        </BoxTemplate>
+        <ContentTemplate marginBottom={10} isWidth direction='row'>
+          <CardGroupMolecule
+            onPress={() => console.log('CardGroupOrganism')}
+            title={item.item.name}
+          />
+        </ContentTemplate>
       )}
       keyExtractor={item => item.groupId}
       showsVerticalScrollIndicator={false}

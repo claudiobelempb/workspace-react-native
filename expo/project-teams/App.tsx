@@ -8,7 +8,7 @@ import {
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto';
-import { PlayersScreen } from '@screens/PlayersScreen';
+import { CreateGroupScreen } from '@screens/CreateGroupScreen';
 import { SafeAreaView } from 'react-native';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
     <SafeAreaView style={{ flex: 1 }}>
       <ThemeProvider theme={ThemeDefault}>
         <StatusBar style='light' translucent />
-        {fontsLoaded ? <PlayersScreen /> : <LoadingAtom />}
+        {fontsLoaded ? <CreateGroupScreen /> : <LoadingAtom />}
       </ThemeProvider>
     </SafeAreaView>
   );

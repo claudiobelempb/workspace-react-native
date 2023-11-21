@@ -1,6 +1,6 @@
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ImageAtom } from '@atoms/ImageAton';
-import { TextAton } from '@atoms/TextAtom';
+import { TextAtom } from '@atoms/TextAtom';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { ImageProps } from 'react-native';
@@ -21,7 +21,7 @@ export function ButtonImageTextMolecule({ ...props }: Props) {
         justifyContent='center'
       >
         <ImageAtom {...props} />
-        <TextAton variantBackgroud='white'>{props.title}</TextAton>
+        <TextAtom variantBackgroud='white'>{props.title}</TextAtom>
       </BoxTemplate>
     </ButtonTouchableOpacityAton>
   );

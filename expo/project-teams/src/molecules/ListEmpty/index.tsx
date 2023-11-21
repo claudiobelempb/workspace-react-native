@@ -1,4 +1,4 @@
-import { TextAton } from '@atoms/TextAtom';
+import { TextAtom } from '@atoms/TextAtom';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 
@@ -10,9 +10,9 @@ export function ListEmpty({ ...props }: typeDefault) {
       justifyContent='center'
       alingItems='center'
     >
-      <TextAton variantColor={props.variantColor} textAlign='center'>
+      <TextAtom variantColor={props.variantColor} textAlign='center'>
         {props.mensagem}
-      </TextAton>
+      </TextAtom>
     </BoxTemplate>
   );
 }

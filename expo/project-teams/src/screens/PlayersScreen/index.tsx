@@ -1,17 +1,21 @@
-import { FlatListAtom } from '@atoms/FlatListAtom';
 import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { InputButtonMolecule } from '@molecules/InputButtonMolecule';
 import { TimesModule } from '@molecules/TimesModule';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
 import { SectionTurmaOrganism } from '@organisms/SectionTurmaOrganism';
-import { BoxTemplate } from '@templates/BoxTemplate';
 
-import { IconTextButtonMolecule } from '@molecules/IconTextButtonMolecule';
+import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
-import { ContentTemplate } from '@templates/ContentTemplate';
 import { useState } from 'react';
 
-export function PlayersScreen() {
+type Group = {
+  groupId: string;
+  name: string;
+};
+
+type PlayersScreenProps = {};
+
+export function PlayersScreen({}: PlayersScreenProps) {
   const [players, setPlayers] = useState([
     'Kaike',
     'Kevin',
@@ -19,55 +23,60 @@ export function PlayersScreen() {
     'Cláudio'
   ]);
 
-  return (
-    <ContainerTemplate flex={1} padding={20} rowGap={10}>
-      <ContentTemplate>
-        <HeaderOrganism isIcon />
-      </ContentTemplate>
-      <ContentTemplate>
-        <SectionTurmaOrganism
-          isIcon
-          title='Nome da turma'
-          description='adicione a galera e separe os times'
-        />
-      </ContentTemplate>
-      <ContentTemplate>
-        <InputButtonMolecule />
-      </ContentTemplate>
+  const [team, setTeam] = useState([
+    'Time A',
+    'Time B',
+    'Time C',
+    'Time D',
+    'Time E',
+    'Time F'
+  ]);
 
-      <ContentTemplate>
-        <TimesModule countPlayers={players.length} />
-      </ContentTemplate>
-      <ContentTemplate flex={1}>
-        <FlatListAtom
-          data={[1]}
-          renderItem={item => (
-            <BoxTemplate rowGap={16}>
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-              <IconTextButtonMolecule title='Rodrigo Gonçalves' />
-            </BoxTemplate>
-          )}
-        />
-      </ContentTemplate>
-      <ContentTemplate>
-        <ButtonTextMolecule
-          onPress={() => console.log('Participant')}
-          variantBackgroud='green_500'
-          variantColor='white'
-          textAlign='center'
-          title=' Remover turma'
-          minHeight={56}
-        />
-      </ContentTemplate>
+  const [groups, setGroups] = useState<Group[]>([
+    { groupId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba', name: 'First Item' },
+    { groupId: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63', name: 'Second Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e29d74', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e29d12', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e39d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571d29d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e29d32', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e29d22', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e89d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571c22d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e29d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571e26d72', name: 'Third Item' },
+    { groupId: '58694a0f-3da1-471f-bd96-145571429d75', name: 'Third Item' }
+  ]);
+
+  return (
+    <ContainerTemplate>
+      <HeaderOrganism isIcon />
+
+      <SectionTurmaOrganism
+        isIcon
+        title='Nome da turma'
+        description='adicione a galera e separe os times'
+      />
+
+      <InputButtonMolecule />
+
+      <TimesModule countPlayers={players.length} />
+
+      <CardTimeOrganism
+        data={groups}
+        onPress={() => console.log('PlayersScreen')}
+      />
+
+      <ButtonTextMolecule
+        onPress={() => console.log('PlayScreen')}
+        variantColor='white'
+        title=' Remover turma'
+        isWidth
+        variantBackgroud='red_900'
+        isBorderRadius
+        textAlign='center'
+        minHeight={56}
+      />
     </ContainerTemplate>
   );
 }

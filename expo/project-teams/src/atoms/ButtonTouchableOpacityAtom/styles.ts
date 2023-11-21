@@ -6,28 +6,51 @@ type Props = TouchableOpacityProps & typeDefault;
 
 export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
   ${({ theme, ...props }) => css`
-    width: 100%;
-    flex: 1;
     flex-direction: ${props.direction ? props.direction : 'row'};
     justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
     align-items: ${props.alingContent ? props.alingItems : 'center'};
     align-self: ${props.alignSelf ? props.alignSelf : 'center'};
-    min-height: ${props.minHeight ? props.minHeight : 56}px;
-    max-height: ${props.maxHeight ? props.maxHeight : 56}px;
     padding: ${props.padding ? props.padding : 0}px;
-    border-radius: ${props.radius ? props.radius : 6}px;
+    ${props.isBorderRadius &&
+    css`
+      border-radius: 6px;
+    `}
+    ${props.isWidth &&
+    css`
+      width: 100%;
+    `}
     ${props.width &&
     css`
       width: ${props.width}px;
+    `}
+    ${props.minWidth &&
+    css`
+      min-width: ${props.minWidth}px;
+    `}
+    ${props.maxWidth &&
+    css`
+      max-width: ${props.maxWidth}px;
+    `}
+    ${props.isHeight &&
+    css`
+      height: 100%;
     `}
     ${props.height &&
     css`
       height: ${props.height}px;
     `}
+    ${props.minHeight &&
+    css`
+      min-height: ${props.minHeight}px;
+    `}
+    ${props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight}px;
+    `}
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.transparent};
-    border-radius: 6px;
+
     ${props.isActive &&
     css`
       border: 1px solid

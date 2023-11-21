@@ -1,11 +1,12 @@
+import { TextAtom } from '@atoms/TextAtom';
+
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { IconAtom } from '@atoms/IconAtom';
-import { TextAtom } from '@atoms/TextAtom';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { useTheme } from 'styled-components';
 
-export function IconTextButtonMolecule({ ...props }: typeDefault) {
+export function PlayCardMolecule({ ...props }: typeDefault) {
   const { variant } = useTheme();
   return (
     <BoxTemplate
@@ -28,7 +29,7 @@ export function IconTextButtonMolecule({ ...props }: typeDefault) {
       </BoxTemplate>
       <BoxTemplate flex={1} direction='row'>
         <ButtonTouchableOpacityAton
-          onPress={() => console.log('IconTextButton')}
+          onPress={() => console.log('PlayCardMolecule')}
         >
           <IconAtom icon='X' size={24} color={variant.red_900} />
         </ButtonTouchableOpacityAton>
