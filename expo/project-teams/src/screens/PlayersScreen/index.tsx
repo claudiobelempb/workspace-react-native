@@ -1,51 +1,35 @@
 import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { InputButtonMolecule } from '@molecules/InputButtonMolecule';
-import { TimesModule } from '@molecules/TimesModule';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
 import { SectionTurmaOrganism } from '@organisms/SectionTurmaOrganism';
 
+import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 import { useState } from 'react';
 
-type Group = {
-  groupId: string;
+type Players = {
+  playerId: string;
   name: string;
 };
 
 type PlayersScreenProps = {};
 
 export function PlayersScreen({}: PlayersScreenProps) {
-  const [players, setPlayers] = useState([
-    'Kaike',
-    'Kevin',
-    'Gorete',
-    'Cláudio'
-  ]);
-
-  const [team, setTeam] = useState([
-    'Time A',
-    'Time B',
-    'Time C',
-    'Time D',
-    'Time E',
-    'Time F'
-  ]);
-
-  const [groups, setGroups] = useState<Group[]>([
-    { groupId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba', name: 'First Item' },
-    { groupId: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63', name: 'Second Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e29d74', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e29d12', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e39d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571d29d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e29d32', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e29d22', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e89d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571c22d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e29d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571e26d72', name: 'Third Item' },
-    { groupId: '58694a0f-3da1-471f-bd96-145571429d75', name: 'Third Item' }
+  const [players, setPlayers] = useState<Players[]>([
+    { playerId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba', name: 'First Item' },
+    { playerId: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63', name: 'Second Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e29d74', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e29d12', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e39d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571d29d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e29d32', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e29d22', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e89d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571c22d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e29d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571e26d72', name: 'Third Item' },
+    { playerId: '58694a0f-3da1-471f-bd96-145571429d75', name: 'Third Item' }
   ]);
 
   return (
@@ -60,10 +44,10 @@ export function PlayersScreen({}: PlayersScreenProps) {
 
       <InputButtonMolecule />
 
-      <TimesModule countPlayers={players.length} />
+      <ButtonFilterTimeOrganism numberOfPlayes={players.length} />
 
       <CardTimeOrganism
-        data={groups}
+        data={players}
         onPress={() => console.log('PlayersScreen')}
       />
 

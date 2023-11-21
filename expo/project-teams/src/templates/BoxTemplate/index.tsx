@@ -16,6 +16,8 @@ export function BoxTemplate({ ...props }: typeDefault) {
       alingContent={props.alingContent}
       justifyContent={props.justifyContent}
       marginBottom={props.marginBottom}
+      marginRight={props.marginRight}
+      marginLeft={props.marginLeft}
       flex={props.flex}
     >
       {props.children}

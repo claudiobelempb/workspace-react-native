@@ -79,6 +79,14 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
     css`
       padding-bottom: ${props.paddingBottom}px;
     `}
+    ${props.paddingX &&
+    css`
+      padding: 0 ${props.paddingX}px;
+    `}
+    ${props.paddingY &&
+    css`
+      padding: ${props.paddingY}px 0;
+    `}
 
     /*MARGIN */
     ${props.margin &&

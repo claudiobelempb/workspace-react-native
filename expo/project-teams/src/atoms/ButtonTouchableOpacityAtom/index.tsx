@@ -14,7 +14,6 @@ export function ButtonTouchableOpacityAton({ ...props }: Props) {
       isWidth={props.isWidth}
       minWidth={props.minWidth}
       maxWidth={props.maxWidth}
-      padding={props.padding}
       isBorderRadius={props.isBorderRadius}
       variantBackgroud={props.variantBackgroud}
       direction={props.direction}
@@ -24,6 +23,10 @@ export function ButtonTouchableOpacityAton({ ...props }: Props) {
       justifyContent={props.justifyContent}
       onPress={props.onPress}
       isActive={props.isActive}
+      padding={props.padding}
+      paddingX={props.paddingX}
+      paddingY={props.paddingY}
+      marginRight={props.marginRight}
     >
       {props.children}
     </TouchableOpacityContainer>

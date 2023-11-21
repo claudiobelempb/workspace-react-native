@@ -6,7 +6,11 @@ import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { useTheme } from 'styled-components';
 
-export function CardTimeMolecule({ ...props }: typeDefault) {
+type CardTimeMoleculeProps = {
+  onRemovePlayer: () => void;
+} & typeDefault;
+
+export function CardTimeMolecule({ ...props }: CardTimeMoleculeProps) {
   const { variant } = useTheme();
 
   return (
@@ -20,24 +24,16 @@ export function CardTimeMolecule({ ...props }: typeDefault) {
       <BoxTemplate
         direction='row'
         alingItems='center'
-        minHeight={54}
-        columnGap={10}
+        minHeight={50}
         padding={10}
         flex={1}
       >
         <IconAtom icon='User' color={variant.white} />
-        <TextAtom>{props.name}</TextAtom>
+        <TextAtom flex={1}>{props.name}</TextAtom>
       </BoxTemplate>
 
-      <BoxTemplate
-        alignSelf='center'
-        direction='row'
-        minHeight={56}
-        minWidth={56}
-        maxWidth={56}
-        padding={5}
-      >
-        <ButtonTouchableOpacityAton onPress={props.onPress}>
+      <BoxTemplate alignSelf='center' direction='row' minWidth={56} padding={5}>
+        <ButtonTouchableOpacityAton onPress={props.onRemovePlayer} padding={5}>
           <IconAtom icon='X' color={variant.red_900} size={24} />
         </ButtonTouchableOpacityAton>
       </BoxTemplate>

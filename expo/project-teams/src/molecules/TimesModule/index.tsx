@@ -15,7 +15,7 @@ export function TimesModule({ countPlayers }: Props) {
   return (
     <ContentTemplate direction='row' marginBottom={24}>
       <FlatList
-        data={['Time A', 'Time B', 'Time C', 'Time D', 'Time E', 'Time F']}
+        data={['Time A', 'Time B']}
         keyExtractor={item => item}
         renderItem={item => (
           <ButtonTextMolecule
