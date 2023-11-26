@@ -67,25 +67,51 @@ export const TextInputAtomContainer = styled(TextInput)<Props>`
           : theme.variant.green_500};
     `}
     /*PADDING */
-    ${props.padding &&
+    ${props.space?.padding &&
     css`
-      padding: ${props.padding}px;
+      padding: ${props.space?.padding
+        ? theme.space.padding[props.space?.padding]
+        : false}px;
     `}
-    ${props.paddingTop &&
+      ${props.paddingTop &&
     css`
       padding-top: ${props.paddingTop}px;
     `}
-    ${props.paddingRight &&
+      ${props.paddingRight &&
     css`
       padding-right: ${props.paddingRight}px;
     `}
-    ${props.paddingLeft &&
+      ${props.paddingLeft &&
     css`
       padding-left: ${props.paddingLeft}px;
     `}
-    ${props.paddingBottom &&
+      ${props.paddingBottom &&
     css`
       padding-bottom: ${props.paddingBottom}px;
+    `}
+    ${props.paddingX &&
+    css`
+      padding: ${props.paddingX ? props.paddingX : 20}px 0px;
+    `}
+
+    ${props.paddingY &&
+    css`
+      padding: 0px ${props.paddingY}px;
+    `}
+    ${props.space?.paddingX &&
+    css`
+      padding: ${props.space.paddingX
+          ? theme.space.paddingX[props.space.paddingX]
+          : false}px
+        0px;
+    `}
+
+    ${props.space?.paddingY &&
+    css`
+      padding: 0px
+        ${props.space.paddingY
+          ? theme.space.paddingY[props.space.paddingY]
+          : false}px;
     `}
 
     /*MARGIN */

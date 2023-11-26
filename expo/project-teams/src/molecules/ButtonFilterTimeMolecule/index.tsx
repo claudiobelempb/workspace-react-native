@@ -18,8 +18,9 @@ export function ButtonFilterTimeMolecule({
       paddingX={props.paddingX}
       paddingY={props.paddingY}
       marginRight={props.marginRight}
+      space={props.space}
     >
-      <TextAtom fontSize='s14' textTransform={props.textTransform}>
+      <TextAtom fontSize={'m16px'} textTransform={props.textTransform}>
         {title}
       </TextAtom>
     </ButtonTouchableOpacityAton>

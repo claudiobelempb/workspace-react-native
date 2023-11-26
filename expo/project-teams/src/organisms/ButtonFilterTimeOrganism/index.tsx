@@ -26,7 +26,7 @@ export function ButtonFilterTimeOrganism({ numberOfPlayes }: Props) {
               isBorderRadius
               isActive={item === isActive}
               minHeight={38}
-              paddingX={5}
+              space={{ padding: 's8px' }}
               onPress={() => setIsActive(item)}
               isWidth
               textTransform='uppercase'

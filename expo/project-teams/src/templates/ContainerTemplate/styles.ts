@@ -1,20 +1,71 @@
 import { typeDefault } from '@typesDefault/typesDefault';
 import styled, { css } from 'styled-components/native';
 
-export const StyledContainer = styled.View<typeDefault>`
+export const StyledContainer = styled.SafeAreaView<typeDefault>`
   ${({ theme, ...props }) => css`
+    background-color: blue;
+    width: 100%;
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.gray_600};
-    flex-direction: ${props.direction ? props.direction : 'center'};
-    justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
-    align-items: ${props.alingItems ? props.alingItems : 'center'};
-    align-content: ${props.alingContent ? props.alingContent : 'flex-start'};
-    align-self: ${props.alignSelf ? props.alignSelf : 'center'};
-    flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
-    padding: 20px;
-    width: 100%;
-    flex: 1;
+    /*Flex */
+    ${props.flex &&
+    css`
+      flex: ${props.flex};
+    `}
+    ${props.direction &&
+    css`
+      flex-direction: ${props.direction};
+    `}
+    ${props.justifyContent &&
+    css`
+      justify-content: ${props.justifyContent};
+    `}
+    ${props.alingItems &&
+    css`
+      align-items: ${props.alingItems};
+    `}
+    ${props.alingContent &&
+    css`
+      align-content: ${props.alingContent};
+    `}
+    ${props.alignSelf &&
+    css`
+      align-self: ${props.alignSelf};
+    `}
+    ${props.wrap &&
+    css`
+      flex-wrap: ${props.wrap};
+    `}
+
+    ${props.gap &&
+    css`
+      gap: ${props.gap ? props.basis : 0}px;
+    `}
+    ${props.rowGap &&
+    css`
+      gap: ${props.rowGap ? props.rowGap : 0}px;
+    `}
+    ${props.columnGap &&
+    css`
+      gap: ${props.columnGap ? props.columnGap : 0}px;
+    `}
+    ${props.order &&
+    css`
+      order: ${props.order ? props.order : 0};
+    `}
+    ${props.grow &&
+    css`
+      flex-grow: ${props.grow ? props.grow : 0};
+    `}
+    ${props.shrink &&
+    css`
+      flex-shrink: ${props.shrink ? props.shrink : 0};
+    `}
+    ${props.basis &&
+    css`
+      flex-basis: ${props.basis ? props.basis : 0}px;
+    `}
     ${props.isWidth &&
     css`
       width: 100%;
@@ -48,73 +99,57 @@ export const StyledContainer = styled.View<typeDefault>`
       max-height: ${props.maxHeight}px;
     `}
    
-    ${props.gap &&
-    css`
-      gap: ${props.gap ? props.basis : 0}px;
-    `}
-    ${props.rowGap &&
-    css`
-      gap: ${props.rowGap ? props.rowGap : 0}px;
-    `}
-    ${props.columnGap &&
-    css`
-      gap: ${props.columnGap ? props.columnGap : 0}px;
-    `}
-    ${props.order &&
-    css`
-      order: ${props.order ? props.order : 0};
-    `}
-    ${props.grow &&
-    css`
-      flex-grow: ${props.grow ? props.grow : 0};
-    `}
-    ${props.shrink &&
-    css`
-      flex-shrink: ${props.shrink ? props.shrink : 0};
-    `}
-    ${props.basis &&
-    css`
-      flex-basis: ${props.basis ? props.basis : 0}px;
-    `}
-    ${props.flex &&
-    css`
-      flex: ${props.flex ? props.flex : 0};
-    `}
     ${props.isBorderRadius &&
     css`
       border-radius: 5px;
     `}
 
      /*PADDING */
-     ${props.padding &&
+     ${props.space?.padding &&
     css`
-      padding: ${props.padding}px;
+      padding: ${props.space?.padding
+        ? theme.space.padding[props.space?.padding]
+        : false}px;
     `}
-    ${props.paddingTop &&
+      ${props.paddingTop &&
     css`
       padding-top: ${props.paddingTop}px;
     `}
-    ${props.paddingRight &&
+      ${props.paddingRight &&
     css`
       padding-right: ${props.paddingRight}px;
     `}
-    ${props.paddingLeft &&
+      ${props.paddingLeft &&
     css`
       padding-left: ${props.paddingLeft}px;
     `}
-    ${props.paddingBottom &&
+      ${props.paddingBottom &&
     css`
       padding-bottom: ${props.paddingBottom}px;
     `}
-
     ${props.paddingX &&
     css`
-      padding: ${props.paddingX}px 0px;
+      padding: ${props.paddingX ? props.paddingX : 20}px 0px;
     `}
 
     ${props.paddingY &&
     css`
       padding: 0px ${props.paddingY}px;
+    `}
+    ${props.space?.paddingX &&
+    css`
+      padding: ${props.space.paddingX
+          ? theme.space.paddingX[props.space.paddingX]
+          : false}px
+        0px;
+    `}
+
+    ${props.space?.paddingY &&
+    css`
+      padding: 0px
+        ${props.space.paddingY
+          ? theme.space.paddingY[props.space.paddingY]
+          : false}px;
     `}
 
     /*MARGIN */

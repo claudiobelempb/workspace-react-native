@@ -1,9 +1,13 @@
-export type PaddingObjValue =
-  | 's8'
-  | 's14'
-  | 'm16'
-  | 'm18'
-  | 'l24'
-  | 'l32'
-  | 'x40'
-  | 'xl80';
+export type TypePadding =
+  | 's8px'
+  | 's12px'
+  | 'm16px'
+  | 'm24px'
+  | 'l32px'
+  | 'x64px';
+
+export type TypePaddingValue = {
+  padding?: TypePadding;
+  paddingX?: TypePadding;
+  paddingY?: TypePadding;
+};

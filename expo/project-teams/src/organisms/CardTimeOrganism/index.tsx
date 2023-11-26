@@ -21,7 +21,7 @@ export function CardTimeOrganism({ ...props }: CardTimeOrganismProps) {
         data={props.data}
         keyExtractor={item => item.playerId}
         renderItem={({ item }) => (
-          <BoxTemplate direction='row'>
+          <BoxTemplate direction='column'>
             <CardTimeMolecule
               name={item.name}
               onRemovePlayer={() => console.log('onRemovePlayer')}

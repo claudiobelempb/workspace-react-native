@@ -19,7 +19,7 @@ export const HeadingContainer = styled.Text<typeDefault>`
       : theme.variant.white};
     font-size: ${props.fontSize
       ? theme.fonts.size[props.fontSize]
-      : theme.fonts.size.l24}px;
+      : theme.fonts.size.m24px}px;
     text-align: ${props.textAlign ? props.textAlign : 'left'};
     font-family: ${theme.fonts.fontFamily.roboto.bold};
   `}

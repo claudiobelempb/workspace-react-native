@@ -1,12 +1,19 @@
 import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
-import { CardGroupOrganism } from '@organisms/CardGroupOrganism';
+import CardGroupOrganism from '@organisms/CardGroupOrganism';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
-import { SectionTurmaOrganism } from '@organisms/SectionTurmaOrganism';
+import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
+import { useNavigation } from '@react-navigation/native';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 
-export function HomeScreen() {
+export default function HomeScreen() {
+  const navigation = useNavigation();
+
+  function handleCreateGroup() {
+    navigation.navigate('create');
+  }
+
   return (
-    <ContainerTemplate>
+    <ContainerTemplate space={{ paddingY: 'm16px' }} flex={1}>
       <HeaderOrganism />
 
       <SectionTurmaOrganism
@@ -17,14 +24,14 @@ export function HomeScreen() {
       <CardGroupOrganism />
 
       <ButtonTextMolecule
-        onPress={() => console.log('Home')}
+        onPress={handleCreateGroup}
         variantBackgroud='green_500'
         variantColor='white'
         textAlign='center'
         title='Criar nova turma'
-        isWidth
         minHeight={56}
         isBorderRadius
+        isWidth
       />
     </ContainerTemplate>
   );

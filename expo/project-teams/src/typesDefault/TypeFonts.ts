@@ -1,23 +1,10 @@
-import { VariantObjValue } from './TypeVariant';
-
-export type TypeFont = {
-  VARIANT?: VariantObjValue;
-  FAMILY?: TypeFontFamily;
-  STYLE?: TypeFontStyle;
-  LENE_HEIGHT?: TypeFontLineHeight;
-  WHEIGH?: TypeFontWeigh;
-  SIZE?: TypeFontSize;
-};
-
 export type TypeFontSize =
-  | 's8'
-  | 's14'
-  | 'm16'
-  | 'm18'
-  | 'l24'
-  | 'x32'
-  | 'x40'
-  | 'xl80';
+  | 's8px'
+  | 's12px'
+  | 'm16px'
+  | 'm24px'
+  | 'l32px'
+  | 'x64px';
 
 export type TypeFontFamily = {
   roboto: {

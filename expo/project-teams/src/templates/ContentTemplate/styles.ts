@@ -6,12 +6,63 @@ export const StyledContainer = styled.View<typeDefault>`
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.transparent};
-    flex-direction: ${props.direction ? props.direction : 'column'};
-    justify-content: ${props.justifyContent ? props.justifyContent : 'center'};
-    align-items: ${props.alingItems ? props.alingItems : 'center'};
-    align-content: ${props.alingContent ? props.alingContent : 'center'};
-    align-self: ${props.alignSelf ? props.alignSelf : 'center'};
-    flex-wrap: ${props.wrap ? props.wrap : 'nowrap'};
+    /*Flex */
+    ${props.flex &&
+    css`
+      flex: ${props.flex};
+    `}
+    ${props.direction &&
+    css`
+      flex-direction: ${props.direction};
+    `}
+    ${props.justifyContent &&
+    css`
+      justify-content: ${props.justifyContent};
+    `}
+    ${props.alingItems &&
+    css`
+      align-items: ${props.alingItems};
+    `}
+    ${props.alingContent &&
+    css`
+      align-content: ${props.alingContent};
+    `}
+    ${props.alignSelf &&
+    css`
+      align-self: ${props.alignSelf};
+    `}
+    ${props.wrap &&
+    css`
+      flex-wrap: ${props.wrap};
+    `}
+    ${props.gap &&
+    css`
+      gap: ${props.gap ? props.basis : 0}px;
+    `}
+    ${props.rowGap &&
+    css`
+      gap: ${props.rowGap ? props.rowGap : 0}px;
+    `}
+    ${props.columnGap &&
+    css`
+      gap: ${props.columnGap ? props.columnGap : 0}px;
+    `}
+    ${props.order &&
+    css`
+      order: ${props.order ? props.order : 0};
+    `}
+    ${props.grow &&
+    css`
+      flex-grow: ${props.grow ? props.grow : 0};
+    `}
+    ${props.shrink &&
+    css`
+      flex-shrink: ${props.shrink ? props.shrink : 0};
+    `}
+    ${props.basis &&
+    css`
+      flex-basis: ${props.basis ? props.basis : 0}px;
+    `}
 
     ${props.isWidth &&
     css`
@@ -46,38 +97,6 @@ export const StyledContainer = styled.View<typeDefault>`
       max-height: ${props.maxHeight}px;
     `}
     
-    ${props.gap &&
-    css`
-      gap: ${props.gap ? props.basis : 0}px;
-    `}
-    ${props.rowGap &&
-    css`
-      gap: ${props.rowGap ? props.rowGap : 0}px;
-    `}
-    ${props.columnGap &&
-    css`
-      gap: ${props.columnGap ? props.columnGap : 0}px;
-    `}
-    ${props.order &&
-    css`
-      order: ${props.order ? props.order : 0};
-    `}
-    ${props.grow &&
-    css`
-      flex-grow: ${props.grow ? props.grow : 0};
-    `}
-    ${props.shrink &&
-    css`
-      flex-shrink: ${props.shrink ? props.shrink : 0};
-    `}
-    ${props.basis &&
-    css`
-      flex-basis: ${props.basis ? props.basis : 0}px;
-    `}
-    ${props.flex &&
-    css`
-      flex: ${props.flex};
-    `}
     ${props.isBorderRadius &&
     css`
       border-radius: 5px;
@@ -105,6 +124,20 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       padding-bottom: ${props.paddingBottom}px;
     `}
+    ${props.paddingX &&
+    css`
+      padding-bottom: ${props.paddingBottom}px;
+    `}
+    ${props.paddingX &&
+    css`
+      padding: ${props.paddingX ? props.paddingX : 20}px 0px;
+    `}
+
+    ${props.paddingY &&
+    css`
+      padding: 0px ${props.paddingY}px;
+    `}
+
 
     /*MARGIN */
     ${props.margin &&

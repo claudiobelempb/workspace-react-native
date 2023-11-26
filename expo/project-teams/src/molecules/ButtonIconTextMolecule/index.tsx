@@ -20,15 +20,16 @@ export function ButtonIconTextMolecule({ ...props }: typeDefault) {
       isActive={props.isActive}
     >
       <BoxTemplate
-        minHeight={96}
+        minHeight={90}
         columnGap={10}
         direction='row'
         alingItems='center'
-        padding={10}
+        space={{ padding: 's12px' }}
         variantBackgroud='gray_500'
         isWidth
         isBorderRadius
         onPress={() => console.log('ButtonTouchableOpacityAton')}
+        marginBottom={10}
       >
         {props.children}
         <TextAtom variantColor='white'>{props.title}</TextAtom>

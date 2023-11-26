@@ -1,12 +1,15 @@
-import { IconAtom } from '@atoms/IconAtom';
 import { ButtonIconTextMolecule } from '@molecules/ButtonIconTextMolecule';
 import { typeDefault } from '@typesDefault/typesDefault';
 
-export function CardGroupMolecule({ ...props }: typeDefault) {
+export default function CardGroupMolecule({ ...props }: typeDefault) {
   return (
     <ButtonIconTextMolecule
       minHeight={props.minHeight}
       padding={props.padding}
+      paddingLeft={props.paddingLeft}
+      paddingRight={props.paddingRight}
+      paddingTop={props.paddingTop}
+      paddingBottom={props.paddingBottom}
       isWidth={props.isWidth}
       isBorderRadius={props.isBorderRadius}
       variantBackgroud={props.variantBackgroud}
@@ -15,11 +18,13 @@ export function CardGroupMolecule({ ...props }: typeDefault) {
       alingItems={props.alingItems}
       alingContent={props.alingContent}
       justifyContent={props.justifyContent}
+      flex={props.flex}
       onPress={props.onPress}
       isActive={props.isActive}
       title={props.title}
+      marginBottom={props.marginBottom}
     >
-      <IconAtom icon='UsersThree' color='#00B37E' size={32} weight='fill' />
+      {props.children}
     </ButtonIconTextMolecule>
   );
 }

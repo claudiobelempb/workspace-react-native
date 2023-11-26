@@ -8,6 +8,7 @@ import {
   TypeFontStyle,
   TypeFontWeigh
 } from './TypeFonts';
+import { TypePadding } from './TypePadding';
 import { TypeTetxAlign, TypeText, TypeTextTransform } from './TypeText';
 import { VariantObjValue } from './TypeVariant';
 
@@ -35,7 +36,12 @@ export type typeDefault = {
   fontWeigh?: TypeFontWeigh;
   fontSize?: TypeFontSize;
   /**PADDING */
-  padding?: number;
+  space?: {
+    padding?: TypePadding;
+    paddingX?: TypePadding;
+    paddingY?: TypePadding;
+  };
+  padding?: TypePadding;
   paddingTop?: number;
   paddingRight?: number;
   paddingLeft?: number;
@@ -59,6 +65,8 @@ export type typeDefault = {
   textLineThrough?: 'line-through';
   textTransform?: TypeTextTransform;
   textAlign?: TypeTetxAlign;
+
+  position?: 'top' | 'bottom' | 'left' | 'right';
 
   text?: TypeText;
   unit?: 'px' | '%' | 'rem' | 'vw' | 'vh';

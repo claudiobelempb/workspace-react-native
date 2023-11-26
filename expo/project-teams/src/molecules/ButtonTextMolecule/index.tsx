@@ -12,6 +12,7 @@ export function ButtonTextMolecule({ ...props }: typeDefault) {
       variantBackgroud={props.variantBackgroud}
       onPress={props.onPress}
       isActive={props.isActive}
+      position={props.position}
     >
       <TextAtom
         variantColor={props.variantColor}

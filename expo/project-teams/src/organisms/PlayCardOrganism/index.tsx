@@ -37,7 +37,7 @@ export function PlayCardOrganism({ countPlayers }: Props) {
         alingItems='center'
         justifyContent='center'
       >
-        <TextAtom fontSize='s14' textAlign='right' variantColor='white'>
+        <TextAtom fontSize={'s12px'} textAlign='right' variantColor='white'>
           {countPlayers}
         </TextAtom>
       </BoxTemplate>

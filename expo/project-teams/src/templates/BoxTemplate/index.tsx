@@ -7,6 +7,9 @@ export function BoxTemplate({ ...props }: typeDefault) {
       minHeight={props.minHeight}
       padding={props.padding}
       paddingLeft={props.paddingLeft}
+      paddingTop={props.paddingTop}
+      paddingRight={props.paddingRight}
+      paddingBottom={props.paddingBottom}
       isWidth={props.isWidth}
       isBorderRadius={props.isBorderRadius}
       variantBackgroud={props.variantBackgroud}
@@ -14,11 +17,14 @@ export function BoxTemplate({ ...props }: typeDefault) {
       alignSelf={props.alignSelf}
       alingItems={props.alingItems}
       alingContent={props.alingContent}
+      flex={props.flex}
+      rowGap={props.rowGap}
+      columnGap={props.columnGap}
       justifyContent={props.justifyContent}
       marginBottom={props.marginBottom}
       marginRight={props.marginRight}
       marginLeft={props.marginLeft}
-      flex={props.flex}
+      space={props.space}
     >
       {props.children}
     </StyledContainer>

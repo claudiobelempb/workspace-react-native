@@ -11,6 +11,17 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
     align-items: ${props.alingContent ? props.alingItems : 'center'};
     align-self: ${props.alignSelf ? props.alignSelf : 'center'};
     padding: ${props.padding ? props.padding : 0}px;
+
+    ${props.position === 'bottom' &&
+    css`
+      position: absolute;
+
+      height: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    `}
+
     ${props.isBorderRadius &&
     css`
       border-radius: 6px;
@@ -59,33 +70,51 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
           : theme.variant.green_500};
     `}
     /*PADDING */
-    ${props.padding &&
+    ${props.space?.padding &&
     css`
-      padding: ${props.padding}px;
+      padding: ${props.space?.padding
+        ? theme.space.padding[props.space?.padding]
+        : false}px;
     `}
-    ${props.paddingTop &&
+      ${props.paddingTop &&
     css`
       padding-top: ${props.paddingTop}px;
     `}
-    ${props.paddingRight &&
+      ${props.paddingRight &&
     css`
       padding-right: ${props.paddingRight}px;
     `}
-    ${props.paddingLeft &&
+      ${props.paddingLeft &&
     css`
       padding-left: ${props.paddingLeft}px;
     `}
-    ${props.paddingBottom &&
+      ${props.paddingBottom &&
     css`
       padding-bottom: ${props.paddingBottom}px;
     `}
     ${props.paddingX &&
     css`
-      padding: 0 ${props.paddingX}px;
+      padding: ${props.paddingX ? props.paddingX : 20}px 0px;
     `}
+
     ${props.paddingY &&
     css`
-      padding: ${props.paddingY}px 0;
+      padding: 0px ${props.paddingY}px;
+    `}
+    ${props.space?.paddingX &&
+    css`
+      padding: ${props.space.paddingX
+          ? theme.space.paddingX[props.space.paddingX]
+          : false}px
+        0px;
+    `}
+
+    ${props.space?.paddingY &&
+    css`
+      padding: 0px
+        ${props.space.paddingY
+          ? theme.space.paddingY[props.space.paddingY]
+          : false}px;
     `}
 
     /*MARGIN */

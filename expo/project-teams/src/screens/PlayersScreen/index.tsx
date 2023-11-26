@@ -1,7 +1,7 @@
 import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { InputButtonMolecule } from '@molecules/InputButtonMolecule';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
-import { SectionTurmaOrganism } from '@organisms/SectionTurmaOrganism';
+import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 
 import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
@@ -15,7 +15,7 @@ type Players = {
 
 type PlayersScreenProps = {};
 
-export function PlayersScreen({}: PlayersScreenProps) {
+export default function PlayersScreen({}: PlayersScreenProps) {
   const [players, setPlayers] = useState<Players[]>([
     { playerId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba', name: 'First Item' },
     { playerId: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63', name: 'Second Item' },
@@ -33,11 +33,10 @@ export function PlayersScreen({}: PlayersScreenProps) {
   ]);
 
   return (
-    <ContainerTemplate>
+    <ContainerTemplate space={{ paddingY: 'm16px' }} flex={1}>
       <HeaderOrganism isIcon />
 
       <SectionTurmaOrganism
-        isIcon
         title='Nome da turma'
         description='adicione a galera e separe os times'
       />

@@ -27,8 +27,8 @@ export function TimesModule({ countPlayers }: Props) {
             title={item.item}
             textAlign='center'
             textTransform='uppercase'
-            fontSize='s14'
-            padding={5}
+            fontSize='s12px'
+            space={{ padding: 's8px' }}
             isBorderRadius
           />
         )}
@@ -40,13 +40,13 @@ export function TimesModule({ countPlayers }: Props) {
       />
 
       <BoxTemplate
-        padding={10}
+        space={{ padding: 's8px' }}
         width={56}
         alingItems='center'
         justifyContent='center'
       >
         <TextAtom
-          fontSize='s14'
+          fontSize='s12px'
           textAlign='right'
           fontWeigh='700'
           variantColor='white'

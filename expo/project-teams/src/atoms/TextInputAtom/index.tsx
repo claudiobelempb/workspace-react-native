@@ -30,6 +30,7 @@ export function TextInputAtom({ ...props }: Props) {
       placeholder={props.placeholder}
       value={props.value}
       flex={props.flex}
+      space={props.space}
     />
   );
 }

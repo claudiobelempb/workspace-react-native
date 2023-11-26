@@ -2,34 +2,45 @@ import BrandImage from '@assets/logo.png';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { IconAtom } from '@atoms/IconAtom';
 import { ImageAtom } from '@atoms/ImageAton';
-import { ButtonIconMolecule } from '@molecules/ButtonIconMolecule';
+import { useNavigation } from '@react-navigation/native';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
+import { useTheme } from 'styled-components/native';
 
 export function HeaderOrganism({ ...props }: typeDefault) {
+  const navigation = useNavigation();
+  const { variant } = useTheme();
+
+  function handleGoBack() {
+    //navigation.goBack();
+    navigation.navigate('home');
+  }
+
   return (
     <ContentTemplate
       isWidth
       direction='row'
       justifyContent={props.isIcon ? 'space-between' : 'center'}
       alingItems='center'
+      paddingX={20}
     >
       {props.isIcon && (
-        <ButtonIconMolecule
+        <ButtonTouchableOpacityAton
           width={32}
           height={32}
           variantIconColor='red_100'
-          onPress={() => console.log('Voltar Turma')}
+          onPress={handleGoBack}
         >
-          <IconAtom icon='CaretLeft' size={32} color='#FFFFFF' />
-        </ButtonIconMolecule>
+          <IconAtom
+            family='Feather'
+            nameFeather='arrow-left'
+            size={32}
+            color={variant.white}
+          />
+        </ButtonTouchableOpacityAton>
       )}
 
-      <ButtonTouchableOpacityAton
-        onPress={() => console.log('Brand')}
-        width={46}
-        height={55}
-      >
+      <ButtonTouchableOpacityAton onPress={handleGoBack} width={46} height={55}>
         <ImageAtom source={BrandImage} width={46} height={55} />
       </ButtonTouchableOpacityAton>
     </ContentTemplate>

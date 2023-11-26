@@ -20,6 +20,7 @@ export function ButtonIconMolecule({ ...props }: typeDefault) {
       justifyContent={props.justifyContent}
       onPress={props.onPress}
       isActive={props.isActive}
+      space={props.space}
     >
       {props.children}
     </ButtonTouchableOpacityAton>

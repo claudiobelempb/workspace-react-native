@@ -18,17 +18,14 @@ const ThemeDefault = {
   },
   fonts: {
     size: {
-      s8: 8,
-      s14: 14,
-      m16: 16,
-      m18: 18,
-      l24: 24,
-      x32: 32,
-      x40: 40,
-      xl80: 80
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
     },
     lineHeight: '160%',
-
     fontFamily: {
       roboto: {
         regular: 'Roboto_400Regular',
@@ -36,15 +33,31 @@ const ThemeDefault = {
       }
     }
   },
-  padding: {
-    s8: 8,
-    s14: 14,
-    m16: 16,
-    m18: 18,
-    l24: 24,
-    x32: 32,
-    x40: 40,
-    xl80: 80
+  space: {
+    padding: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    paddingX: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    paddingY: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    }
   }
 };
 

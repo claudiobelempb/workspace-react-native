@@ -4,10 +4,10 @@ import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { IconAtom } from '@atoms/IconAtom';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
-import { useTheme } from 'styled-components';
+import appUseTheme from 'src/hooks/appUseTheme';
 
 export function PlayCardMolecule({ ...props }: typeDefault) {
-  const { variant } = useTheme();
+  const { variant } = appUseTheme();
   return (
     <BoxTemplate
       variantBackgroud='gray_400'
@@ -16,14 +16,19 @@ export function PlayCardMolecule({ ...props }: typeDefault) {
       flex={2}
       justifyContent='space-between'
     >
-      <BoxTemplate flex={6} padding={10}>
+      <BoxTemplate flex={6} padding='m16px'>
         <BoxTemplate
           columnGap={10}
           direction='row'
           flex={1}
           alingItems='center'
         >
-          <IconAtom size={24} color={variant.white} icon='User' />
+          <IconAtom
+            nameFeather='user'
+            size={24}
+            family='Feather'
+            color={variant.green_700}
+          />
           <TextAtom variantColor='white'>{props.title}</TextAtom>
         </BoxTemplate>
       </BoxTemplate>
@@ -31,7 +36,12 @@ export function PlayCardMolecule({ ...props }: typeDefault) {
         <ButtonTouchableOpacityAton
           onPress={() => console.log('PlayCardMolecule')}
         >
-          <IconAtom icon='X' size={24} color={variant.red_900} />
+          <IconAtom
+            family='Feather'
+            nameFeather='x'
+            size={24}
+            color={variant.red_900}
+          />
         </ButtonTouchableOpacityAton>
       </BoxTemplate>
     </BoxTemplate>

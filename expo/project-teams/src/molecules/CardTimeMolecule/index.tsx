@@ -4,7 +4,8 @@ import { TextAtom } from '@atoms/TextAtom';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
-import { useTheme } from 'styled-components';
+import React from 'react';
+import { useTheme } from 'styled-components/native';
 
 type CardTimeMoleculeProps = {
   onRemovePlayer: () => void;
@@ -20,21 +21,42 @@ export function CardTimeMolecule({ ...props }: CardTimeMoleculeProps) {
       isBorderRadius
       isWidth
       variantBackgroud='gray_500'
+      space={{ paddingY: 's8px', paddingX: 'l32px' }}
     >
       <BoxTemplate
         direction='row'
         alingItems='center'
-        minHeight={50}
-        padding={10}
         flex={1}
+        isWidth
+        columnGap={10}
+        space={{ paddingY: 's8px' }}
       >
-        <IconAtom icon='User' color={variant.white} />
-        <TextAtom flex={1}>{props.name}</TextAtom>
+        <IconAtom
+          family='Feather'
+          nameFeather='user'
+          size={24}
+          color={variant.white}
+        />
+        <TextAtom isWidth flex={1}>
+          {props.name}
+        </TextAtom>
       </BoxTemplate>
 
-      <BoxTemplate alignSelf='center' direction='row' minWidth={56} padding={5}>
-        <ButtonTouchableOpacityAton onPress={props.onRemovePlayer} padding={5}>
-          <IconAtom icon='X' color={variant.red_900} size={24} />
+      <BoxTemplate
+        alignSelf='center'
+        direction='row'
+        space={{ padding: 's8px' }}
+      >
+        <ButtonTouchableOpacityAton
+          onPress={props.onRemovePlayer}
+          space={{ padding: 's8px' }}
+        >
+          <IconAtom
+            family='Feather'
+            nameFeather='x'
+            size={24}
+            color={variant.red_900}
+          />
         </ButtonTouchableOpacityAton>
       </BoxTemplate>
     </ContentTemplate>
