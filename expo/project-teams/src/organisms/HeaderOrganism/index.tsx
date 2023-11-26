@@ -22,7 +22,7 @@ export function HeaderOrganism({ ...props }: typeDefault) {
       direction='row'
       justifyContent={props.isIcon ? 'space-between' : 'center'}
       alingItems='center'
-      paddingX={20}
+      space={{ paddingX: 's12px' }}
     >
       {props.isIcon && (
         <ButtonTouchableOpacityAton

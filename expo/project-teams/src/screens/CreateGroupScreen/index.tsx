@@ -16,7 +16,7 @@ export default function CreateGroupScreen() {
 
   return (
     <ContainerTemplate space={{ paddingY: 'm16px' }} flex={1}>
-      <HeaderOrganism direction='space-between' isIcon />
+      <HeaderOrganism isIcon />
 
       <SectionTurmaOrganism
         isIcon
