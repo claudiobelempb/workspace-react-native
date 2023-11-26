@@ -5,12 +5,17 @@ import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 
 import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
+import { useRoute } from '@react-navigation/native';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 import { useState } from 'react';
 
 type Players = {
   playerId: string;
   name: string;
+};
+
+type RouteParams = {
+  group: string;
 };
 
 type PlayersScreenProps = {};
@@ -32,12 +37,14 @@ export default function PlayersScreen({}: PlayersScreenProps) {
     { playerId: '58694a0f-3da1-471f-bd96-145571429d75', name: 'Third Item' }
   ]);
 
+  const router = useRoute();
+  const { group } = router.params as RouteParams;
   return (
     <ContainerTemplate space={{ paddingY: 'm16px' }} flex={1}>
       <HeaderOrganism isIcon />
 
       <SectionTurmaOrganism
-        title='Nome da turma'
+        title={group}
         description='adicione a galera e separe os times'
       />
 

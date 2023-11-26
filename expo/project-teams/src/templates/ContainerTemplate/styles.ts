@@ -1,7 +1,8 @@
 import { typeDefault } from '@typesDefault/typesDefault';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { css } from 'styled-components/native';
 
-export const StyledContainer = styled.SafeAreaView<typeDefault>`
+export const StyledContainer = styled(SafeAreaView)<typeDefault>`
   ${({ theme, ...props }) => css`
     background-color: blue;
     width: 100%;

@@ -4,12 +4,14 @@ import { HeaderOrganism } from '@organisms/HeaderOrganism';
 import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 import { useNavigation } from '@react-navigation/native';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
+import { useState } from 'react';
 
 export default function CreateGroupScreen() {
+  const [group, setGroup] = useState('');
   const navigation = useNavigation();
 
   function handleCreateGroup() {
-    navigation.navigate('players', { group: 'Rocket' });
+    navigation.navigate('players', { group });
   }
 
   return (
@@ -23,7 +25,7 @@ export default function CreateGroupScreen() {
       />
 
       <TextInputAtom
-        onChangeText={() => console.log('Text')}
+        onChangeText={setGroup}
         placeholder='Nome da turma'
         variantBackgroud='gray_700'
         isWidth

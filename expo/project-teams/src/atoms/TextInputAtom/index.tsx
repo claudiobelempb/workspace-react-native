@@ -23,7 +23,7 @@ export function TextInputAtom({ ...props }: Props) {
       alingItems={props.alingItems}
       alingContent={props.alingContent}
       justifyContent={props.justifyContent}
-      onPress={props.onPress}
+      onChangeText={props.onChangeText}
       isActive={props.isActive}
       placeholderTextColor={variant.gray_300}
       marginBottom={props.marginBottom}
