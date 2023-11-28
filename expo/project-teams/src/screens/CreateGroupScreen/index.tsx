@@ -5,7 +5,9 @@ import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 import { useNavigation } from '@react-navigation/native';
 import { groupCreate } from '@storage/group/groupCreate';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
+import { AppError } from '@utils/AppError';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 export default function CreateGroupScreen() {
   const [group, setGroup] = useState('');
@@ -13,10 +15,19 @@ export default function CreateGroupScreen() {
 
   async function handleCreateGroup() {
     try {
+      if (group.trim().length === 0) {
+        throw new AppError('Campo obrigatório!');
+      }
+
       await groupCreate(group);
       navigation.navigate('players', { group });
     } catch (error) {
-      console.warn(error);
+      if (error instanceof AppError) {
+        Alert.alert('Novo Group', error.message);
+      } else {
+        Alert.alert('Novo Group', 'Não foi posspível vriar um novo grupo.');
+        console.log(error);
+      }
     }
   }
 
