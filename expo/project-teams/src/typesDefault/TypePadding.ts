@@ -7,7 +7,13 @@ export type TypePadding =
   | 'x64px';
 
 export type TypePaddingValue = {
-  padding?: TypePadding;
+  p?: TypePadding;
+  pt?: TypePadding;
+  pr?: TypePadding;
+  pl?: TypePadding;
+  pb?: TypePadding;
+  px?: TypePadding;
+  py?: TypePadding;
   paddingX?: TypePadding;
   paddingY?: TypePadding;
 };

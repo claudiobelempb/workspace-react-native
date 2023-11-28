@@ -3,6 +3,7 @@ import { ButtonTextMolecule } from '@molecules/ButtonTextMolecule';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
 import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 import { useNavigation } from '@react-navigation/native';
+import { groupCreate } from '@storage/group/groupCreate';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 import { useState } from 'react';
 
@@ -10,8 +11,13 @@ export default function CreateGroupScreen() {
   const [group, setGroup] = useState('');
   const navigation = useNavigation();
 
-  function handleCreateGroup() {
-    navigation.navigate('players', { group });
+  async function handleCreateGroup() {
+    try {
+      await groupCreate(group);
+      navigation.navigate('players', { group });
+    } catch (error) {
+      console.warn(error);
+    }
   }
 
   return (

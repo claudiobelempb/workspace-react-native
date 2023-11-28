@@ -58,6 +58,122 @@ const ThemeDefault = {
       l32px: 32,
       x64px: 64
     }
+  },
+  padding: {
+    p: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    pt: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    pr: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    pl: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    pb: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    px: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    py: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    }
+  },
+  margin: {
+    m: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    mt: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    mr: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    ml: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    mb: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    mx: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    },
+    my: {
+      s8px: 8,
+      s12px: 12,
+      m16px: 16,
+      m24px: 34,
+      l32px: 32,
+      x64px: 64
+    }
   }
 };
 

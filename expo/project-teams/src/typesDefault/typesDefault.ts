@@ -8,7 +8,8 @@ import {
   TypeFontStyle,
   TypeFontWeigh
 } from './TypeFonts';
-import { TypePadding } from './TypePadding';
+import { TypeMarginValue } from './TypeMargin';
+import { TypePadding, TypePaddingValue } from './TypePadding';
 import { TypeTetxAlign, TypeText, TypeTextTransform } from './TypeText';
 import { VariantObjValue } from './TypeVariant';
 
@@ -36,12 +37,13 @@ export type typeDefault = {
   fontWeigh?: TypeFontWeigh;
   fontSize?: TypeFontSize;
   /**PADDING */
+  padding?: TypePaddingValue;
   space?: {
     padding?: TypePadding;
     paddingX?: TypePadding;
     paddingY?: TypePadding;
   };
-  padding?: TypePadding;
+  //padding?: TypePadding;
   paddingTop?: number;
   paddingRight?: number;
   paddingLeft?: number;
@@ -50,7 +52,8 @@ export type typeDefault = {
   paddingY?: number;
 
   /**MARGIN */
-  margin?: number;
+  margin?: TypeMarginValue;
+  //margin?: number;
   marginTop?: number;
   marginRight?: number;
   marginLeft?: number;

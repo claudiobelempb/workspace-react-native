@@ -32,6 +32,7 @@ export default function HomeScreen() {
         minHeight={56}
         isBorderRadius
         isWidth
+        marginBottom={16}
       />
     </ContainerTemplate>
   );

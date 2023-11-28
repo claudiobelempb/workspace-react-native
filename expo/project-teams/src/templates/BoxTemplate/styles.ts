@@ -149,6 +149,11 @@ export const StyledContainer = styled.View<typeDefault>`
           ? theme.space.paddingY[props.space.paddingY]
           : false}px;
     `}
+
+    ${props.padding?.p &&
+    css`
+      padding: ${theme.padding.p[props.padding.p]}px;
+    `}
     
       /*MARGIN */
       ${props.margin &&

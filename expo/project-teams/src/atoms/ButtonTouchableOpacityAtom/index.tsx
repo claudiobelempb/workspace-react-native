@@ -27,6 +27,7 @@ export function ButtonTouchableOpacityAton({ ...props }: Props) {
       paddingX={props.paddingX}
       paddingY={props.paddingY}
       marginRight={props.marginRight}
+      marginBottom={props.marginBottom}
       space={props.space}
       position={props.position}
     >
