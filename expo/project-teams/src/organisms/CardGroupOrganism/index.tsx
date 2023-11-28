@@ -2,7 +2,7 @@ import { IconAtom } from '@atoms/IconAtom';
 import { TextAtom } from '@atoms/TextAtom';
 import CardGroupMolecule from '@molecules/CardGroupMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { groupFindAll } from '@storage/group/groupFindAll';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
@@ -75,6 +75,8 @@ export default function CardGroupOrganism({ ...props }: Props) {
     // }
   ]);
 
+  const navigation = useNavigation();
+
   const { variant } = useTheme();
 
   async function fetchGroup() {
@@ -84,6 +86,10 @@ export default function CardGroupOrganism({ ...props }: Props) {
     } catch (error) {
       console.warn(error);
     }
+  }
+
+  function handleOpenGroup(group: string) {
+    navigation.navigate('players', { group });
   }
 
   useFocusEffect(
@@ -96,18 +102,15 @@ export default function CardGroupOrganism({ ...props }: Props) {
     <ContentTemplate flex={1}>
       <FlatList
         data={groups}
-        renderItem={item => (
-          <CardGroupMolecule
-            isWidth
-            onPress={() => console.log('CardGroupOrganism')}
-          >
+        renderItem={({ item }) => (
+          <CardGroupMolecule isWidth onPress={() => handleOpenGroup(item)}>
             <IconAtom
               family='Feather'
               nameFeather='user'
               size={30}
               color={variant.green_700}
             />
-            <TextAtom>{item.item}</TextAtom>
+            <TextAtom>{item}</TextAtom>
           </CardGroupMolecule>
         )}
         keyExtractor={item => item}
