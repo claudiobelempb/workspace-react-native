@@ -6,39 +6,79 @@ import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
 import { useRoute } from '@react-navigation/native';
+import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
+import { playerCreate } from '@storage/player/playerCreate';
+import { playerFindById } from '@storage/player/playerFindById';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
-import { useState } from 'react';
-
-type Players = {
-  playerId: string;
-  name: string;
-};
+import { AppError } from '@utils/AppError';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 
 type RouteParams = {
   group: string;
 };
 
-type PlayersScreenProps = {};
+type PlayersScreenProps = {
+  onActiveTeam: (value: string) => string;
+};
 
-export default function PlayersScreen({}: PlayersScreenProps) {
-  const [players, setPlayers] = useState<Players[]>([
-    // { playerId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba', name: 'First Item' },
-    // { playerId: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63', name: 'Second Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e29d74', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e29d12', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e39d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571d29d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e29d32', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e29d22', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e89d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571c22d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e29d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571e26d72', name: 'Third Item' },
-    // { playerId: '58694a0f-3da1-471f-bd96-145571429d75', name: 'Third Item' }
-  ]);
+export default function PlayersScreen() {
+  const [teams, setTeams] = useState(['Time A', 'Time B', 'Time C']);
+  const [team, setTeam] = useState('Time A');
+  const [playerName, setPLayerName] = useState('');
+  const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 
   const router = useRoute();
   const { group } = router.params as RouteParams;
+
+  function handleActiveTeam(value: string) {
+    setTeam(value);
+  }
+
+  async function handleAddPLayer() {
+    if (playerName.trim().length === 0) {
+      return Alert.alert(
+        'Nova pessoa',
+        'Informe o nome da pessoa para adicionar.'
+      );
+    }
+
+    const newPlayer = {
+      name: playerName,
+      team
+    };
+
+    try {
+      await playerCreate(newPlayer, group);
+      fetchPlayersFinalById();
+      setPLayerName('');
+    } catch (error) {
+      if (error instanceof AppError) {
+        Alert.alert('Nova pessoa', error.message);
+      } else {
+        console.log(error);
+        Alert.alert('Nova Pessoa', 'Não foi possível adicionar');
+      }
+    }
+  }
+
+  async function fetchPlayersFinalById() {
+    try {
+      const playersByTeam = await playerFindById(group, team);
+      setPlayers(playersByTeam);
+    } catch (error) {
+      console.log(error);
+      Alert.alert(
+        'Pessoas',
+        'Não foi possível carregar as pessoas do time selecionado.'
+      );
+    }
+  }
+
+  useEffect(() => {
+    fetchPlayersFinalById();
+  }, [team]);
+
   return (
     <ContainerTemplate space={{ paddingY: 'm16px' }} flex={1}>
       <HeaderOrganism isIcon />
@@ -48,14 +88,20 @@ export default function PlayersScreen({}: PlayersScreenProps) {
         description='adicione a galera e separe os times'
       />
 
-      <InputButtonMolecule />
-
-      <ButtonFilterTimeOrganism numberOfPlayes={players.length} />
-
-      <CardTimeOrganism
-        data={players}
-        onPress={() => console.log('PlayersScreen')}
+      <InputButtonMolecule
+        onChangeText={setPLayerName}
+        onPress={handleAddPLayer}
+        value={playerName}
       />
+
+      <ButtonFilterTimeOrganism
+        team={team}
+        teams={teams}
+        numberOfPlayes={players.length}
+        onActiveTeam={handleActiveTeam}
+      />
+
+      <CardTimeOrganism players={players} />
 
       <ButtonTextMolecule
         onPress={() => console.log('PlayScreen')}

@@ -1,25 +1,21 @@
 import { CardTimeMolecule } from '@molecules/CardTimeMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
+import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { FlatList } from 'react-native';
 
-type Players = {
-  playerId: string;
-  name: string;
-};
-
 type CardTimeOrganismProps = {
-  data: Players[];
+  players?: PlayerStorageDTO[];
 } & typeDefault;
 
-export function CardTimeOrganism({ ...props }: CardTimeOrganismProps) {
+export function CardTimeOrganism({ players, ...props }: CardTimeOrganismProps) {
   return (
     <ContentTemplate flex={1}>
       <FlatList
-        data={props.data}
-        keyExtractor={item => item.playerId}
+        data={players}
+        keyExtractor={item => item.name}
         renderItem={({ item }) => (
           <BoxTemplate direction='column'>
             <CardTimeMolecule
@@ -30,7 +26,7 @@ export function CardTimeOrganism({ ...props }: CardTimeOrganismProps) {
         )}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[
-          props.data.length === 0 && { flex: 1 },
+          players?.length === 0 && { flex: 1 },
           { paddingBottom: 30 }
         ]}
         ListEmptyComponent={() => (

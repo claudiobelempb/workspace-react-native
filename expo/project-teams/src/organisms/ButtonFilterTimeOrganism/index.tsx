@@ -3,38 +3,50 @@ import { ButtonFilterTimeMolecule } from '@molecules/ButtonFilterTimeMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
-import { useState } from 'react';
+import { typeDefault } from '@typesDefault/typesDefault';
 import { FlatList } from 'react-native';
 
-type Props = {
-  numberOfPlayes: number;
+type Team = {
+  name: string;
 };
 
-export function ButtonFilterTimeOrganism({ numberOfPlayes }: Props) {
-  const [times, setTimes] = useState(['Time A', 'Time B']);
-  const [isActive, setIsActive] = useState('Time A');
+type Props = {
+  numberOfPlayes?: number;
+  teams?: string[];
+  team: string;
+  value?: string;
+  onActiveTeam: (value: string) => void;
+  active?: string;
+} & typeDefault;
 
+export function ButtonFilterTimeOrganism({
+  numberOfPlayes,
+  team,
+  teams,
+  onActiveTeam,
+  ...props
+}: Props) {
   return (
     <ContentTemplate direction='row' alingItems='center' marginBottom={16}>
       <FlatList
-        data={times}
+        data={teams}
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <BoxTemplate direction='row' marginRight={16}>
             <ButtonFilterTimeMolecule
               title={item}
               isBorderRadius
-              isActive={item === isActive}
+              isActive={item === team}
               minHeight={38}
               space={{ padding: 's8px' }}
-              onPress={() => setIsActive(item)}
               isWidth
               textTransform='uppercase'
+              onPress={() => onActiveTeam(item)}
             />
           </BoxTemplate>
         )}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={times.length === 0 && { flex: 1 }}
+        contentContainerStyle={teams?.length === 0 && { flex: 1 }}
         horizontal
         ListEmptyComponent={() => (
           <ListEmpty

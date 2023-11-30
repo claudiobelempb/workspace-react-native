@@ -1,3 +1,4 @@
-const GROUP_COLLECTIO = '@iginite-teams:groups';
+const GROUP_COLLECTION = '@iginite-teams:groups';
+const PLAYER_COLLECTION = '@iginite-teams:players';
 
-export { GROUP_COLLECTIO };
+export { GROUP_COLLECTION, PLAYER_COLLECTION };

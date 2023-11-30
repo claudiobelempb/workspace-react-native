@@ -15,6 +15,7 @@ import { VariantObjValue } from './TypeVariant';
 
 export type typeDefault = {
   onPress?: () => void;
+  onTeamActive?: (value: string) => void;
   title?: string;
   name?: string;
   mensagem?: string;
@@ -73,7 +74,7 @@ export type typeDefault = {
 
   text?: TypeText;
   unit?: 'px' | '%' | 'rem' | 'vw' | 'vh';
-  value?: number;
+  //value?: number;
   width?: number;
   isWidth?: boolean;
   maxWidth?: number;

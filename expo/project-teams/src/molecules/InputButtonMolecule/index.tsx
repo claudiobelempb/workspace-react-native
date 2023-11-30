@@ -2,10 +2,15 @@ import { IconAtom } from '@atoms/IconAtom';
 import { TextInputAtom } from '@atoms/TextInputAtom';
 import { ButtonIconMolecule } from '@molecules/ButtonIconMolecule';
 import { ContentTemplate } from '@templates/ContentTemplate';
+import { typeDefault } from '@typesDefault/typesDefault';
+import { TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
-export function InputButtonMolecule() {
+type Props = TextInputProps & typeDefault;
+
+export function InputButtonMolecule({ ...props }: Props) {
   const { variant } = useTheme();
+
   return (
     <ContentTemplate
       direction='row'
@@ -25,15 +30,14 @@ export function InputButtonMolecule() {
         variantColor='gray_300'
         flex={1}
         space={{ paddingY: 's12px' }}
+        onChangeText={props.onChangeText}
+        value={props.value}
       />
 
-      <ButtonIconMolecule
-        onPress={() => console.log('InputButtonMolecule')}
-        space={{ padding: 's8px' }}
-      >
+      <ButtonIconMolecule onPress={props.onPress} space={{ padding: 's8px' }}>
         <IconAtom
           family='Feather'
-          nameFeather='x'
+          nameFeather='plus'
           size={30}
           color={variant.green_700}
         />
