@@ -5,14 +5,16 @@ import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 
 import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { groupDelete } from '@storage/group/groupDelete';
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
 import { playerCreate } from '@storage/player/playerCreate';
+import { playerDelete } from '@storage/player/playerDelete';
 import { playerFindById } from '@storage/player/playerFindById';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 import { AppError } from '@utils/AppError';
-import { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, TextInput } from 'react-native';
 
 type RouteParams = {
   group: string;
@@ -23,13 +25,15 @@ type PlayersScreenProps = {
 };
 
 export default function PlayersScreen() {
-  const [teams, setTeams] = useState(['Time A', 'Time B', 'Time C']);
   const [team, setTeam] = useState('Time A');
   const [playerName, setPLayerName] = useState('');
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 
   const router = useRoute();
   const { group } = router.params as RouteParams;
+
+  const nameInputRef = useRef<TextInput>(null);
+  const navigation = useNavigation();
 
   function handleActiveTeam(value: string) {
     setTeam(value);
@@ -50,8 +54,9 @@ export default function PlayersScreen() {
 
     try {
       await playerCreate(newPlayer, group);
-      fetchPlayersFinalById();
+      nameInputRef.current?.blur();
       setPLayerName('');
+      fetchPlayersFinalById();
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert('Nova pessoa', error.message);
@@ -60,6 +65,33 @@ export default function PlayersScreen() {
         Alert.alert('Nova Pessoa', 'Não foi possível adicionar');
       }
     }
+  }
+
+  async function handlePlayerDelete(playerName: string) {
+    try {
+      playerDelete(playerName, group);
+      fetchPlayersFinalById();
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remover pessoa', 'Não foi possível remover essa pessoa.');
+    }
+  }
+
+  async function groupRemove() {
+    try {
+      await groupDelete(group);
+      navigation.navigate('home');
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Pessoas', 'Não foi possível remover o group.');
+    }
+  }
+
+  async function handleGroupDelete() {
+    Alert.alert('Remove', `Deseja remover o group?. ${group}`, [
+      { text: 'Não', style: 'cancel' },
+      { text: 'Sim', onPress: () => groupRemove() }
+    ]);
   }
 
   async function fetchPlayersFinalById() {
@@ -92,19 +124,22 @@ export default function PlayersScreen() {
         onChangeText={setPLayerName}
         onPress={handleAddPLayer}
         value={playerName}
+        inputRef={nameInputRef}
+        autoCorrect={false}
+        onSubmitEditing={handleAddPLayer}
+        returnKeyType='done'
       />
 
       <ButtonFilterTimeOrganism
         team={team}
-        teams={teams}
         numberOfPlayes={players.length}
         onActiveTeam={handleActiveTeam}
       />
 
-      <CardTimeOrganism players={players} />
+      <CardTimeOrganism players={players} onPlayerDelete={handlePlayerDelete} />
 
       <ButtonTextMolecule
-        onPress={() => console.log('PlayScreen')}
+        onPress={handleGroupDelete}
         variantColor='white'
         title=' Remover turma'
         isWidth

@@ -4,6 +4,7 @@ import { ListEmpty } from '@molecules/ListEmpty';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
+import { useState } from 'react';
 import { FlatList } from 'react-native';
 
 type Team = {
@@ -22,10 +23,10 @@ type Props = {
 export function ButtonFilterTimeOrganism({
   numberOfPlayes,
   team,
-  teams,
   onActiveTeam,
   ...props
 }: Props) {
+  const [teams, setTeams] = useState(['Time A', 'Time B', 'Time C']);
   return (
     <ContentTemplate direction='row' alingItems='center' marginBottom={16}>
       <FlatList

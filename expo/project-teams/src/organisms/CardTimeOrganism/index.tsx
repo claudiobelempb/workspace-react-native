@@ -8,9 +8,14 @@ import { FlatList } from 'react-native';
 
 type CardTimeOrganismProps = {
   players?: PlayerStorageDTO[];
+  onPlayerDelete: (playerName: string) => void;
 } & typeDefault;
 
-export function CardTimeOrganism({ players, ...props }: CardTimeOrganismProps) {
+export function CardTimeOrganism({
+  players,
+  onPlayerDelete,
+  ...props
+}: CardTimeOrganismProps) {
   return (
     <ContentTemplate flex={1}>
       <FlatList
@@ -20,7 +25,7 @@ export function CardTimeOrganism({ players, ...props }: CardTimeOrganismProps) {
           <BoxTemplate direction='column'>
             <CardTimeMolecule
               name={item.name}
-              onRemovePlayer={() => console.log('onRemovePlayer')}
+              onPress={() => onPlayerDelete(item.name)}
             />
           </BoxTemplate>
         )}

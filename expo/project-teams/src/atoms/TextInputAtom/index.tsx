@@ -31,6 +31,10 @@ export function TextInputAtom({ ...props }: Props) {
       value={props.value}
       flex={props.flex}
       space={props.space}
+      ref={props.inputRef}
+      onSubmitEditing={props.onSubmitEditing}
+      autoCorrect={props.autoCorrect}
+      returnKeyType='done'
     />
   );
 }

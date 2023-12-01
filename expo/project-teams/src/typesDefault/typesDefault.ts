@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ListRenderItem } from 'react-native';
+import { ListRenderItem, TextInput, TouchableOpacity } from 'react-native';
 import { FlexContainerValue, FlexValue } from './TypeFlex';
 import {
   TypeFontFamily,
@@ -15,7 +15,10 @@ import { VariantObjValue } from './TypeVariant';
 
 export type typeDefault = {
   onPress?: () => void;
-  onTeamActive?: (value: string) => void;
+  //onTeamActive?: (value: string) => void;
+  //onPlayerDelete?: (value: string) => void;
+  inputRef?: React.RefObject<TextInput>;
+  touchableOpacityRef?: React.RefObject<TouchableOpacity>;
   title?: string;
   name?: string;
   mensagem?: string;

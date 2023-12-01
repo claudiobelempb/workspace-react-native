@@ -32,6 +32,9 @@ export function InputButtonMolecule({ ...props }: Props) {
         space={{ paddingY: 's12px' }}
         onChangeText={props.onChangeText}
         value={props.value}
+        inputRef={props.inputRef}
+        returnKeyType='done'
+        onSubmitEditing={props.onSubmitEditing}
       />
 
       <ButtonIconMolecule onPress={props.onPress} space={{ padding: 's8px' }}>

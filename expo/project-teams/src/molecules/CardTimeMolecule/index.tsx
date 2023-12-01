@@ -7,9 +7,7 @@ import { typeDefault } from '@typesDefault/typesDefault';
 import React from 'react';
 import { useTheme } from 'styled-components/native';
 
-type CardTimeMoleculeProps = {
-  onRemovePlayer: () => void;
-} & typeDefault;
+type CardTimeMoleculeProps = {} & typeDefault;
 
 export function CardTimeMolecule({ ...props }: CardTimeMoleculeProps) {
   const { variant } = useTheme();
@@ -48,7 +46,7 @@ export function CardTimeMolecule({ ...props }: CardTimeMoleculeProps) {
         space={{ padding: 's8px' }}
       >
         <ButtonTouchableOpacityAton
-          onPress={props.onRemovePlayer}
+          onPress={props.onPress}
           space={{ padding: 's8px' }}
         >
           <IconAtom
