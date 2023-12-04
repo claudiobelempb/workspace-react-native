@@ -1,4 +1,5 @@
 import { IconAtom } from '@atoms/IconAtom';
+import { LoadingAtom } from '@atoms/LoadingAtom';
 import { TextAtom } from '@atoms/TextAtom';
 import CardGroupMolecule from '@molecules/CardGroupMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
@@ -20,6 +21,7 @@ type Props = {
 } & typeDefault;
 
 export default function CardGroupOrganism({ ...props }: Props) {
+  const [isLoading, setIsloading] = useState(true);
   const [groups, setGroups] = useState<string[]>([
     // {
     //   playerId: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -81,10 +83,13 @@ export default function CardGroupOrganism({ ...props }: Props) {
 
   async function fetchGroup() {
     try {
+      setIsloading(true);
       const data = await groupFindAll();
       setGroups(data);
     } catch (error) {
       console.warn(error);
+    } finally {
+      setIsloading(false);
     }
   }
 
@@ -100,32 +105,36 @@ export default function CardGroupOrganism({ ...props }: Props) {
 
   return (
     <ContentTemplate flex={1}>
-      <FlatList
-        data={groups}
-        renderItem={({ item }) => (
-          <CardGroupMolecule isWidth onPress={() => handleOpenGroup(item)}>
-            <IconAtom
-              family='Feather'
-              nameFeather='user'
-              size={30}
-              color={variant.green_700}
+      {isLoading ? (
+        <LoadingAtom size={'large'} />
+      ) : (
+        <FlatList
+          data={groups}
+          renderItem={({ item }) => (
+            <CardGroupMolecule isWidth onPress={() => handleOpenGroup(item)}>
+              <IconAtom
+                family='Feather'
+                nameFeather='user'
+                size={30}
+                color={variant.green_700}
+              />
+              <TextAtom>{item}</TextAtom>
+            </CardGroupMolecule>
+          )}
+          keyExtractor={item => item}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            groups.length === 0 && { flex: 1 },
+            { paddingBottom: 30 }
+          ]}
+          ListEmptyComponent={() => (
+            <ListEmpty
+              variantColor='gray_300'
+              mensagem='Que tal cadastrar a primeira turma?'
             />
-            <TextAtom>{item}</TextAtom>
-          </CardGroupMolecule>
-        )}
-        keyExtractor={item => item}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          groups.length === 0 && { flex: 1 },
-          { paddingBottom: 30 }
-        ]}
-        ListEmptyComponent={() => (
-          <ListEmpty
-            variantColor='gray_300'
-            mensagem='Que tal cadastrar a primeira turma?'
-          />
-        )}
-      />
+          )}
+        />
+      )}
     </ContentTemplate>
   );
 }

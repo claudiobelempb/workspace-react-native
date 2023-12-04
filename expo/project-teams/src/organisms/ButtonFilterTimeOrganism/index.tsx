@@ -1,3 +1,4 @@
+import { LoadingAtom } from '@atoms/LoadingAtom';
 import { TextAtom } from '@atoms/TextAtom';
 import { ButtonFilterTimeMolecule } from '@molecules/ButtonFilterTimeMolecule';
 import { ListEmpty } from '@molecules/ListEmpty';
@@ -18,15 +19,18 @@ type Props = {
   value?: string;
   onActiveTeam: (value: string) => void;
   active?: string;
+  isLoading?: boolean;
 } & typeDefault;
 
 export function ButtonFilterTimeOrganism({
   numberOfPlayes,
   team,
   onActiveTeam,
+  isLoading,
   ...props
 }: Props) {
   const [teams, setTeams] = useState(['Time A', 'Time B', 'Time C']);
+
   return (
     <ContentTemplate direction='row' alingItems='center' marginBottom={16}>
       <FlatList
@@ -62,7 +66,7 @@ export function ButtonFilterTimeOrganism({
         alingItems='center'
         justifyContent='center'
       >
-        <TextAtom>{numberOfPlayes}</TextAtom>
+        {isLoading ? <LoadingAtom /> : <TextAtom>{numberOfPlayes}</TextAtom>}
       </BoxTemplate>
     </ContentTemplate>
   );

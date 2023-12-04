@@ -3,6 +3,7 @@ import { InputButtonMolecule } from '@molecules/InputButtonMolecule';
 import { HeaderOrganism } from '@organisms/HeaderOrganism';
 import SectionTurmaOrganism from '@organisms/SectionTurmaOrganism';
 
+import { LoadingAtom } from '@atoms/LoadingAtom';
 import { ButtonFilterTimeOrganism } from '@organisms/ButtonFilterTimeOrganism';
 import { CardTimeOrganism } from '@organisms/CardTimeOrganism';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -28,6 +29,7 @@ export default function PlayersScreen() {
   const [team, setTeam] = useState('Time A');
   const [playerName, setPLayerName] = useState('');
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
+  const [isLoading, setIsloading] = useState(true);
 
   const router = useRoute();
   const { group } = router.params as RouteParams;
@@ -96,6 +98,7 @@ export default function PlayersScreen() {
 
   async function fetchPlayersFinalById() {
     try {
+      setIsloading(true);
       const playersByTeam = await playerFindById(group, team);
       setPlayers(playersByTeam);
     } catch (error) {
@@ -104,6 +107,8 @@ export default function PlayersScreen() {
         'Pessoas',
         'Não foi possível carregar as pessoas do time selecionado.'
       );
+    } finally {
+      setIsloading(false);
     }
   }
 
@@ -134,9 +139,17 @@ export default function PlayersScreen() {
         team={team}
         numberOfPlayes={players.length}
         onActiveTeam={handleActiveTeam}
+        isLoading={isLoading}
       />
 
-      <CardTimeOrganism players={players} onPlayerDelete={handlePlayerDelete} />
+      {isLoading ? (
+        <LoadingAtom size={'large'} />
+      ) : (
+        <CardTimeOrganism
+          players={players}
+          onPlayerDelete={handlePlayerDelete}
+        />
+      )}
 
       <ButtonTextMolecule
         onPress={handleGroupDelete}

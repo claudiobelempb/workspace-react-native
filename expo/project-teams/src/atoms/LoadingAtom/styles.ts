@@ -12,7 +12,7 @@ export const StyledContainer = styled.View`
 export const StyledLoading = styled.ActivityIndicator.attrs(
   ({ theme, ...props }) => ({
     color: theme.variant.green_700,
-    size: 'large'
+    size: props.size
   })
 )`
   ${({ theme, ...props }) => css``}

@@ -1,9 +1,12 @@
+import { ActivityIndicatorProps } from 'react-native';
 import { StyledContainer, StyledLoading } from './styles';
 
-export const LoadingAtom = ({ ...props }) => {
+type Props = {} & ActivityIndicatorProps;
+
+export const LoadingAtom = ({ ...props }: Props) => {
   return (
     <StyledContainer>
-      <StyledLoading />
+      <StyledLoading size={props.size} />
     </StyledContainer>
   );
 };
