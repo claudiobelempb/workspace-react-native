@@ -26,6 +26,7 @@ const ThemeDefault = {
       m16px: 16,
       m18px: 18,
       m24px: 24,
+      m20px: 20,
       l32px: 32,
       x64px: 64
     },

@@ -5,6 +5,7 @@ export type TypeFontSize =
   | 'm16px'
   | 'm18px'
   | 'm24px'
+  | 'm20px'
   | 'l32px'
   | 'x64px';
 

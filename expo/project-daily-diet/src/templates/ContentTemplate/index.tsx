@@ -17,6 +17,8 @@ export function ContentTemplate({ ...props }: typeDefault) {
       flex={props.flex}
       space={props.space}
       position={props.position}
+      columnGap={props.columnGap}
+      rowGap={props.rowGap}
     >
       {props.children}
     </StyledContainer>

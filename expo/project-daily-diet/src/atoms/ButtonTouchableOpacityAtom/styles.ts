@@ -9,10 +9,10 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
       : theme.variant.transparent};
-    border: 1px solid
-      ${props.variantBorderColor
-        ? theme.variant[props.variantBorderColor]
-        : theme.variant.transparent};
+    ${props.isBorder &&
+    css`
+      border: 1px solid ${theme.variant.gray_700};
+    `}
     ${props.variantActiveColor &&
     css`
       background-color: ${props.variantActiveColor
@@ -27,11 +27,16 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
         : theme.variant.transparent};
     `}
 
-    ${props.selected &&
+    ${props.isSelectedGreen &&
     css`
-      background-color: ${props.selected.backgroud
-        ? theme.variant[props.selected.backgroud]
-        : theme.variant.transparent};
+      background-color: ${theme.variant.green_100};
+      border: 1px solid ${theme.variant.green_700};
+    `}
+
+    ${props.isSelectedRed &&
+    css`
+      background-color: ${theme.variant.red_100};
+      border: 1px solid ${theme.variant.red_700};
     `}
 
     /*Flex */
@@ -90,15 +95,6 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
     ${props.basis &&
     css`
       flex-basis: ${props.basis ? props.basis : 0}px;
-    `}
-
-    ${props.position === 'bottom' &&
-    css`
-      position: absolute;
-      height: 56px;
-      left: 0;
-      right: 0;
-      bottom: 0;
     `}
 
     ${props.isBorderRadius &&

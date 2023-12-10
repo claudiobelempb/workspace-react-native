@@ -1,14 +1,17 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RegistroFoodScreeen } from '@screens/RegistroFoodScreeen';
+import HomeScreen from '@screens/HomeScreen';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name='foods' component={RegistroFoodScreeen} />
-      {/* <Screen name='statistics' component={StatisticsPage} /> */}
-      {/* <Screen name='home' component={HomeScreen} /> */}
+      {/* <Screen name='edit' component={FoodUpdateScreen} /> */}
+      {/* <Screen name='details' component={FoodDetaisScreen} /> */}
+      {/* <Screen name='feedback' component={FeedbackPage} /> */}
+      {/* <Screen name='foods' component={FoodRegistroScreen} /> */}
+      {/* <Screen name='statistics' component={StatisticsScreen} /> */}
+      <Screen name='home' component={HomeScreen} />
     </Navigator>
   );
 }

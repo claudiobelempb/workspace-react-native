@@ -239,6 +239,8 @@ export function ButtonTouchableOpacityAton({
           minWidth={props.minWidth}
           maxWidth={props.maxWidth}
           isBorderRadius
+          isBorder={props.isBorder}
+          variantBorderColor={props.variantBackgroud}
           variantBackgroud={props.variantBackgroud}
           direction={'row'}
           alignSelf={props.alignSelf}
@@ -255,6 +257,8 @@ export function ButtonTouchableOpacityAton({
           space={{ paddingX: 'm24px', paddingY: 'm16px' }}
           position={props.position}
           selected={props.selected}
+          isSelectedGreen={props.isSelectedGreen}
+          isSelectedRed={props.isSelectedRed}
         >
           {children}
         </TouchableOpacityContainer>

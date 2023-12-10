@@ -1,6 +1,9 @@
 import { typeDefault } from '@typesDefault/typesDefault';
+import { TextProps } from 'react-native';
 import { StyledText } from './styles';
 
-export function TextAtom({ ...props }: typeDefault) {
+type Props = {} & TextProps & typeDefault;
+
+export function TextAtom({ ...props }: Props) {
   return <StyledText {...props}>{props.children}</StyledText>;
 }

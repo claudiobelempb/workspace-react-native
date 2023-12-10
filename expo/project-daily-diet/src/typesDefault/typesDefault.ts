@@ -35,7 +35,7 @@ export type typeDefault = {
     | 'edit'
     | 'trash-2'
     | 'circle';
-  typeInput?: 'default' | 'selected' | 'not-selected';
+  typeInput?: 'default' | 'selected' | 'not-selected' | 'tex-area';
   //onTeamActive?: (value: string) => void;
   //onPlayerDelete?: (value: string) => void;
   inputRef?: React.RefObject<TextInput>;
@@ -158,7 +158,10 @@ export type typeDefault = {
   isIconLeft?: boolean;
   isIconRight?: boolean;
   isBorder?: boolean;
+  selectedType?: 'green' | 'red';
   isSelected?: boolean;
+  isSelectedGreen?: boolean;
+  isSelectedRed?: boolean;
   isBorderRadius?: boolean;
 
   /*Displa Flex Container */

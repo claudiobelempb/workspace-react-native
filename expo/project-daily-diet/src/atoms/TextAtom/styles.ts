@@ -1,7 +1,9 @@
 import { typeDefault } from '@typesDefault/typesDefault';
+import { TextProps } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-export const StyledText = styled.Text<typeDefault>`
+type Props = {} & TextProps & typeDefault;
+export const StyledText = styled.Text<Props>`
   ${({ theme, ...props }) => css`
     ${props.isWidth &&
     css`
