@@ -5,7 +5,7 @@ export const StyledContainer = styled.View`
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: ${theme.variant.gray_600};
+    background-color: ${theme.variant.gray_100};
   `}
 `;
 

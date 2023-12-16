@@ -1,6 +1,7 @@
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { IconAtom } from '@atoms/IconAtom';
 import { TextAtom } from '@atoms/TextAtom';
+import { useNavigation } from '@react-navigation/native';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
 import { typeDefault } from '@typesDefault/typesDefault';
@@ -10,15 +11,24 @@ type Pros = {
   inSide?: boolean;
 } & typeDefault;
 
-export function HeaderFormMolecules({ onPress, title, ...props }: Pros) {
+export function HeaderFormMolecules({ title, ...props }: Pros) {
   const { variant } = useTheme();
+  const navigation = useNavigation();
+
+  function handleBackToShow() {
+    navigation.goBack();
+  }
   return (
     <ContentTemplate
       variantBackgroud={props.variantBackgroud}
       space={{ paddingY: 'm24px' }}
     >
       <BoxTemplate direction='row' minHeight={100} alingItems='center'>
-        <ButtonTouchableOpacityAton icon='left' maxWidth={56} onPress={onPress}>
+        <ButtonTouchableOpacityAton
+          icon='left'
+          maxWidth={56}
+          onPress={handleBackToShow}
+        >
           <IconAtom typeIcon='arrow-left' size={24} color={variant.gray_600} />
         </ButtonTouchableOpacityAton>
         <TextAtom

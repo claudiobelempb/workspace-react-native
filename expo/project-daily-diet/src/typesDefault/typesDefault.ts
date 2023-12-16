@@ -111,6 +111,7 @@ export type typeDefault = {
   marginBottom?: number;
   marginX?: number;
   marginY?: number;
+  isOpacity?: boolean;
 
   data?: ArrayLike<unknown> | null | undefined;
   renderItem?: ListRenderItem<unknown> | null | undefined;
@@ -163,6 +164,7 @@ export type typeDefault = {
   isSelectedGreen?: boolean;
   isSelectedRed?: boolean;
   isBorderRadius?: boolean;
+  isShadow?: boolean;
 
   /*Displa Flex Container */
   direction?: FlexContainerValue;

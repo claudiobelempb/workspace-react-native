@@ -1,10 +1,10 @@
-import { FoodDetailMolecules } from '@molecules/FoodDetailMolecules';
+import { MealShowMolecules } from '@molecules/MealShowMolecules';
 import { ContainerTemplate } from '@templates/ContainerTemplate';
 
-export function FoodDetailOrganismis() {
+export function MealShowOrganismis() {
   return (
     <ContainerTemplate flex={1}>
-      <FoodDetailMolecules />
+      <MealShowMolecules />
     </ContainerTemplate>
   );
 }

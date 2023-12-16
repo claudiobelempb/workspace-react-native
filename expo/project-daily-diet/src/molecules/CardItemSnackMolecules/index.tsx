@@ -2,56 +2,34 @@ import { TouchableOpacityContainer } from '@atoms/ButtonTouchableOpacityAtom/sty
 import { SeparationVerticalAtoms } from '@atoms/SeparationVerticalAtoms';
 import { StatusAtoms } from '@atoms/StatusAtoms';
 import { TextAtom } from '@atoms/TextAtom';
+import { useNavigation } from '@react-navigation/native';
+import { MealDTO } from '@storage/meals/MealDTO';
 import { typeDefault } from '@typesDefault/typesDefault';
 import { TouchableOpacityProps } from 'react-native';
 
-type SnackProps = {
-  date: string;
-  foods: [
-    {
-      foodId: number;
-      hora: string;
-      name: string;
-      status: boolean;
-    }
-  ];
-};
-
 type Props = {
   icon?: 'left' | 'right';
-  snack: {
-    foodId: string;
-    date: string;
-    hora: string;
-    name: string;
-    description: string;
-    status: boolean;
-  };
+  meal: MealDTO;
 } & TouchableOpacityProps &
   typeDefault;
 
-export function CardItemSnackMolecules({ snack, ...props }: Props) {
+export function CardItemSnackMolecules({ meal, ...props }: Props) {
+  const navigation = useNavigation();
+
+  function handleGoMealShow(mealId: string) {
+    navigation.navigate('show', { mealId });
+  }
+
   return (
     <TouchableOpacityContainer
-      minHeight={props.minHeight}
-      isWidth={props.isWidth}
-      minWidth={props.minWidth}
-      maxWidth={props.maxWidth}
+      minHeight={49}
       isBorderRadius
       variantBackgroud='gray_100'
       variantBorderColor='gray_200'
       direction={'row'}
-      alignSelf={props.alignSelf}
       alingItems={'center'}
-      alingContent={props.alingContent}
       justifyContent={'space-between'}
       columnGap={10}
-      flex={props.flex}
-      rowGap={props.rowGap}
-      onPress={props.onPress}
-      isActive={props.isActive}
-      marginRight={props.marginRight}
-      marginBottom={props.marginBottom}
       space={{
         paddingX: 'm24px',
         paddingY: 'm16px',
@@ -59,13 +37,16 @@ export function CardItemSnackMolecules({ snack, ...props }: Props) {
       }}
       position={props.position}
       selected={props.selected}
+      onPress={() => handleGoMealShow(meal.mealId)}
     >
-      <TextAtom variantColor='gray_700'>{snack.hora}</TextAtom>
-      <SeparationVerticalAtoms />
-      <TextAtom flex={1} variantColor='gray_700'>
-        {snack.name}
+      <TextAtom variantColor='gray_700' fontSize='m16px'>
+        {meal.hora}
       </TextAtom>
-      <StatusAtoms isSelected={snack.status} />
+      <SeparationVerticalAtoms />
+      <TextAtom flex={1} variantColor='gray_700' fontSize='m16px'>
+        {meal.name}
+      </TextAtom>
+      <StatusAtoms isSelected={meal.status} />
     </TouchableOpacityContainer>
   );
 }

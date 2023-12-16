@@ -3,8 +3,17 @@ export declare global {
     interface RootParamList {
       home: undefined;
       create: undefined;
-      players: {
-        group: string;
+      statistics: {
+        status: boolean;
+      };
+      show: {
+        mealId: string;
+      };
+      update: {
+        mealId: string;
+      };
+      feedback: {
+        status: boolean;
       };
     }
   }

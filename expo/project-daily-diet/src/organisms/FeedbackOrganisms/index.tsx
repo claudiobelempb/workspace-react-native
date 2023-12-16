@@ -8,9 +8,13 @@ import {
   default as ImageDander,
   default as ImageSuccess
 } from '@assets/feedback-success.png';
-import { useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { FoodParamsType } from '@storage/meals/FoodDTO';
 export function FeedbackOrganisms() {
-  const [isFeedback, setIsFeedback] = useState(false);
+  const navigation = useNavigation();
+  const router = useRoute();
+  const { status } = router.params as FoodParamsType;
+
   return (
     <ContentTemplate
       columnGap={30}
@@ -18,7 +22,7 @@ export function FeedbackOrganisms() {
       justifyContent='center'
       alingItems='center'
     >
-      {isFeedback ? (
+      {status ? (
         <>
           <HeadingAton
             variantColor='green_700'
@@ -33,7 +37,7 @@ export function FeedbackOrganisms() {
             <TextAtom variantColor='gray_700' fontWeigh='700'>
               dentro da dieta.
             </TextAtom>{' '}
-            dentro da dieta. Muito bem!
+            Muito bem!
           </TextAtom>
         </>
       ) : (
@@ -56,7 +60,10 @@ export function FeedbackOrganisms() {
         </>
       )}
 
-      <ButtonTouchableOpacityAton variantBackgroud='gray_600'>
+      <ButtonTouchableOpacityAton
+        variantBackgroud='gray_600'
+        onPress={() => navigation.navigate('home')}
+      >
         <TextAtom>Ir para a página inicial</TextAtom>
       </ButtonTouchableOpacityAton>
     </ContentTemplate>

@@ -2,46 +2,79 @@ import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { StatusAtoms } from '@atoms/StatusAtoms';
 import { TextAtom } from '@atoms/TextAtom';
 import { TextInputAtom } from '@atoms/TextInputAtom';
+import { useNavigation } from '@react-navigation/native';
+import { MealCreate } from '@storage/meals/MealCreate';
+import { MealDTO } from '@storage/meals/MealDTO';
 import { BoxTemplate } from '@templates/BoxTemplate';
 import { ContentTemplate } from '@templates/ContentTemplate';
-import { useState } from 'react';
+import { AppError } from '@utils/AppError';
+import { AppUUIDV4 } from '@utils/AppUUID';
+import { useRef, useState } from 'react';
+import { Alert, TextInput } from 'react-native';
 
-type StatusType = 'inside' | 'outside';
-
-type SnackProps = {
-  name: string;
-  description: string;
-  data: string;
-  hora: string;
-  status: StatusType;
-};
-export function FoodRegisterMolecules() {
-  const [status, setStatus] = useState<StatusType>('inside');
+export function MealFormCreateMolecules() {
+  const [status, setStatus] = useState(true);
   const [inputName, setInputName] = useState('');
   const [inputDescription, setInputDescption] = useState('');
-  const [inputData, setInputData] = useState('');
+  const [inputDate, setInputData] = useState('');
   const [inputHora, setInputHora] = useState('');
 
-  function handleButtonStatus(type: StatusType) {
-    if (status === type) {
-      setStatus(type);
-    } else {
-      setStatus(type);
-    }
-    console.log('Status: ' + status);
-    console.log('Selectd: ' + type);
+  const nameInputRef = useRef<TextInput>(null);
+  const navigation = useNavigation();
+
+  function handleButtonStatus(status: boolean) {
+    setStatus(!status);
   }
 
-  function handleNewRegisterSnack() {
-    const newSnack: SnackProps = {
-      name: inputName,
-      description: inputDescription,
-      data: inputData,
-      hora: inputHora,
-      status
-    };
+  const alertError = (message: string) => Alert.alert('Nova refeição', message);
 
-    console.log(newSnack);
+  async function handleCreateMeal() {
+    try {
+      if (inputName.trim().length === 0) {
+        return alertError('Informe o nome da refeição.');
+      }
+
+      if (inputDescription.trim().length === 0) {
+        return alertError('Informe a descrição da refeição.');
+      }
+
+      if (inputDate.trim().length === 0) {
+        return alertError('Informe a data da refeição.');
+      }
+
+      if (inputDate.length < 10) {
+        return alertError('O formato da data não é válida.');
+      }
+
+      if (inputHora.trim().length === 0) {
+        return alertError('Informe a hora da refeição.');
+      }
+
+      if (inputHora.length < 5) {
+        return alertError('O formato da hora não é válido.');
+      }
+
+      const mealId = AppUUIDV4();
+
+      const meal: MealDTO = {
+        mealId,
+        name: inputName,
+        description: inputDescription,
+        date: inputDate,
+        hora: inputHora,
+        status
+      };
+
+      await MealCreate(meal);
+      navigation.navigate('feedback', { status });
+    } catch (error) {
+      if (error instanceof AppError) {
+        alertError('Não foi possível cadastrar nova refeição');
+      } else {
+        alertError('Não foi possível cadastrar nova refeição');
+        console.log(error);
+      }
+    }
   }
 
   return (
@@ -57,13 +90,18 @@ export function FoodRegisterMolecules() {
         <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
           Nome
         </TextAtom>
-        <TextInputAtom value={inputName} onChangeText={setInputName} />
+        <TextInputAtom
+          placeholder='Nome da refeição'
+          value={inputName}
+          onChangeText={setInputName}
+        />
       </BoxTemplate>
       <BoxTemplate rowGap={5}>
         <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
           Descrição
         </TextAtom>
         <TextInputAtom
+          placeholder='Descrição da refeição'
           typeInput='tex-area'
           value={inputDescription}
           onChangeText={setInputDescption}
@@ -74,13 +112,23 @@ export function FoodRegisterMolecules() {
           <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
             Data
           </TextAtom>
-          <TextInputAtom value={inputData} onChangeText={setInputData} />
+          <TextInputAtom
+            placeholder='dd/mm/aaaa'
+            keyboardType='numeric'
+            value={inputDate}
+            onChangeText={setInputData}
+          />
         </BoxTemplate>
         <BoxTemplate flex={1} rowGap={5}>
           <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
             Hora
           </TextAtom>
-          <TextInputAtom value={inputHora} onChangeText={setInputHora} />
+          <TextInputAtom
+            placeholder='HH:mm'
+            keyboardType='numeric'
+            value={inputHora}
+            onChangeText={setInputHora}
+          />
         </BoxTemplate>
       </BoxTemplate>
       <BoxTemplate rowGap={5}>
@@ -92,8 +140,8 @@ export function FoodRegisterMolecules() {
             flex={1}
             variantBackgroud='gray_200'
             minHeight={50}
-            onPress={() => handleButtonStatus('inside')}
-            isSelectedGreen={status === 'inside'}
+            onPress={() => handleButtonStatus(status)}
+            isSelectedGreen={status}
           >
             <StatusAtoms variantBackgroud='green_700' />
             <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
@@ -104,8 +152,8 @@ export function FoodRegisterMolecules() {
             flex={1}
             minHeight={50}
             variantBackgroud='gray_200'
-            isSelectedRed={status === 'outside'}
-            onPress={() => handleButtonStatus('outside')}
+            isSelectedRed={!status}
+            onPress={() => handleButtonStatus(status)}
           >
             <StatusAtoms variantBackgroud='red_700' />
             <TextAtom fontSize='s14px' variantColor='gray_600' fontWeigh='700'>
@@ -117,7 +165,7 @@ export function FoodRegisterMolecules() {
       <BoxTemplate justifyContent='flex-end' flex={1} isHeight>
         <ButtonTouchableOpacityAton
           variantBackgroud='gray_700'
-          onPress={handleNewRegisterSnack}
+          onPress={handleCreateMeal}
         >
           <TextAtom>Cadastrar refeição</TextAtom>
         </ButtonTouchableOpacityAton>

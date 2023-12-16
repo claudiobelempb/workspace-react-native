@@ -1,4 +1,3 @@
-const GROUP_COLLECTION = '@iginite-teams:groups';
-const PLAYER_COLLECTION = '@iginite-teams:players';
+const MEAL_COLLECTION = '@project-daily-diet:meals';
 
-export { GROUP_COLLECTION, PLAYER_COLLECTION };
+export { MEAL_COLLECTION };

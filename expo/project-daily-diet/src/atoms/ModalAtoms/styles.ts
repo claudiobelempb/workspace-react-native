@@ -1,7 +1,7 @@
 import { typeDefault } from '@typesDefault/typesDefault';
 import styled, { css } from 'styled-components/native';
 
-export const StyledContainer = styled.View<typeDefault>`
+export const ModalContainer = styled.Modal<typeDefault>`
   ${({ theme, ...props }) => css`
     background-color: ${props.variantBackgroud
       ? theme.variant[props.variantBackgroud]
@@ -19,11 +19,16 @@ export const StyledContainer = styled.View<typeDefault>`
       z-index: ${props.position.zIndex ? props.position.zIndex : 0};
     `}
     position: relative;
+
     ${props.isOpacity &&
     css`
-      opacity: 1;
+      opacity: 0.5;
     `}
 
+    ${props.isShadow &&
+    css`
+      box-shadow: 60px 5px teal;
+    `}
     /*Flex */
     ${props.flex &&
     css`

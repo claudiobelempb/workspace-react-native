@@ -1,9 +1,9 @@
-import { FoodUpdateOrganismis } from '@organisms/FoodUpdateOrganismis';
+import { MealFormUpdateOrganismis } from '@organisms/MealFormUpdateOrganismis';
 
 export function FoodUpdateScreen() {
   return (
     <>
-      <FoodUpdateOrganismis />
+      <MealFormUpdateOrganismis />
     </>
   );
 }
