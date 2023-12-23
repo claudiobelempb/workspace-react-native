@@ -1,25 +1,30 @@
-import { AppLoading } from '@components/AppLoading';
+import { LoadingAtoms } from '@atoms/LoadingAtoms';
 import {
   Roboto_400Regular,
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto';
-import { SignIn } from '@screens/SignIn';
-import { NativeBaseProvider } from 'native-base';
+
+import { AppAuthRoutes } from '@routes/index';
+
+import ThemeDefault from '@themes/ThemeDefault';
 import { StatusBar } from 'react-native';
-import { THEME_DEFAULT } from './src/theme/theme-default';
+import { ThemeProvider } from 'styled-components/native';
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold
+  });
 
   return (
-    <NativeBaseProvider theme={THEME_DEFAULT}>
+    <ThemeProvider theme={ThemeDefault}>
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={'transparent'}
         translucent
       />
-      {fontsLoaded ? <SignIn /> : <AppLoading />}
-    </NativeBaseProvider>
+      {fontsLoaded ? <AppAuthRoutes /> : <LoadingAtoms />}
+    </ThemeProvider>
   );
 }

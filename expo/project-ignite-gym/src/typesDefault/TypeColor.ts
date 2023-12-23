@@ -1,0 +1,17 @@
+export type TypeColor =
+  | 'green_700'
+  | 'green_500'
+  | 'green_100'
+  | 'red_700'
+  | 'red_500'
+  | 'red_100'
+  | 'gray_700'
+  | 'gray_600'
+  | 'gray_500'
+  | 'gray_400'
+  | 'gray_300'
+  | 'gray_200'
+  | 'gray_100'
+  | 'white'
+  | 'black'
+  | 'transparent';
