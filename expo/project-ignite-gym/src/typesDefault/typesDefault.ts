@@ -19,8 +19,6 @@ export type ButtonRef = HTMLButtonElement;
 
 export type typeDefault = {
   as?: React.ElementType | keyof JSX.IntrinsicElements;
-  $title?: string;
-  $name?: string;
   $mensagem?: string;
   $description?: string;
   $titleButton?: string;

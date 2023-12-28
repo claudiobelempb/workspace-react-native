@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components/native';
 type Props = {} & TextProps & typeDefault;
 export const StyledText = styled(Text)<Props>`
   ${({ theme, ...props }) => css`
-    width: 100%;
+    /* width: 100%; */
     position: relative;
 
     ${props.$bg?.$background &&
@@ -43,8 +43,11 @@ export const StyledText = styled(Text)<Props>`
     `}
     
     /*WIDTH */
-    width: ${props.$width?.$width ? `${props.$width.$width}px` : `100%`};
-
+    
+    ${props.$width?.$width &&
+    css`
+      width: ${props.$width.$width}%;
+    `}
     ${props.$width?.$minWidth &&
     css`
       min-width: ${props.$width?.$minWidth}px;
@@ -114,6 +117,11 @@ export const StyledText = styled(Text)<Props>`
     ${props.$space?.$my &&
     css`
       margin: 0px ${props.$space.$my ? theme.space.my[props.$space.$my] : 0}px;
+    `}
+
+    ${props.$isActive &&
+    css`
+      color: ${theme.color.green_500};
     `}
   `}
 `;

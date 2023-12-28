@@ -1,11 +1,10 @@
 import { typeDefault } from '@typesDefault/typesDefault';
-import { Image } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-export const StyledContainer = styled(Image)<typeDefault>`
+export const StyledContainer = styled.View<typeDefault>`
   ${({ theme, ...props }) => css`
-    /* width: 100%; */
-
+    justify-content: center;
+    align-items: center;
     ${props.$bg?.$background &&
     css`
       background-color: ${theme.color[props.$bg?.$background]};
@@ -13,6 +12,29 @@ export const StyledContainer = styled(Image)<typeDefault>`
     ${props.$color?.$color &&
     css`
       color: ${theme.color[props.$color?.$color]};
+    `}
+
+    /*FONT */
+    ${props.$font?.$size &&
+    css`
+      font-size: ${theme.fonts.size[props.$font.$size]}px;
+    `}
+
+    ${props.$font?.$family &&
+    css`
+      font-family: ${theme.fonts.fontFamily};
+    `}
+
+    ${props.$font?.$weigh &&
+    css`
+      font-weight: ${props.$font?.$weigh};
+    `}
+
+    /*TEXT */
+    text-align: ${props.$text?.$align ? props.$text.$align : 'left'};
+    ${props.$text?.$transform &&
+    css`
+      text-transform: ${props.$text?.$transform};
     `}
 
     /*POSITION */
@@ -87,8 +109,9 @@ export const StyledContainer = styled(Image)<typeDefault>`
     /*WIDTH */
     ${props.$width?.$width &&
     css`
-      width: ${props.$width?.$width}px;
-    `}
+      width: ${props.$width.$width}px;
+    `};
+
     ${props.$width?.$minWidth &&
     css`
       min-width: ${props.$width?.$minWidth}px;
@@ -168,6 +191,7 @@ export const StyledContainer = styled(Image)<typeDefault>`
     css`
       border-width: ${props.$border?.$b.width}px;
       border-color: ${theme.color[props.$border.$b.color || 'gray_700']};
+      border-style: ${props.$border?.$b.style};
     `}
     /*BORDER RADIUS  */
     ${props.$border?.$r &&

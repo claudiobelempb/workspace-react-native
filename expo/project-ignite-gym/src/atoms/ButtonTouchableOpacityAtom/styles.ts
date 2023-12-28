@@ -6,7 +6,7 @@ type Props = TouchableOpacityProps & typeDefault;
 
 export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
   ${({ theme, ...props }) => css`
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     ${props.$bg?.$background &&
     css`
@@ -191,6 +191,12 @@ export const TouchableOpacityContainer = styled(TouchableOpacity)<Props>`
     ${props.$space?.$my &&
     css`
       margin: 0px ${props.$space.$my ? theme.space.my[props.$space.$my] : 0}px;
+    `}
+
+    ${props.$isActive &&
+    css`
+      color: ${theme.color.green_500};
+      border: 1px solid ${theme.color.green_500};
     `}
 
     ${props.$border?.$b &&

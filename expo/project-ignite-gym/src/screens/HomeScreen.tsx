@@ -1,7 +1,9 @@
-export default function HomeScreen() {
+import { HomeOrganismis } from '@organisms/HomeOrganismis';
+
+export function HomeScreen() {
   return (
     <>
-      <HomeScreen />
+      <HomeOrganismis />
     </>
   );
 }

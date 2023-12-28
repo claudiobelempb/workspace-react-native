@@ -99,7 +99,10 @@ export const HeadingContainer = styled(Text)<typeDefault>`
     `}
     
     /*WIDTH */
-    width: ${props.$width?.$width ? `${props.$width.$width}px` : `100%`};
+    ${props.$width?.$width &&
+    css`
+      width: ${props.$width.$width}}%;
+    `}
 
     ${props.$width?.$minWidth &&
     css`
@@ -111,7 +114,10 @@ export const HeadingContainer = styled(Text)<typeDefault>`
     `}
    
     /*HEIGHT */
-    height: ${props.$height?.$height && `${props.$height.$height}px`};
+   ${props.$height?.$height &&
+    css`
+      height: ${props.$height?.$height}px;
+    `}
     ${props.$height?.$minHeight &&
     css`
       min-height: ${props.$height?.$minHeight}px;

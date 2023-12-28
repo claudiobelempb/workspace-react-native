@@ -18,6 +18,7 @@ export function FormTemplates({ children }: Props) {
     >
       <ImageAtoms
         source={BackGroundImg}
+        defaultSource={BackGroundImg}
         $position={{ position: 'absolute', bottom: 0 }}
         resizeMode='cover'
       />
@@ -25,7 +26,10 @@ export function FormTemplates({ children }: Props) {
         $flex={{ $flex: 1, $justifyContent: 'center', $alingItems: 'center' }}
         $space={{ $py: 'm24', $mt: 'x64' }}
       >
-        <ScrollView style={{ flex: 1, width: '100%' }}>
+        <ScrollView
+          style={{ flex: 1, width: '100%' }}
+          showsVerticalScrollIndicator={false}
+        >
           <BoxAtoms $flex={{ $alingItems: 'center' }}>
             <BrandImg />
             <TextAtoms

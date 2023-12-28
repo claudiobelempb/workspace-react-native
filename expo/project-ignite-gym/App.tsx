@@ -4,8 +4,7 @@ import {
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto';
-
-import { AppAuthRoutes } from '@routes/index';
+import { AppRoutes } from '@routes/index';
 
 import ThemeDefault from '@themes/ThemeDefault';
 import { StatusBar } from 'react-native';
@@ -24,7 +23,7 @@ export default function App() {
         backgroundColor={'transparent'}
         translucent
       />
-      {fontsLoaded ? <AppAuthRoutes /> : <LoadingAtoms />}
+      {fontsLoaded ? <AppRoutes /> : <LoadingAtoms />}
     </ThemeProvider>
   );
 }

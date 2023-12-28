@@ -2,15 +2,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useTheme } from 'styled-components/native';
 
 import { BoxAtoms } from '@atoms/BoxAtoms';
-import { AuthRoutes } from './auth.routes';
+import { AppRoute } from './app.routes';
 
-export function AppAuthRoutes() {
+export function AppRoutes() {
   const { color } = useTheme();
 
   return (
     <BoxAtoms $flex={{ $flex: 1 }} $bg={{ $background: 'gray_700' }}>
       <NavigationContainer>
-        <AuthRoutes />
+        <AppRoute />
       </NavigationContainer>
     </BoxAtoms>
   );

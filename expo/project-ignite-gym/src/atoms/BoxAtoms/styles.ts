@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 
 export const StyledContainer = styled.View<typeDefault>`
   ${({ theme, ...props }) => css`
-    width: 100%;
+    /* width: 100%; */
     /* position: relative; */
     ${props.$bg?.$background &&
     css`
@@ -56,15 +56,15 @@ export const StyledContainer = styled.View<typeDefault>`
     `}
     ${props.$flex?.$gap &&
     css`
-      gap: ${props.$flex?.$gap ? props.$flex?.$basis : 0}px;
+      gap: ${props.$flex?.$gap}px;
     `}
     ${props.$flex?.$rowGap &&
     css`
-      gap: ${props.$flex?.$rowGap ? props.$flex?.$rowGap : 0}px;
+      row-gap: ${props.$flex?.$rowGap}px;
     `}
     ${props.$flex?.$columnGap &&
     css`
-      gap: ${props.$flex?.$columnGap ? props.$flex?.$columnGap : 0}px;
+      column-gap: ${props.$flex?.$columnGap}px;
     `}
     ${props.$flex?.$order &&
     css`
@@ -86,7 +86,7 @@ export const StyledContainer = styled.View<typeDefault>`
     /*WIDTH */
     ${props.$width?.$width &&
     css`
-      width: ${props.$width.$width}px;
+      width: ${props.$width.$width}%;
     `}
 
     ${props.$width?.$minWidth &&
@@ -164,6 +164,18 @@ export const StyledContainer = styled.View<typeDefault>`
     ${props.$space?.$my &&
     css`
       margin: 0px ${props.$space.$my ? theme.space.my[props.$space.$my] : 0}px;
+    `}
+
+    ${props.$border?.$b &&
+    css`
+      border-width: ${props.$border?.$b.width}px;
+      border-color: ${theme.color[props.$border.$b.color || 'gray_700']};
+      border-style: ${props.$border?.$b.style};
+    `}
+
+    ${props.$border?.$r &&
+    css`
+      border-radius: ${props.$border?.$r.width}px;
     `}
   `}
 `;
