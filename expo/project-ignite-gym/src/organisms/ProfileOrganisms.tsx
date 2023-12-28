@@ -3,7 +3,7 @@ import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
 import { HeadingAtoms } from '@atoms/HeadingAtoms';
-import { IconAtoms } from '@atoms/IconAtoms';
+import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { TextInputAtom } from '@atoms/TextInputAtom';
 import { ScrollView } from 'react-native';
@@ -46,15 +46,15 @@ export function ProfileOrganisms() {
               $alingItems: 'center'
             }}
           >
-            <IconAtoms
-              $flex={{}}
-              $width={{ $minWidth: 120 }}
-              $height={{ $minHeight: 120 }}
+            <ImageAtoms
+              source={{ uri: 'https://github.com/claudiobelempb.png' }}
+              $width={{ $width: 100 }}
+              $height={{ $height: 100 }}
               $border={{
-                $b: { style: 'solid ', width: 2, color: 'gray_100' },
-                $r: { width: 100 }
+                $b: { width: 2, color: 'gray_100', style: 'solid ' },
+                $r: { width: 50 }
               }}
-              name='user'
+              $space={{ $p: 's5' }}
             />
             <TextAtoms
               $color={{ $color: 'green_500' }}

@@ -151,6 +151,16 @@ export const StyledContainer = styled.View<typeDefault>`
       margin-top: ${theme.space.mt[props.$space.$mt]}px;
     `}
 
+    ${props.$space?.$ml &&
+    css`
+      margin-left: ${theme.space.ml[props.$space.$ml]}px;
+    `}
+
+    ${props.$space?.$mr &&
+    css`
+      margin-right: ${theme.space.mr[props.$space.$mr]}px;
+    `}
+
     ${props.$space?.$mb &&
     css`
       margin-bottom: ${theme.space.mb[props.$space.$mb]}px;

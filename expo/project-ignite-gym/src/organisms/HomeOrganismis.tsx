@@ -1,143 +1,81 @@
 import { BoxAtoms } from '@atoms/BoxAtoms';
-import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { DefaultTemplates } from '@templates/DefaultTemplates';
 import { FlatList } from 'react-native';
 
-import ExercicioImg from '@assets/adaptive-icon.png';
-import { IconAtoms } from '@atoms/IconAtoms';
-import { ImageAtoms } from '@atoms/ImageAtoms';
+import { ContentAtoms } from '@atoms/ContentAtoms';
+import { CardCategory } from '@molecules/CardCategory';
+import { CardHome } from '@molecules/CardHome';
 import { useState } from 'react';
 
-type ExerciseType = {
+type CategoryType = {
   categoryId: string;
   name: string;
+  active: boolean;
 };
 export function HomeOrganismis() {
-  const [categories, setCategories] = useState<ExerciseType[]>([
-    { categoryId: '1', name: 'Costas' },
-    { categoryId: '2', name: 'Bíceps' },
-    { categoryId: '3', name: 'Tríceps' },
-    { categoryId: '4', name: 'Ombro' },
-    { categoryId: '5', name: 'Quadric' }
+  const [categories, setCategories] = useState<CategoryType[]>([
+    { categoryId: '1', name: 'Costas', active: true },
+    { categoryId: '2', name: 'Bíceps', active: false },
+    { categoryId: '3', name: 'Tríceps', active: true },
+    { categoryId: '4', name: 'Ombro', active: false },
+    { categoryId: '5', name: 'Quadric', active: true }
   ]);
+
+  const [categorySelected, setCategorySelected] = useState('1');
+
+  function handleButtomSelected(selected: string) {
+    setCategorySelected(selected);
+  }
+
   return (
     <DefaultTemplates>
-      <BoxAtoms $height={{ $height: 60 }} $space={{ $mx: 'l32' }}>
-        <FlatList
-          data={categories}
-          keyExtractor={item => item.categoryId}
-          renderItem={({ item }) => (
-            <BoxAtoms
-              $flex={{ $columnGap: 10 }}
-              $space={{ $py: 's8' }}
-              $height={{ $height: 455 }}
-              $width={{ $minWidth: 100 }}
-            >
-              <ButtonTouchableOpacityAton
-                $height={{ $height: 53 }}
-                $bg={{ $background: 'gray_600' }}
-                $border={{ $r: { width: 5 } }}
-                $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
-                $isActive={!!item}
-              >
-                <TextAtoms
-                  $text={{ $align: 'center' }}
-                  $color={{ $color: 'gray_100' }}
-                  $isActive={!!item}
-                >
-                  {item.name}
-                </TextAtoms>
-              </ButtonTouchableOpacityAton>
-            </BoxAtoms>
-          )}
-          horizontal={true}
-        />
-      </BoxAtoms>
+      <ContentAtoms $bg={{ $background: 'gray_700' }} $space={{ $py: 'm24' }}>
+        <BoxAtoms $height={{ $height: 50 }} $space={{ $mx: 'l32' }}>
+          <FlatList
+            data={categories}
+            keyExtractor={item => item.categoryId}
+            renderItem={({ item }) => (
+              <CardCategory
+                isActive={categorySelected === item.categoryId}
+                onPress={() => handleButtomSelected(item.categoryId)}
+                name={item.name}
+              />
+            )}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </BoxAtoms>
 
-      <BoxAtoms
-        $height={{ $height: 30 }}
-        $flex={{ $flexDirection: 'row' }}
-        $space={{ $py: 's8' }}
-      >
-        <TextAtoms
-          $color={{ $color: 'gray_100' }}
-          $font={{ $weigh: '700', $size: 'm16' }}
+        <BoxAtoms
+          $height={{ $height: 30 }}
+          $flex={{ $flexDirection: 'row', $justifyContent: 'space-between' }}
+          $space={{ $py: 's8' }}
         >
-          Exercícios
-        </TextAtoms>
-        <TextAtoms $color={{ $color: 'gray_100' }} $font={{ $size: 's14' }}>
-          4
-        </TextAtoms>
-      </BoxAtoms>
-
-      <BoxAtoms $flex={{ $flex: 1 }}>
-        <FlatList
-          data={['consta', 'bíceps']}
-          renderItem={({ item }) => (
-            <BoxAtoms $space={{ $mx: 's8' }}>
-              <ButtonTouchableOpacityAton
-                $height={{ $height: 83 }}
-                $bg={{ $background: 'gray_500' }}
-                $border={{ $r: { width: 5 } }}
-                $flex={{
-                  $alingItems: 'center',
-                  $justifyContent: 'center',
-                  $flexDirection: 'row'
-                }}
-              >
-                <BoxAtoms
-                  $space={{ $p: 's8' }}
-                  $width={{ $width: 50 }}
-                  $flex={{
-                    $alingItems: 'center',
-                    $columnGap: 10,
-                    $flexDirection: 'row'
-                  }}
-                >
-                  <ImageAtoms
-                    source={ExercicioImg}
-                    $width={{ $width: 64 }}
-                    $height={{ $height: 64 }}
-                    $border={{
-                      $b: { width: 2, color: 'gray_100', style: 'solid ' },
-                      $r: { width: 5 }
-                    }}
-                  />
-                  <BoxAtoms>
-                    <TextAtoms
-                      $font={{ $weigh: '700', $size: 'm18' }}
-                      $color={{ $color: 'gray_100' }}
-                    >
-                      Puxada frontal
-                    </TextAtoms>
-                    <TextAtoms
-                      $font={{ $size: 's14' }}
-                      $color={{ $color: 'gray_100' }}
-                    >
-                      3 séries x 12 repetições
-                    </TextAtoms>
-                  </BoxAtoms>
-                </BoxAtoms>
-                <BoxAtoms
-                  $space={{ $p: 's10' }}
-                  $width={{ $width: 50 }}
-                  $flex={{
-                    $alingItems: 'flex-end'
-                  }}
-                >
-                  <IconAtoms
-                    name='chevron-right'
-                    $color={{ $color: 'gray_100' }}
-                    $font={{ $size: 'l30' }}
-                  />
-                </BoxAtoms>
-              </ButtonTouchableOpacityAton>
-            </BoxAtoms>
-          )}
-          showsVerticalScrollIndicator={false}
-        />
-      </BoxAtoms>
+          <TextAtoms
+            $color={{ $color: 'gray_100' }}
+            $font={{ $weigh: '700', $size: 'm16' }}
+          >
+            Exercícios
+          </TextAtoms>
+          <TextAtoms $color={{ $color: 'gray_100' }} $font={{ $size: 's14' }}>
+            4
+          </TextAtoms>
+        </BoxAtoms>
+      </ContentAtoms>
+      <ContentAtoms
+        $bg={{ $background: 'gray_700' }}
+        $space={{ $py: 'm24' }}
+        $flex={{ $flex: 1 }}
+      >
+        <BoxAtoms>
+          <FlatList
+            data={['consta', 'bíceps']}
+            renderItem={({ item }) => <CardHome />}
+            showsVerticalScrollIndicator={false}
+          />
+        </BoxAtoms>
+      </ContentAtoms>
     </DefaultTemplates>
   );
 }
