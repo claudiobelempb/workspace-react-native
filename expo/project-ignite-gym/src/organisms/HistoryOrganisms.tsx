@@ -1,27 +1,130 @@
-import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
-import { HeadingAtoms } from '@atoms/HeadingAtoms';
-import { CardHistory } from '@molecules/CardHistory';
+import { HeaderMolecules } from '@molecules/HeaderMolecules';
+import { SectionListExerciseMolecules } from '@molecules/SectionListExerciseMolecules';
+import { useState } from 'react';
+import { SectionExerciselDTO } from 'src/dtos/ExerciseDTO';
 
 export function HistoryOrganisms() {
+  const [exercises, setExercises] = useState<SectionExerciselDTO[]>([
+    {
+      date: '26.08.23',
+      data: [
+        {
+          exerciseId: '1',
+          name: 'Puxada frontal',
+          series: 3,
+          repetitions: 12,
+          active: true,
+          created: '26.08.23',
+          category: {
+            categoryId: '1',
+            name: 'costa',
+            active: true
+          }
+        },
+        {
+          exerciseId: '2',
+          name: 'Remada curvada',
+          series: 3,
+          repetitions: 12,
+          active: false,
+          created: '26.08.23',
+          category: {
+            categoryId: '1',
+            name: 'costa',
+            active: true
+          }
+        },
+        {
+          exerciseId: '3',
+          name: 'Remada unilateral',
+          series: 3,
+          repetitions: 12,
+          active: false,
+          created: '27.08.23',
+          category: {
+            categoryId: '1',
+            name: 'costa',
+            active: true
+          }
+        },
+        {
+          exerciseId: '4',
+          name: 'Levantamento terra',
+          series: 3,
+          repetitions: 12,
+          active: false,
+          created: '28.08.23',
+          category: {
+            categoryId: '1',
+            name: 'costa',
+            active: true
+          }
+        }
+      ]
+    },
+    {
+      date: '27.08.23',
+      data: [
+        {
+          exerciseId: '1',
+          name: 'Puxada frontal',
+          series: 3,
+          repetitions: 12,
+          active: true,
+          created: '26.08.23',
+          category: {
+            categoryId: '2',
+            name: 'biceps',
+            active: true
+          }
+        }
+      ]
+    },
+    {
+      date: '28.08.23',
+      data: [
+        {
+          exerciseId: '1',
+          name: 'Puxada frontal',
+          series: 3,
+          repetitions: 12,
+          active: true,
+          created: '26.08.23',
+          category: {
+            categoryId: '3',
+            name: 'triceps',
+            active: true
+          }
+        },
+        {
+          exerciseId: '2',
+          name: 'Remada curvada',
+          series: 3,
+          repetitions: 12,
+          active: false,
+          created: '26.08.23',
+          category: {
+            categoryId: '3',
+            name: 'triceps',
+            active: true
+          }
+        }
+      ]
+    }
+  ]);
+
   return (
     <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
-      <ContentAtoms>
-        <BoxAtoms
-          $height={{ $height: 124 }}
-          $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
-        >
-          <HeadingAtoms
-            $color={{ $color: 'gray_100' }}
-            $text={{ $align: 'center' }}
-            $font={{ $weigh: '700', $size: 'm20' }}
-          >
-            Histórico de Exercícios
-          </HeadingAtoms>
-        </BoxAtoms>
+      <HeaderMolecules title='Histórico de Exercícios' />
+      <ContentAtoms
+        $space={{ $p: 'm24' }}
+        $bg={{ $background: 'gray_700' }}
+        $flex={{ $flex: 1 }}
+      >
+        <SectionListExerciseMolecules sections={exercises} />
       </ContentAtoms>
-      <CardHistory />
     </ContainerAtoms>
   );
 }

@@ -7,11 +7,11 @@ type Category = {
   isActive: boolean;
   onPress: () => void;
 };
-export function CardCategory({ name, isActive, onPress }: Category) {
+export function CardCategoryMolecules({ name, isActive, onPress }: Category) {
   return (
     <BoxAtoms
-      $flex={{ $columnGap: 10 }}
-      $space={{ $mr: 's8' }}
+      // $flex={{ $columnGap: 10 }}
+      $space={{ $my: 's5' }}
       // $height={{ $maxHeight: 50 }}
       $width={{ $minWidth: 100 }}
     >

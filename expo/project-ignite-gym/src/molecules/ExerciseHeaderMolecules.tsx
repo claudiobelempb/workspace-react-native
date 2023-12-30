@@ -5,7 +5,7 @@ import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { IconAtoms } from '@atoms/IconAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 
-export function HeaderExerciseMolecules() {
+export function ExerciseHeaderMolecules() {
   return (
     <ContentAtoms
       $bg={{ $background: 'gray_500' }}

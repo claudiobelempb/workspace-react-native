@@ -4,8 +4,10 @@ import { DefaultTemplates } from '@templates/DefaultTemplates';
 import { FlatList } from 'react-native';
 
 import { ContentAtoms } from '@atoms/ContentAtoms';
-import { CardCategory } from '@molecules/CardCategory';
-import { CardHome } from '@molecules/CardHome';
+import { LoadingAtoms } from '@atoms/LoadingAtoms';
+import { CardCategoryMolecules } from '@molecules/CardCategoryMolecules';
+import { CardHomeMolecules } from '@molecules/CardHomeMolecules';
+import { ListEmptyMolecules } from '@molecules/ListEmptyMolecules';
 import { useState } from 'react';
 
 type CategoryType = {
@@ -13,6 +15,15 @@ type CategoryType = {
   name: string;
   active: boolean;
 };
+
+type ExerciseType = {
+  exerciseId: string;
+  name: string;
+  series: number;
+  repetitions: number;
+  active: boolean;
+};
+
 export function HomeOrganismis() {
   const [categories, setCategories] = useState<CategoryType[]>([
     { categoryId: '1', name: 'Costas', active: true },
@@ -22,7 +33,46 @@ export function HomeOrganismis() {
     { categoryId: '5', name: 'Quadric', active: true }
   ]);
 
+  const [exercises, setExercises] = useState<ExerciseType[]>([
+    {
+      exerciseId: '1',
+      name: 'Puxada frontal',
+      series: 3,
+      repetitions: 12,
+      active: true
+    },
+    {
+      exerciseId: '2',
+      name: 'Remada curvada',
+      series: 3,
+      repetitions: 12,
+      active: false
+    },
+    {
+      exerciseId: '3',
+      name: 'Remada unilateral',
+      series: 3,
+      repetitions: 12,
+      active: true
+    },
+    {
+      exerciseId: '4',
+      name: 'Levantamento terra',
+      series: 3,
+      repetitions: 12,
+      active: false
+    },
+    {
+      exerciseId: '5',
+      name: 'Levantamento terra',
+      series: 3,
+      repetitions: 12,
+      active: false
+    }
+  ]);
+
   const [categorySelected, setCategorySelected] = useState('1');
+  const [isLoading, setIsloading] = useState(true);
 
   function handleButtomSelected(selected: string) {
     setCategorySelected(selected);
@@ -30,13 +80,14 @@ export function HomeOrganismis() {
 
   return (
     <DefaultTemplates>
-      <ContentAtoms $bg={{ $background: 'gray_700' }} $space={{ $py: 'm24' }}>
+      <ContentAtoms $bg={{ $background: 'gray_700' }}>
         <BoxAtoms $height={{ $height: 50 }} $space={{ $mx: 'l32' }}>
           <FlatList
+            style={{ marginHorizontal: 24 }}
             data={categories}
             keyExtractor={item => item.categoryId}
             renderItem={({ item }) => (
-              <CardCategory
+              <CardCategoryMolecules
                 isActive={categorySelected === item.categoryId}
                 onPress={() => handleButtomSelected(item.categoryId)}
                 name={item.name}
@@ -46,7 +97,12 @@ export function HomeOrganismis() {
             showsHorizontalScrollIndicator={false}
           />
         </BoxAtoms>
-
+      </ContentAtoms>
+      <ContentAtoms
+        $bg={{ $background: 'gray_700' }}
+        $space={{ $py: 'm24' }}
+        $flex={{ $flex: 1 }}
+      >
         <BoxAtoms
           $height={{ $height: 30 }}
           $flex={{ $flexDirection: 'row', $justifyContent: 'space-between' }}
@@ -59,22 +115,34 @@ export function HomeOrganismis() {
             Exercícios
           </TextAtoms>
           <TextAtoms $color={{ $color: 'gray_100' }} $font={{ $size: 's14' }}>
-            4
+            {exercises.length}
           </TextAtoms>
         </BoxAtoms>
-      </ContentAtoms>
-      <ContentAtoms
-        $bg={{ $background: 'gray_700' }}
-        $space={{ $py: 'm24' }}
-        $flex={{ $flex: 1 }}
-      >
-        <BoxAtoms>
+
+        {!isLoading ? (
+          <LoadingAtoms $bg={{ $background: 'transparent' }} size={'large'} />
+        ) : (
           <FlatList
-            data={['consta', 'bíceps']}
-            renderItem={({ item }) => <CardHome />}
+            style={{ flex: 1 }}
+            data={exercises}
+            keyExtractor={item => item.exerciseId}
+            renderItem={({ item }) => <CardHomeMolecules />}
             showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => (
+              <ListEmptyMolecules
+                $mensagem='Não há exercício registrado.'
+                $color={{ $color: 'gray_100' }}
+                $text={{ $align: 'center' }}
+              />
+            )}
+            contentContainerStyle={
+              exercises.length === 0 && {
+                flex: 1,
+                justifyContent: 'center'
+              }
+            }
           />
-        </BoxAtoms>
+        )}
       </ContentAtoms>
     </DefaultTemplates>
   );

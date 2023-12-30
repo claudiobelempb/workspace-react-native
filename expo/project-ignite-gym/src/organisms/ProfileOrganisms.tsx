@@ -2,10 +2,10 @@ import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
-import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { TextInputAtom } from '@atoms/TextInputAtom';
+import { HeaderMolecules } from '@molecules/HeaderMolecules';
 import { ScrollView } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
@@ -13,20 +13,7 @@ export function ProfileOrganisms() {
   const { color } = useTheme();
   return (
     <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
-      <ContentAtoms>
-        <BoxAtoms
-          $height={{ $height: 100 }}
-          $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
-        >
-          <HeadingAtoms
-            $color={{ $color: 'gray_100' }}
-            $text={{ $align: 'center' }}
-            $font={{ $weigh: '700', $size: 'm20' }}
-          >
-            Perfil
-          </HeadingAtoms>
-        </BoxAtoms>
-      </ContentAtoms>
+      <HeaderMolecules title='Perfil' />
       <ContentAtoms
         $bg={{ $background: 'gray_700' }}
         $flex={{ $flex: 1, $alingItems: 'center' }}

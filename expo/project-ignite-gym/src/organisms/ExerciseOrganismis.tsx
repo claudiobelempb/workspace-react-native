@@ -6,7 +6,7 @@ import { ContentAtoms } from '@atoms/ContentAtoms';
 import { IconAtoms } from '@atoms/IconAtoms';
 import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
-import { HeaderExerciseMolecules } from '@molecules/HeaderExerciseMolecules';
+import { ExerciseHeaderMolecules } from '@molecules/ExerciseHeaderMolecules';
 import { ScrollView } from 'react-native';
 import { useTheme } from 'styled-components/native';
 export function ExerciseOrganisms() {
@@ -14,7 +14,7 @@ export function ExerciseOrganisms() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: color.gray_500 }}>
       <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
-        <HeaderExerciseMolecules />
+        <ExerciseHeaderMolecules />
         <ContentAtoms $flex={{ $flex: 1 }} $bg={{ $background: 'gray_700' }}>
           <BoxAtoms
             $flex={{ $justifyContent: 'center', $alingItems: 'center' }}

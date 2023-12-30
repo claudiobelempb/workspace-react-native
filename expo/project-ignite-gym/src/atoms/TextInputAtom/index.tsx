@@ -11,7 +11,7 @@ export function TextInputAtom({ ...props }: Props) {
   return (
     <TextInputAtomContainer
       $height={{ $height: 56 }}
-      $space={{ $py: 's8' }}
+      $space={{ $py: 's14' }}
       $color={{ $color: 'gray_100' }}
       $bg={{ $background: 'gray_700' }}
       placeholderTextColor={color.gray_100}

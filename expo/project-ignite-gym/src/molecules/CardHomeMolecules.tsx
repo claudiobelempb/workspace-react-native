@@ -6,7 +6,7 @@ import { TextAtoms } from '@atoms/TextAtoms';
 
 import ExercicioImg from '@assets/adaptive-icon.png';
 
-export function CardHome() {
+export function CardHomeMolecules() {
   return (
     <BoxAtoms $space={{ $mx: 's8' }}>
       <ButtonTouchableOpacityAton
@@ -36,15 +36,20 @@ export function CardHome() {
               $b: { width: 2, color: 'gray_100', style: 'solid ' },
               $r: { width: 5 }
             }}
+            resizeMode='center'
           />
           <BoxAtoms>
             <TextAtoms
               $font={{ $weigh: '700', $size: 'm18' }}
-              $color={{ $color: 'gray_100' }}
+              $color={{ $color: 'white' }}
             >
               Puxada frontal
             </TextAtoms>
-            <TextAtoms $font={{ $size: 's14' }} $color={{ $color: 'gray_100' }}>
+            <TextAtoms
+              numberOfLines={2}
+              $font={{ $size: 's14' }}
+              $color={{ $color: 'gray_300' }}
+            >
               3 séries x 12 repetições
             </TextAtoms>
           </BoxAtoms>
@@ -58,7 +63,7 @@ export function CardHome() {
         >
           <IconAtoms
             name='chevron-right'
-            $color={{ $color: 'gray_100' }}
+            $color={{ $color: 'gray_300' }}
             $font={{ $size: 'l30' }}
           />
         </BoxAtoms>
