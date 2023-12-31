@@ -1,15 +1,12 @@
 import { typeDefault } from '@typesDefault/typesDefault';
-import { TextInput } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 
 import styled, { css } from 'styled-components/native';
 
-type Props = typeDefault;
+type Props = TextInputProps & typeDefault;
 
 export const TextInputAtomContainer = styled(TextInput)<Props>`
   ${({ theme, ...props }) => css`
-    width: 100%;
-    position: relative;
-
     ${props.$inputOnFocus &&
     css`
       bordercolor: #c0c0c0;
@@ -17,6 +14,11 @@ export const TextInputAtomContainer = styled(TextInput)<Props>`
     ${props.$inputOnBlur &&
     css`
       bordercolor: #4b6cd5;
+    `}
+
+    ${props.$isDisabled &&
+    css`
+      opacity: 0.6;
     `}
 
     ${props.$opacity &&
@@ -201,8 +203,8 @@ export const TextInputAtomContainer = styled(TextInput)<Props>`
     ${props.$border?.$b &&
     css`
       border-width: ${props.$border?.$b.width}px;
-      border-color: ${props.$border?.$b.color}px;
-      border-style: ${props.$border?.$b.style}px;
+      border-color: ${theme.color[props.$border?.$b.color || 'transparent']};
+      border-style: ${props.$border?.$b.style};
     `}
 
     ${props.$border?.$r &&

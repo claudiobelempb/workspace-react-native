@@ -15,6 +15,7 @@ export type ExerciseDTO = {
   name: string;
   series: number;
   repetitions: number;
+  time: string;
   active: boolean;
   created: string;
   category: CategoryType;

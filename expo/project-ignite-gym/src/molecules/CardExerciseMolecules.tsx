@@ -28,7 +28,7 @@ export function CardExerciseMolecules({ exercise }: Props) {
         <TextAtoms $color={{ $color: 'gray_100' }}>{exercise.name}</TextAtoms>
       </BoxAtoms>
       <BoxAtoms>
-        <TextAtoms $color={{ $color: 'gray_300' }}>08:56</TextAtoms>
+        <TextAtoms $color={{ $color: 'gray_300' }}>{exercise.time}</TextAtoms>
       </BoxAtoms>
     </BoxAtoms>
   );

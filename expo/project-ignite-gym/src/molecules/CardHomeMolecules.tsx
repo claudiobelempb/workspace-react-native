@@ -5,8 +5,13 @@ import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 
 import ExercicioImg from '@assets/adaptive-icon.png';
+import { ExerciseDTO } from 'src/dtos/ExerciseDTO';
 
-export function CardHomeMolecules() {
+type Props = {
+  exercise: ExerciseDTO;
+  onPress?: () => void;
+};
+export function CardHomeMolecules({ exercise, onPress }: Props) {
   return (
     <BoxAtoms $space={{ $mx: 's8' }}>
       <ButtonTouchableOpacityAton
@@ -18,6 +23,7 @@ export function CardHomeMolecules() {
           $justifyContent: 'center',
           $flexDirection: 'row'
         }}
+        onPress={onPress}
       >
         <BoxAtoms
           $space={{ $p: 's8' }}
@@ -43,14 +49,14 @@ export function CardHomeMolecules() {
               $font={{ $weigh: '700', $size: 'm18' }}
               $color={{ $color: 'white' }}
             >
-              Puxada frontal
+              {exercise.name}
             </TextAtoms>
             <TextAtoms
               numberOfLines={2}
               $font={{ $size: 's14' }}
               $color={{ $color: 'gray_300' }}
             >
-              3 séries x 12 repetições
+              {exercise.series} séries x {exercise.repetitions} repetições
             </TextAtoms>
           </BoxAtoms>
         </BoxAtoms>

@@ -26,6 +26,9 @@ export type typeDefault = {
   $titleHeading?: string;
   children?: ReactNode;
   $child?: number;
+  $circleAnimated?: () => void;
+  $lines?: number;
+  $spacings?: number;
 
   $variant?: 'solid' | 'outline';
 

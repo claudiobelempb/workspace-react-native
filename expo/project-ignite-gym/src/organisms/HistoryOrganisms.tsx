@@ -17,6 +17,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: true,
           created: '26.08.23',
+          time: '08:32',
           category: {
             categoryId: '1',
             name: 'costa',
@@ -30,6 +31,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: false,
           created: '26.08.23',
+          time: '08:32',
           category: {
             categoryId: '1',
             name: 'costa',
@@ -43,6 +45,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: false,
           created: '27.08.23',
+          time: '08:32',
           category: {
             categoryId: '1',
             name: 'costa',
@@ -56,6 +59,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: false,
           created: '28.08.23',
+          time: '08:32',
           category: {
             categoryId: '1',
             name: 'costa',
@@ -74,6 +78,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: true,
           created: '26.08.23',
+          time: '11:24',
           category: {
             categoryId: '2',
             name: 'biceps',
@@ -92,6 +97,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: true,
           created: '26.08.23',
+          time: '09:24',
           category: {
             categoryId: '3',
             name: 'triceps',
@@ -105,6 +111,7 @@ export function HistoryOrganisms() {
           repetitions: 12,
           active: false,
           created: '26.08.23',
+          time: '09:24',
           category: {
             categoryId: '3',
             name: 'triceps',

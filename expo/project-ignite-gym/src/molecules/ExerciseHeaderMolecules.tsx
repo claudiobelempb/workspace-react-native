@@ -4,8 +4,15 @@ import { ContentAtoms } from '@atoms/ContentAtoms';
 import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { IconAtoms } from '@atoms/IconAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigatorRoutesProps } from '@routes/app.routes';
 
 export function ExerciseHeaderMolecules() {
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleGoScreen() {
+    navigation.goBack();
+  }
   return (
     <ContentAtoms
       $bg={{ $background: 'gray_500' }}
@@ -17,13 +24,14 @@ export function ExerciseHeaderMolecules() {
         $flex={{ $justifyContent: 'center' }}
         $space={{ $mb: 's10' }}
       >
-        <ButtonTouchableOpacityAton>
+        <ButtonTouchableOpacityAton onPress={handleGoScreen}>
           <IconAtoms
             name='arrow-left'
             $space={{ $p: 's5' }}
             $width={{ $maxWidth: 46 }}
             $height={{ $maxHeight: 56 }}
             $font={{ $size: 'm24' }}
+            $color={{ $color: 'green_500' }}
           />
         </ButtonTouchableOpacityAton>
       </BoxAtoms>
@@ -46,8 +54,9 @@ export function ExerciseHeaderMolecules() {
             // $width={{ $maxWidth: 56 }}
             $height={{ $maxHeight: 56 }}
             // $bg={{ $background: 'red_700' }}
+            $color={{ $color: 'green_500' }}
             $font={{ $size: 'm24' }}
-            name='activity'
+            name='check'
             // $flex={{ $justifyContent: 'flex-end' }}
           />
           <TextAtoms
