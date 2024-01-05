@@ -7,8 +7,11 @@ import { SkeletonAtoms } from '@atoms/SkeletonAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { TextInputAtoms } from '@atoms/TextInputAtoms';
 import { HeaderMolecules } from '@molecules/HeaderMolecules';
+import * as FileSystem from 'expo-file-system';
+import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
+import Toast from 'react-native-toast-message';
 import { useTheme } from 'styled-components/native';
 
 export function ProfileOrganisms() {
@@ -18,7 +21,49 @@ export function ProfileOrganisms() {
   const [confirmePassword, setConfirmePassword] = useState('');
   const [active, setActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState(
+    'https://github.com/claudiobelempb.png'
+  );
+
   const { color } = useTheme();
+
+  async function handleUserPhotoSelectd() {
+    setIsLoading(true);
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4, 4],
+        allowsEditing: true
+      });
+
+      if (photoSelected.canceled) {
+        return;
+      }
+
+      if (photoSelected.assets[0].uri) {
+        const photoInfo = await FileSystem.getInfoAsync(
+          photoSelected.assets[0].uri
+        );
+
+        if (photoInfo.exists && photoInfo.size / 1024 / 1024 > 1) {
+          return Toast.show({
+            type: 'error',
+            text1: 'Essa imagem é muito grande',
+            text2: 'Escolha uma de até 5MB',
+            position: 'top',
+            swipeable: true
+          });
+        }
+
+        setUserPhoto(photoSelected.assets[0].uri);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
       <HeaderMolecules title='Perfil' />
@@ -56,7 +101,7 @@ export function ProfileOrganisms() {
               />
             ) : (
               <ImageAtoms
-                source={{ uri: 'https://github.com/claudiobelempb.png' }}
+                source={{ uri: userPhoto }}
                 $width={{ $width: 100 }}
                 $height={{ $height: 100 }}
                 $border={{
@@ -73,6 +118,7 @@ export function ProfileOrganisms() {
               $flex={{ $justifyContent: 'center' }}
               $space={{ $p: 's5' }}
               $border={{ $r: { width: 5 } }}
+              onPress={handleUserPhotoSelectd}
             >
               <TextAtoms
                 $color={{ $color: 'green_500' }}

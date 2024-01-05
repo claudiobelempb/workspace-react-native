@@ -7,6 +7,7 @@ import {
   TypeFontWeigh
 } from './TypeFonts';
 
+import { FlattenSimpleInterpolation } from 'styled-components';
 import { TypeBorderStyle } from './TypeBorder';
 import { TypeColor } from './TypeColor';
 import { FlexContainerValue, FlexValue } from './TypeFlex';
@@ -32,8 +33,229 @@ export type typeDefault = {
 
   $variant?: 'solid' | 'outline';
 
+  handleOnFocus?: () => FlattenSimpleInterpolation;
+
+  $validation?: {
+    $message?: string;
+    $valid?: boolean;
+    $color?: TypeColor;
+    $background?: TypeColor;
+    $font?: {
+      $color?: TypeColor;
+      $family?: TypeFontFamily;
+      $style?: TypeFontStyle;
+      $line?: TypeFontLineHeight;
+      $weigh?: TypeFontWeigh;
+      $size?: TypeFontSize;
+      $dinamic?: number;
+    };
+    $width?: {
+      $width?: number;
+      $maxWidth?: number;
+      $minWidth?: number;
+      $widthDinamic?: number;
+    };
+    $height?: {
+      $height?: number;
+      $maxHeight?: number;
+      $minHeight?: number;
+      $heightDinamic?: number;
+    };
+    $flex?: {
+      $flexDirection?: FlexContainerValue;
+      $justifyContent?: FlexContainerValue;
+      $alingItems?: FlexContainerValue;
+      $alingContent?: FlexContainerValue;
+      $flexWrap?: FlexValue;
+      $row?: FlexValue;
+      $colum?: FlexValue;
+      /*Displa Flex Itemns */
+      $order?: number;
+      $alignSelf?: FlexContainerValue;
+      $grow?: number;
+      $shrink?: number;
+      $basis?: number;
+      $flex?: number;
+      $gap?: number;
+      $rowGap?: number;
+      $columnGap?: number;
+    };
+    $space?: {
+      $p?: TypeSpace;
+      $pt?: TypeSpace;
+      $pr?: TypeSpace;
+      $pl?: TypeSpace;
+      $pb?: TypeSpace;
+      $px?: TypeSpace;
+      $py?: TypeSpace;
+      $m?: TypeSpace;
+      $mt?: TypeSpace;
+      $mr?: TypeSpace;
+      $ml?: TypeSpace;
+      $mb?: TypeSpace;
+      $mx?: TypeSpace;
+      $my?: TypeSpace;
+    };
+    $border?: {
+      $border?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $top?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $left?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $right?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $bottom?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $radius?: {
+        width?: number;
+      };
+      $radiusTop?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusLeft?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusRight?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusBottom?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+    };
+  };
+
+  $inputValid?: {
+    $message?: string;
+    $valid?: boolean;
+    $color?: TypeColor;
+    $background?: TypeColor;
+    $font?: {
+      $color?: TypeColor;
+      $family?: TypeFontFamily;
+      $style?: TypeFontStyle;
+      $line?: TypeFontLineHeight;
+      $weigh?: TypeFontWeigh;
+      $size?: TypeFontSize;
+      $dinamic?: number;
+    };
+    $width?: {
+      $width?: number;
+      $maxWidth?: number;
+      $minWidth?: number;
+      $widthDinamic?: number;
+    };
+    $height?: {
+      $height?: number;
+      $maxHeight?: number;
+      $minHeight?: number;
+      $heightDinamic?: number;
+    };
+    $flex?: {
+      $flexDirection?: FlexContainerValue;
+      $justifyContent?: FlexContainerValue;
+      $alingItems?: FlexContainerValue;
+      $alingContent?: FlexContainerValue;
+      $flexWrap?: FlexValue;
+      $row?: FlexValue;
+      $colum?: FlexValue;
+      /*Displa Flex Itemns */
+      $order?: number;
+      $alignSelf?: FlexContainerValue;
+      $grow?: number;
+      $shrink?: number;
+      $basis?: number;
+      $flex?: number;
+      $gap?: number;
+      $rowGap?: number;
+      $columnGap?: number;
+    };
+    $space?: {
+      $p?: TypeSpace;
+      $pt?: TypeSpace;
+      $pr?: TypeSpace;
+      $pl?: TypeSpace;
+      $pb?: TypeSpace;
+      $px?: TypeSpace;
+      $py?: TypeSpace;
+      $m?: TypeSpace;
+      $mt?: TypeSpace;
+      $mr?: TypeSpace;
+      $ml?: TypeSpace;
+      $mb?: TypeSpace;
+      $mx?: TypeSpace;
+      $my?: TypeSpace;
+    };
+    $border?: {
+      $border?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $top?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $left?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $right?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $bottom?: {
+        style?: TypeBorderStyle;
+        width?: number;
+        color?: TypeColor;
+      };
+      $radius?: {
+        width?: number;
+      };
+      $radiusTop?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusLeft?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusRight?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+      $radiusBottom?: {
+        leftWidth?: number;
+        rightWidth?: number;
+      };
+    };
+  };
+
   $bg?: {
     $background?: TypeColor;
+    $validation?: TypeColor;
     $hover?: TypeColor;
     $status?: TypeColor;
     $icon?: TypeColor;
@@ -41,6 +263,7 @@ export type typeDefault = {
   };
   $color?: {
     $color?: TypeColor;
+    $validation?: TypeColor;
     $hover?: TypeColor;
     $status?: TypeColor;
     $icon?: TypeColor;

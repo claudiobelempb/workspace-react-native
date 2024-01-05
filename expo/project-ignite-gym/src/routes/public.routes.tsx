@@ -14,14 +14,16 @@ type AppRoutesType = {
   home: undefined;
   history: undefined;
   profile: undefined;
-  exercise: undefined;
+  exercise: {
+    exerciseId: string;
+  };
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutesType>;
 
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutesType>();
 
-export function AppRoute() {
+export function AppPublicRoute() {
   const { color, space } = useTheme();
 
   return (

@@ -1,9 +1,10 @@
 import ExerciseImg from '@assets/exe.png';
+import RepetitionsSvg from '@assets/repetitions.svg';
+import SeriesSvg from '@assets/series.svg';
 import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
-import { IconAtoms } from '@atoms/IconAtoms';
 import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { ExerciseHeaderMolecules } from '@molecules/ExerciseHeaderMolecules';
@@ -25,6 +26,7 @@ export function ExerciseOrganisms() {
               $border={{ $r: { width: 8 } }}
               $width={{ $width: 360 }}
               $height={{ $height: 360 }}
+              resizeMode='cover'
             />
           </BoxAtoms>
           <BoxAtoms
@@ -39,14 +41,14 @@ export function ExerciseOrganisms() {
                 $flex={{ $flexDirection: 'row', $columnGap: 10 }}
                 $space={{ $p: 'm16' }}
               >
-                <IconAtoms $font={{ $size: 'm24' }} name='droplet' />
+                <SeriesSvg />
                 <TextAtoms $color={{ $color: 'gray_100' }}>3 séries</TextAtoms>
               </BoxAtoms>
               <BoxAtoms
                 $flex={{ $flexDirection: 'row', $columnGap: 10 }}
                 $space={{ $p: 'm16' }}
               >
-                <IconAtoms $font={{ $size: 'm24' }} name='repeat' />
+                <RepetitionsSvg />
                 <TextAtoms $color={{ $color: 'gray_100' }}>
                   12 repetições
                 </TextAtoms>

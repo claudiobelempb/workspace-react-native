@@ -49,7 +49,7 @@ export function HomeOrganismis() {
       }
     },
     {
-      exerciseId: '',
+      exerciseId: '3',
       name: 'Remada unilateral',
       series: 2,
       repetitions: 20,

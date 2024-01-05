@@ -5,7 +5,7 @@ import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { IconAtoms } from '@atoms/IconAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { useNavigation } from '@react-navigation/native';
-import { AppNavigatorRoutesProps } from '@routes/app.routes';
+import { AppNavigatorRoutesProps } from '@routes/public.routes';
 
 export function ExerciseHeaderMolecules() {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
@@ -37,7 +37,10 @@ export function ExerciseHeaderMolecules() {
       </BoxAtoms>
       <BoxAtoms $flex={{ $flexDirection: 'row', $alingItems: 'center' }}>
         <BoxAtoms $width={{ $width: 50 }}>
-          <HeadingAtoms $color={{ $color: 'gray_100' }}>
+          <HeadingAtoms
+            $color={{ $color: 'gray_100' }}
+            $text={{ $transform: 'capitalize' }}
+          >
             Puxada frontal
           </HeadingAtoms>
         </BoxAtoms>
@@ -61,7 +64,7 @@ export function ExerciseHeaderMolecules() {
           />
           <TextAtoms
             $color={{ $color: 'gray_100' }}
-            $text={{ $align: 'right' }}
+            $text={{ $align: 'right', $transform: 'capitalize' }}
             // $bg={{ $background: 'green_700' }}
           >
             Costas

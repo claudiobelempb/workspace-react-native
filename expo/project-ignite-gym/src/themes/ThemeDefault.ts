@@ -5,7 +5,7 @@ const ThemeDefault = {
     green_500: '#00B37E',
     green_100: '#E5F0DB',
     red_700: '#BF3B44',
-    red_500: '#F4E6E7',
+    red_500: '#F75A68',
     red_100: '#F4E6E7',
     gray_700: '#121214',
     gray_600: '#202024',

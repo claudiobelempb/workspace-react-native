@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components/native';
 
 type Props = TextInputProps & typeDefault;
 
-export const TextInputAtomContainer = styled(TextInput)<Props>`
+export const Container = styled(TextInput)<Props>`
   ${({ theme, ...props }) => css`
     ${props.$inputOnFocus &&
     css`
@@ -210,6 +210,15 @@ export const TextInputAtomContainer = styled(TextInput)<Props>`
     ${props.$border?.$r &&
     css`
       border-radius: ${props.$border?.$r.width}px;
+    `}
+
+    ${props.$inputValid?.$border?.$border &&
+    css`
+      border-width: ${props.$inputValid?.$border?.$border.width}px;
+      border-color: ${theme.color[
+        props.$inputValid?.$border.$border.color || 'transparent'
+      ]};
+      border-style: ${props.$inputValid?.$border.$border.style};
     `}
   `}
 `;

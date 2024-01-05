@@ -2,15 +2,45 @@ import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
-import { TextInputAtom } from '@atoms/TextInputAtom';
+import { TextInputAtoms } from '@atoms/TextInputAtoms';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
-import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
+import { AuthNavigatorRoutesProps } from '@routes/private.routes';
 import { FormTemplates } from '@templates/FromTemplates';
-import React, { useState } from 'react';
+import {
+  FIELD_IVALLID,
+  FIELD_MIN,
+  FIELD_REQUIRID
+} from '@utils/constants/AppErrorContants';
+import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+
+type FormDataProps = {
+  email: string;
+  password: string;
+};
+
+const signIpSchema = yup.object({
+  email: yup.string().required(FIELD_REQUIRID).email(FIELD_IVALLID),
+  password: yup.string().required(FIELD_REQUIRID).min(6, FIELD_MIN)
+});
 
 export function SigninOrganisms() {
-  const [isFocused, setIsFocused] = useState();
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signIpSchema)
+  });
+
+  function handleSignIn(field: FormDataProps) {
+    console.log(field);
+  }
 
   function handleGoSignupScreen() {
     navigation.navigate('signup');
@@ -26,17 +56,71 @@ export function SigninOrganisms() {
         >
           Acesse sua conta
         </HeadingAtoms>
-        <TextInputAtom
-          $opacity={0.6}
-          placeholder='Email'
-          keyboardType='email-address'
+        <Controller
+          control={control}
+          name='email'
+          render={({ field: { onChange, value } }) => (
+            <TextInputAtoms
+              $opacity={0.6}
+              placeholder='Email'
+              $height={{ $height: 56 }}
+              $bg={{ $background: 'gray_700' }}
+              $color={{ $color: 'gray_100' }}
+              $space={{ $p: 's10' }}
+              $border={{ $r: { width: 8 } }}
+              onChangeText={onChange}
+              value={value}
+              $inputValid={{
+                $border: {
+                  $border: {
+                    width: 1,
+                    style: 'solid ',
+                    color: errors.email?.message ? 'red_500' : 'transparent'
+                  }
+                }
+              }}
+              $validation={{
+                $message: errors.email?.message,
+                $valid: !!errors.email?.message,
+                $color: 'red_500'
+              }}
+            />
+          )}
         />
-        <TextInputAtom
-          // $inputOnFocus
-          //onFocus={()=> setIsFocused(!!$inputOnBlur)}
-          //onBlur={()=>setIsFocused({isFocused:false})}
-          $opacity={0.6}
-          placeholder='Senha'
+
+        <Controller
+          control={control}
+          name='password'
+          render={({ field: { onChange, value } }) => (
+            <TextInputAtoms
+              $opacity={0.6}
+              placeholder='Senha'
+              $height={{ $height: 56 }}
+              $bg={{ $background: 'gray_700' }}
+              $color={{ $color: 'gray_100' }}
+              $space={{ $p: 's10' }}
+              $border={{ $r: { width: 8 } }}
+              onSubmitEditing={handleSubmit(handleSignIn)}
+              secureTextEntry
+              returnKeyType='send'
+              onChangeText={onChange}
+              value={value}
+              $inputValid={{
+                $border: {
+                  $border: {
+                    width: 1,
+                    style: 'solid ',
+                    color: errors.password?.message ? 'red_500' : 'transparent'
+                  }
+                }
+              }}
+              $validation={{
+                $message: errors.password?.message,
+                $valid: !!errors.password?.message,
+                $color: 'red_500'
+              }}
+            />
+          )}
         />
         <ButtonTouchableOpacityAton
           $height={{ $height: 56 }}
@@ -45,6 +129,7 @@ export function SigninOrganisms() {
           $border={{
             $r: { width: 8 }
           }}
+          onPress={handleSubmit(handleSignIn)}
         >
           <TextAtoms
             $text={{ $align: 'center' }}

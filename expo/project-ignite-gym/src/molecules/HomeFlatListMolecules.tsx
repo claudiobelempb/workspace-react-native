@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { AppNavigatorRoutesProps } from '@routes/app.routes';
+import { AppNavigatorRoutesProps } from '@routes/public.routes';
 import React from 'react';
 import { FlatList, ListRenderItem, ListRenderItemInfo } from 'react-native';
 import { ExerciseDTO } from 'src/dtos/ExerciseDTO';
@@ -11,15 +11,17 @@ type Props = {
 };
 export function HomeFlatListMolecules({ exercises }: Props) {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
-  function handleExerciseScreen() {
-    navigation.navigate('exercise');
+
+  function handleExerciseScreen(exerciseId: string) {
+    console.log(exerciseId);
+    navigation.navigate('exercise', { exerciseId });
   }
 
   const keyExtractor = (item: ExerciseDTO) => item.exerciseId;
 
   const Item = (exercise: ExerciseDTO) => (
     <CardHomeMolecules
-      onPress={handleExerciseScreen}
+      onPress={() => handleExerciseScreen(exercise.exerciseId)}
       key={exercise.exerciseId}
       exercise={exercise}
     />

@@ -8,6 +8,7 @@ import { AppRoutes } from '@routes/index';
 
 import ThemeDefault from '@themes/ThemeDefault';
 import { StatusBar } from 'react-native';
+import Toast from 'react-native-toast-message';
 import { ThemeProvider } from 'styled-components/native';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         translucent
       />
       {fontsLoaded ? <AppRoutes /> : <LoadingAtoms />}
+      <Toast position='bottom' bottomOffset={20} />
     </ThemeProvider>
   );
 }

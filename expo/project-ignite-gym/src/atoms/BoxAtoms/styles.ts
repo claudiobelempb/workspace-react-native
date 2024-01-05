@@ -14,6 +14,11 @@ export const StyledContainer = styled.View<typeDefault>`
       color: ${theme.color[props.$color?.$color]};
     `}
 
+    ${props.$opacity &&
+    css`
+      opacity: ${props.$opacity};
+    `}
+
     /*POSITION */
     ${props.$position &&
     css`

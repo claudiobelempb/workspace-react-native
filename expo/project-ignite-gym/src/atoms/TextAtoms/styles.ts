@@ -31,17 +31,6 @@ export const StyledText = styled(Text)<Props>`
       text-transform: ${props.$text?.$transform};
     `}
 
-    /*POSITION */
-    ${props.$position &&
-    css`
-      position: ${props.$position.position ? 'absolute' : 'relative'};
-      top: ${props.$position.top ? props.$position.top : 0}px;
-      left: ${props.$position.left ? props.$position.left : 0}px;
-      right: ${props.$position.right ? props.$position.right : 0}px;
-      top: ${props.$position.bottom ? props.$position.bottom : 0}px;
-      z-index: ${props.$position.zIndex ? props.$position.zIndex : 0};
-    `}
-    
     /*WIDTH */
     
     ${props.$width?.$width &&
@@ -122,6 +111,20 @@ export const StyledText = styled(Text)<Props>`
     ${props.$isActive &&
     css`
       color: ${theme.color.green_500};
+    `}
+   
+
+
+    ${props.$border?.$b &&
+    css`
+      border-width: ${props.$border?.$b.width}px;
+      border-color: ${theme.color[props.$border?.$b.color || 'transparent']};
+      border-style: ${props.$border?.$b.style};
+    `}
+
+    ${props.$border?.$r &&
+    css`
+      border-radius: ${props.$border?.$r.width}px;
     `}
   `}
 `;

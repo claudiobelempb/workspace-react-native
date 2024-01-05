@@ -18,14 +18,17 @@ export function CardExerciseMolecules({ exercise }: Props) {
         $justifyContent: 'space-between'
       }}
     >
-      <BoxAtoms $flex={{ $rowGap: 8 }}>
+      <BoxAtoms $flex={{ $rowGap: 8, $flex: 1 }}>
         <TextAtoms
           $color={{ $color: 'gray_100' }}
           $text={{ $transform: 'capitalize' }}
+          numberOfLines={1}
         >
           {exercise.category.name}
         </TextAtoms>
-        <TextAtoms $color={{ $color: 'gray_100' }}>{exercise.name}</TextAtoms>
+        <TextAtoms $color={{ $color: 'gray_100' }} numberOfLines={1}>
+          {exercise.name}
+        </TextAtoms>
       </BoxAtoms>
       <BoxAtoms>
         <TextAtoms $color={{ $color: 'gray_300' }}>{exercise.time}</TextAtoms>
