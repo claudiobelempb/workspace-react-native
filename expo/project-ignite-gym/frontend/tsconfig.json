@@ -10,6 +10,12 @@
       "@atoms/*": [
         "./src/atoms/*"
       ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
       "@molecules/*": [
         "./src/molecules/*"
       ],
@@ -24,6 +30,9 @@
       ],
       "@screens/*": [
         "./src/screens/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
       ],
       "@storage/*": [
         "./src/storage/*"

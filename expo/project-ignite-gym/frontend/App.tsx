@@ -1,4 +1,5 @@
 import { LoadingAtoms } from '@atoms/LoadingAtoms';
+import { AuthContextProvider } from '@contexts/AuthContext';
 import {
   Roboto_400Regular,
   Roboto_700Bold,
@@ -9,6 +10,7 @@ import { AppRoutes } from '@routes/index';
 import ThemeDefault from '@themes/ThemeDefault';
 import { StatusBar } from 'react-native';
 import Toast from 'react-native-toast-message';
+
 import { ThemeProvider } from 'styled-components/native';
 
 export default function App() {
@@ -24,7 +26,10 @@ export default function App() {
         backgroundColor={'transparent'}
         translucent
       />
-      {fontsLoaded ? <AppRoutes /> : <LoadingAtoms />}
+
+      <AuthContextProvider>
+        {fontsLoaded ? <AppRoutes /> : <LoadingAtoms />}
+      </AuthContextProvider>
       <Toast position='bottom' bottomOffset={20} />
     </ThemeProvider>
   );

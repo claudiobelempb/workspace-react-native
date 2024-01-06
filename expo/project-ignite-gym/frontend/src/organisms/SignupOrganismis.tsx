@@ -8,15 +8,18 @@ import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useNavigation } from '@react-navigation/native';
-import { AuthNavigatorRoutesProps } from '@routes/private.routes';
+import { AuthNavigatorRoutesProps } from '@routes/public.routes';
+import { api } from '@services/api';
 import { FormTemplates } from '@templates/FromTemplates';
 import { handleOnFocus } from '@themes/functions/handleOnFocus';
+import { AppError } from '@utils/AppError';
 import {
   FIELD_IVALLID,
   FIELD_MIN,
   FIELD_NOT_EQUAL,
   FIELD_REQUIRID
 } from '@utils/constants/AppErrorContants';
+import Toast from 'react-native-toast-message';
 
 type FormDataProps = {
   name: string;
@@ -49,15 +52,30 @@ export function SignupOrganismis() {
     navigation.goBack();
   }
 
-  function handleSignUp({ name, email, password }: FormDataProps) {
-    fetch('http://172.21.0.1:3333/users', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password })
-    });
+  async function handleSignUp({ name, email, password }: FormDataProps) {
+    // const resp = await fetch('http://172.21.0.1:3333/users', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ name, email, password })
+    // });
+    try {
+      const resp = await api.post('/users', { name, email, password });
+      console.log(resp.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : 'Não foi possível criar a conta. Tente novamente mais tarde.';
+
+      Toast.show({
+        type: 'error',
+        text1: `${title}`,
+        position: 'top'
+      });
+    }
   }
 
   return (
