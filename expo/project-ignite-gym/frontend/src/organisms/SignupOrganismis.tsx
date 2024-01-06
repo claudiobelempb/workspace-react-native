@@ -49,8 +49,15 @@ export function SignupOrganismis() {
     navigation.goBack();
   }
 
-  function handleSignUp(field: FormDataProps) {
-    console.log(field);
+  function handleSignUp({ name, email, password }: FormDataProps) {
+    fetch('http://172.21.0.1:3333/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, email, password })
+    });
   }
 
   return (
