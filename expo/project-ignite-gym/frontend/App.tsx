@@ -28,7 +28,15 @@ export default function App() {
       />
 
       <AuthContextProvider>
-        {fontsLoaded ? <AppRoutes /> : <LoadingAtoms />}
+        {fontsLoaded ? (
+          <AppRoutes />
+        ) : (
+          <LoadingAtoms
+            $flex={{ $flex: 1 }}
+            $bg={{ $background: 'gray_700' }}
+            size={'large'}
+          />
+        )}
       </AuthContextProvider>
       <Toast position='bottom' bottomOffset={20} />
     </ThemeProvider>

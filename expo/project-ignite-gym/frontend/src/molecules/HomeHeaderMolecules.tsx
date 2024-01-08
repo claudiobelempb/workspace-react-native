@@ -1,11 +1,15 @@
+import AvatarDefaultImg from '@assets/userPhotoDefault.png';
 import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ContentAtoms } from '@atoms/ContentAtoms';
 import { IconAtoms } from '@atoms/IconAtoms';
 import { ImageAtoms } from '@atoms/ImageAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
+import { useAuth } from '@hooks/useAuth';
 
 export function HomeHeaderMolecules() {
+  const { user, signOut } = useAuth();
+
   return (
     <ContentAtoms
       $height={{ $height: 150 }}
@@ -30,7 +34,7 @@ export function HomeHeaderMolecules() {
           }}
         >
           <ImageAtoms
-            source={{ uri: 'https://github.com/claudiobelempb.png' }}
+            source={user.avatar ? { uri: user.avatar } : AvatarDefaultImg}
             $width={{ $width: 64 }}
             $height={{ $height: 64 }}
             $border={{
@@ -46,7 +50,7 @@ export function HomeHeaderMolecules() {
               $font={{ $weigh: '700' }}
               $color={{ $color: 'gray_100' }}
             >
-              Rodrigo Gonçalves
+              {user.name}
             </TextAtoms>
           </BoxAtoms>
         </BoxAtoms>
@@ -54,7 +58,7 @@ export function HomeHeaderMolecules() {
           $flex={{ $justifyContent: 'flex-end', $alingItems: 'flex-end' }}
           $width={{ $width: 50 }}
         >
-          <ButtonTouchableOpacityAton>
+          <ButtonTouchableOpacityAton onPress={signOut}>
             <IconAtoms
               name='log-in'
               $width={{ $width: 28 }}

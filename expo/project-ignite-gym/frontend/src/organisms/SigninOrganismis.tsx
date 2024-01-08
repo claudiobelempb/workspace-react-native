@@ -4,18 +4,22 @@ import { HeadingAtoms } from '@atoms/HeadingAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { TextInputAtoms } from '@atoms/TextInputAtoms';
 
+import { LoadingAtoms } from '@atoms/LoadingAtoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
-import { AuthNavigatorRoutesProps } from '@routes/private.routes';
+import { AuthNavigatorRoutesProps } from '@routes/public.routes';
 import { FormTemplates } from '@templates/FromTemplates';
+import { AppError } from '@utils/AppError';
 import {
   FIELD_IVALLID,
   FIELD_MIN,
   FIELD_REQUIRID
 } from '@utils/constants/AppErrorContants';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import Toast from 'react-native-toast-message';
 import * as yup from 'yup';
+import { useAuth } from '../hooks/useAuth';
 
 type FormDataProps = {
   email: string;
@@ -28,6 +32,8 @@ const signIpSchema = yup.object({
 });
 
 export function SigninOrganisms() {
+  const { singIn } = useAuth();
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   const {
@@ -38,8 +44,25 @@ export function SigninOrganisms() {
     resolver: yupResolver(signIpSchema)
   });
 
-  function handleSignIn(field: FormDataProps) {
-    console.log(field);
+  async function handleSignIn({ email, password }: FormDataProps) {
+    try {
+      setLoading(true);
+      await singIn(email, password);
+      setLoading(false);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const message = isAppError
+        ? error.message
+        : 'Não foi posível entrar. Tente novamente mais tarde.';
+
+      setLoading(false);
+
+      Toast.show({
+        type: 'error',
+        text1: `${message}`,
+        position: 'top'
+      });
+    }
   }
 
   function handleGoSignupScreen() {
@@ -122,23 +145,51 @@ export function SigninOrganisms() {
             />
           )}
         />
-        <ButtonTouchableOpacityAton
-          $height={{ $height: 56 }}
-          $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
-          $bg={{ $background: 'green_700' }}
-          $border={{
-            $r: { width: 8 }
-          }}
-          onPress={handleSubmit(handleSignIn)}
-        >
-          <TextAtoms
-            $text={{ $align: 'center' }}
-            $color={{ $color: 'white' }}
-            $font={{ $weigh: '700' }}
+        {loading ? (
+          <ButtonTouchableOpacityAton
+            $height={{ $height: 56 }}
+            $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
+            $bg={{ $background: 'green_700' }}
+            $border={{
+              $r: { width: 8 }
+            }}
+            onPress={handleSubmit(handleSignIn)}
+            disabled
           >
-            Acessar
-          </TextAtoms>
-        </ButtonTouchableOpacityAton>
+            <TextAtoms
+              $text={{ $align: 'center' }}
+              $color={{ $color: 'white' }}
+              $font={{ $weigh: '700' }}
+            >
+              {loading ? (
+                <LoadingAtoms
+                  $bg={{ $background: 'transparent' }}
+                  $color={{ $color: 'gray_100' }}
+                />
+              ) : (
+                'Acessar'
+              )}
+            </TextAtoms>
+          </ButtonTouchableOpacityAton>
+        ) : (
+          <ButtonTouchableOpacityAton
+            $height={{ $height: 56 }}
+            $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
+            $bg={{ $background: 'green_700' }}
+            $border={{
+              $r: { width: 8 }
+            }}
+            onPress={handleSubmit(handleSignIn)}
+          >
+            <TextAtoms
+              $text={{ $align: 'center' }}
+              $color={{ $color: 'white' }}
+              $font={{ $weigh: '700' }}
+            >
+              Acessar
+            </TextAtoms>
+          </ButtonTouchableOpacityAton>
+        )}
       </BoxAtoms>
       <BoxAtoms
         $flex={{ $flex: 1, $justifyContent: 'flex-end', $rowGap: 16 }}

@@ -1,3 +1,4 @@
+import AvatarDefaultImg from '@assets/userPhotoDefault.png';
 import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ButtonTouchableOpacityAton } from '@atoms/ButtonTouchableOpacityAtom';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
@@ -6,6 +7,7 @@ import { ImageAtoms } from '@atoms/ImageAtoms';
 import { SkeletonAtoms } from '@atoms/SkeletonAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { TextInputAtoms } from '@atoms/TextInputAtoms';
+import { useAuth } from '@hooks/useAuth';
 import { HeaderMolecules } from '@molecules/HeaderMolecules';
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
@@ -21,11 +23,10 @@ export function ProfileOrganisms() {
   const [confirmePassword, setConfirmePassword] = useState('');
   const [active, setActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [userPhoto, setUserPhoto] = useState(
-    'https://github.com/claudiobelempb.png'
-  );
+  const [userPhoto, setUserPhoto] = useState('');
 
   const { color } = useTheme();
+  const { user } = useAuth();
 
   async function handleUserPhotoSelectd() {
     setIsLoading(true);
@@ -101,7 +102,7 @@ export function ProfileOrganisms() {
               />
             ) : (
               <ImageAtoms
-                source={{ uri: userPhoto }}
+                source={user.avatar ? { uri: userPhoto } : AvatarDefaultImg}
                 $width={{ $width: 100 }}
                 $height={{ $height: 100 }}
                 $border={{
