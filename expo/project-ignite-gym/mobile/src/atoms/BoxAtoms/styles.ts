@@ -192,5 +192,10 @@ export const StyledContainer = styled.View<typeDefault>`
     css`
       border-radius: ${props.$border?.$r.width}px;
     `}
+
+    ${props.$overflow &&
+    css`
+      overflow: ${props.$overflow};
+    `}
   `}
 `;

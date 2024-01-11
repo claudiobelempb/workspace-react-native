@@ -8,8 +8,14 @@ import { ImageAtoms } from '@atoms/ImageAtoms';
 import { LoadingAtoms } from '@atoms/LoadingAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
 import { useExercisesFindById } from '@hooks/exercises/useExercisesFindById';
+import { useHistoriCreateService } from '@hooks/history/useHistoryCreate.service';
 import { ExerciseHeaderMolecules } from '@molecules/ExerciseHeaderMolecules';
-import { useFocusEffect, useRoute } from '@react-navigation/native';
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute
+} from '@react-navigation/native';
+import { AppNavigatorRoutesProps } from '@routes/private.routes';
 import { api } from '@services/api';
 import { AppError } from '@utils/AppError';
 import { useCallback, useState } from 'react';
@@ -20,22 +26,27 @@ import { useTheme } from 'styled-components/native';
 export function ExerciseOrganisms() {
   const [exercise, setExercise] = useState<ExerciseDTO>({} as ExerciseDTO);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCreate, setIsLoadingCreate] = useState(false);
 
   const { color } = useTheme();
   const route = useRoute();
   const { exerciseId } = route.params as ExerciseIdParamsProps;
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  function handleHistoryScreen() {
+    navigation.navigate('history');
+  }
 
   async function fechtExerciseFindById() {
     try {
       setIsLoading(true);
       const response = await useExercisesFindById(exerciseId);
       setExercise(response.data);
-      console.log('ID =>', exercise);
     } catch (error) {
       const isAppError = error instanceof AppError;
       const msg = isAppError
         ? error.message
-        : 'Não foi possível carregar os exercícios.';
+        : 'Não foi possível carregar os detalhes do exercícios.';
       Toast.show({
         text1: msg,
         type: 'error',
@@ -43,6 +54,34 @@ export function ExerciseOrganisms() {
       });
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleHistoryCreateService() {
+    try {
+      setIsLoadingCreate(true);
+      const response = await useHistoriCreateService(exerciseId);
+      setExercise(response.data);
+
+      Toast.show({
+        text1: 'Parabéns! Exercício registrado no seu histórico.',
+        type: 'success',
+        position: 'top'
+      });
+
+      handleHistoryScreen();
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const msg = isAppError
+        ? error.message
+        : 'Não foi possível registrar o exercícios.';
+      Toast.show({
+        text1: msg,
+        type: 'error',
+        position: 'top'
+      });
+    } finally {
+      setIsLoadingCreate(false);
     }
   }
 
@@ -74,15 +113,22 @@ export function ExerciseOrganisms() {
               <BoxAtoms
                 $flex={{ $justifyContent: 'center', $alingItems: 'center' }}
                 $space={{ $mt: 'm24' }}
+                $border={{ $r: { width: 8 } }}
+                // $bg={{ $background: 'green_100' }}
+                $overflow='hidden'
+                $width={{ $minWidth: 360 }}
+                $height={{ $minHeight: 360 }}
               >
                 <ImageAtoms
+                  $flex={{ $justifyContent: 'center', $alingItems: 'center' }}
                   source={{
                     uri: `${api.defaults.baseURL}/exercise/demo/${exercise.demo}`
                   }}
-                  $border={{ $r: { width: 8 } }}
-                  $width={{ $width: 360 }}
-                  $height={{ $height: 360 }}
+                  $width={{ $minWidth: 360 }}
+                  $height={{ $minHeight: 360 }}
                   resizeMode='cover'
+                  $border={{ $r: { width: 8 } }}
+                  // $bg={{ $background: 'green_100' }}
                 />
               </BoxAtoms>
 
@@ -118,19 +164,47 @@ export function ExerciseOrganisms() {
                 </BoxAtoms>
 
                 <BoxAtoms $space={{ $p: 'm16' }}>
-                  <ButtonTouchableOpacityAton
-                    $bg={{ $background: 'green_700' }}
-                    $flex={{ $alingItems: 'center', $justifyContent: 'center' }}
-                    $height={{ $height: 56 }}
-                    $border={{ $r: { width: 8 } }}
-                  >
-                    <TextAtoms
-                      $color={{ $color: 'gray_100' }}
-                      $text={{ $align: 'center' }}
+                  {isLoadingCreate ? (
+                    <ButtonTouchableOpacityAton
+                      $bg={{ $background: 'green_700' }}
+                      $flex={{
+                        $alingItems: 'center',
+                        $justifyContent: 'center'
+                      }}
+                      $height={{ $height: 56 }}
+                      $border={{ $r: { width: 8 } }}
+                      disabled={isLoadingCreate}
                     >
-                      Marcar como realizado
-                    </TextAtoms>
-                  </ButtonTouchableOpacityAton>
+                      <TextAtoms
+                        $color={{ $color: 'gray_100' }}
+                        $text={{ $align: 'center' }}
+                      >
+                        <LoadingAtoms
+                          $bg={{ $background: 'transparent' }}
+                          size={'small'}
+                          $color={{ $color: 'gray_100' }}
+                        />
+                      </TextAtoms>
+                    </ButtonTouchableOpacityAton>
+                  ) : (
+                    <ButtonTouchableOpacityAton
+                      onPress={handleHistoryCreateService}
+                      $bg={{ $background: 'green_700' }}
+                      $flex={{
+                        $alingItems: 'center',
+                        $justifyContent: 'center'
+                      }}
+                      $height={{ $height: 56 }}
+                      $border={{ $r: { width: 8 } }}
+                    >
+                      <TextAtoms
+                        $color={{ $color: 'gray_100' }}
+                        $text={{ $align: 'center' }}
+                      >
+                        Marcar como realizado
+                      </TextAtoms>
+                    </ButtonTouchableOpacityAton>
+                  )}
                 </BoxAtoms>
               </BoxAtoms>
             </ContentAtoms>

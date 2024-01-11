@@ -1,12 +1,43 @@
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
+import { useHistoriFindAllService } from '@hooks/history/useHistoryFindAll.service';
 import { HeaderMolecules } from '@molecules/HeaderMolecules';
 import { SectionListHistoryMolecules } from '@molecules/SectionListHistoryMolecules';
-import { useState } from 'react';
-import { SectionExerciselDTO } from 'src/dtos/ExerciseDTO';
+import { useFocusEffect } from '@react-navigation/native';
+import { AppError } from '@utils/AppError';
+import { useCallback, useState } from 'react';
+import Toast from 'react-native-toast-message';
+import { SectionHistoryDTO } from 'src/dtos/HistoryDTO';
 
 export function HistoryOrganisms() {
-  const [exercises, setExercises] = useState<SectionExerciselDTO[]>([]);
+  const [history, setHystory] = useState<SectionHistoryDTO[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function fechtHistoryFindById() {
+    try {
+      setIsLoading(true);
+      const response = await useHistoriFindAllService();
+      setHystory(response.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const msg = isAppError
+        ? error.message
+        : 'Não foi possível carregar o històrico.';
+      Toast.show({
+        text1: msg,
+        type: 'error',
+        position: 'top'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fechtHistoryFindById();
+    }, [])
+  );
 
   return (
     <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
@@ -16,7 +47,7 @@ export function HistoryOrganisms() {
         $bg={{ $background: 'gray_700' }}
         $flex={{ $flex: 1 }}
       >
-        <SectionListHistoryMolecules sections={exercises} />
+        <SectionListHistoryMolecules sections={history} />
       </ContentAtoms>
     </ContainerAtoms>
   );

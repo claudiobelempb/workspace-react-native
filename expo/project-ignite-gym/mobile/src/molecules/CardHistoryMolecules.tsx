@@ -1,13 +1,12 @@
 import { BoxAtoms } from '@atoms/BoxAtoms';
 import { TextAtoms } from '@atoms/TextAtoms';
-import { ExerciseDTO } from 'src/dtos/ExerciseDTO';
+import { HistoryDTO } from 'src/dtos/HistoryDTO';
 
 type Props = {
-  exercise: ExerciseDTO;
+  exercise: HistoryDTO;
 };
 
 export function CardHistoryMolecules({ exercise }: Props) {
-  console.log(exercise);
   return (
     <BoxAtoms
       $bg={{ $background: 'gray_500' }}
@@ -32,9 +31,7 @@ export function CardHistoryMolecules({ exercise }: Props) {
         </TextAtoms>
       </BoxAtoms>
       <BoxAtoms>
-        <TextAtoms $color={{ $color: 'gray_300' }}>
-          {exercise.created_at}
-        </TextAtoms>
+        <TextAtoms $color={{ $color: 'gray_300' }}>{exercise.hour}</TextAtoms>
       </BoxAtoms>
     </BoxAtoms>
   );

@@ -1,15 +1,22 @@
 import { SectionListData } from 'react-native';
-import { ExerciseDTO } from './ExerciseDTO';
+
+export type HistoryDTO = {
+  id: string;
+  name: string;
+  group: string;
+  hour: string;
+  created_at: string;
+};
 
 export type SectionHistoryDTO = {
-  date: string;
-  data: ExerciseDTO[];
+  title: string;
+  data: HistoryDTO[];
 };
 
 export type SectionListHistoryProps = {
-  sections: SectionListData<ExerciseDTO, SectionHistoryDTO>[];
+  sections: SectionListData<HistoryDTO, SectionHistoryDTO>[];
 };
 
 export type RenderSectionHistoryHeaderArgs = {
-  section: SectionListData<ExerciseDTO, SectionHistoryDTO>;
+  section: SectionListData<HistoryDTO, SectionHistoryDTO>;
 };

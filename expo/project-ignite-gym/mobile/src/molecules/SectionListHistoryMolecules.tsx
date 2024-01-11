@@ -1,8 +1,8 @@
 import { TextAtoms } from '@atoms/TextAtoms';
 import React from 'react';
 import { SectionList, SectionListRenderItem } from 'react-native';
-import { ExerciseDTO } from 'src/dtos/ExerciseDTO';
 import {
+  HistoryDTO,
   RenderSectionHistoryHeaderArgs,
   SectionHistoryDTO,
   SectionListHistoryProps
@@ -14,7 +14,7 @@ export function SectionListHistoryMolecules({
   sections
 }: SectionListHistoryProps) {
   const renderSectionHeader = ({
-    section: { date, data }
+    section: { title, data }
   }: RenderSectionHistoryHeaderArgs) => {
     return (
       <TextAtoms
@@ -22,20 +22,22 @@ export function SectionListHistoryMolecules({
         $color={{ $color: 'gray_100' }}
         $space={{ $mb: 'm16' }}
       >
-        {date}
+        {title}
       </TextAtoms>
     );
   };
 
+  const keyExtractor = (item: HistoryDTO) => item.id;
+
   const renderSectionItem: SectionListRenderItem<
-    ExerciseDTO,
+    HistoryDTO,
     SectionHistoryDTO
   > = ({ item }) => <CardHistoryMolecules exercise={item} />;
 
   return (
     <SectionList
       sections={sections}
-      keyExtractor={item => `${item.id}`}
+      keyExtractor={keyExtractor}
       renderItem={renderSectionItem}
       renderSectionHeader={renderSectionHeader}
       ListEmptyComponent={() => (
