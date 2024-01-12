@@ -1,5 +1,7 @@
+import { BoxAtoms } from '@atoms/BoxAtoms';
 import { ContainerAtoms } from '@atoms/ContainerAtoms';
 import { ContentAtoms } from '@atoms/ContentAtoms';
+import { LoadingAtoms } from '@atoms/LoadingAtoms';
 import { useHistoriFindAllService } from '@hooks/history/useHistoryFindAll.service';
 import { HeaderMolecules } from '@molecules/HeaderMolecules';
 import { SectionListHistoryMolecules } from '@molecules/SectionListHistoryMolecules';
@@ -40,14 +42,23 @@ export function HistoryOrganisms() {
   );
 
   return (
-    <ContainerAtoms $bg={{ $background: 'gray_500' }} $flex={{ $flex: 1 }}>
+    <ContainerAtoms $bg={{ $background: 'gray_700' }} $flex={{ $flex: 1 }}>
       <HeaderMolecules title='Histórico de Exercícios' />
       <ContentAtoms
         $space={{ $p: 'm24' }}
         $bg={{ $background: 'gray_700' }}
         $flex={{ $flex: 1 }}
       >
-        <SectionListHistoryMolecules sections={history} />
+        <BoxAtoms
+          $bg={{ $background: 'gray_700' }}
+          $flex={{ $flex: 1, $justifyContent: 'center' }}
+        >
+          {isLoading ? (
+            <LoadingAtoms $bg={{ $background: 'transparent' }} size={'large'} />
+          ) : (
+            <SectionListHistoryMolecules sections={history} />
+          )}
+        </BoxAtoms>
       </ContentAtoms>
     </ContainerAtoms>
   );

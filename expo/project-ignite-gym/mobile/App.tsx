@@ -23,10 +23,9 @@ export default function App() {
     <ThemeProvider theme={ThemeDefault}>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={'transparent'}
+        backgroundColor={'#29292E'}
         translucent
       />
-
       <AuthContextProvider>
         {fontsLoaded ? (
           <AppRoutes />

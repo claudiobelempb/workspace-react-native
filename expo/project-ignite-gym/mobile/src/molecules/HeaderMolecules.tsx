@@ -8,7 +8,7 @@ type Props = {
 
 export const HeaderMolecules = ({ title }: Props) => {
   return (
-    <ContentAtoms>
+    <ContentAtoms $bg={{ $background: 'gray_500' }}>
       <BoxAtoms
         $height={{ $height: 100 }}
         $flex={{ $alingItems: 'center', $justifyContent: 'center' }}

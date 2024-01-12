@@ -14,7 +14,7 @@ export function HomeHeaderMolecules() {
     <ContentAtoms
       $height={{ $height: 150 }}
       $flex={{ $flexDirection: 'row' }}
-      $bg={{ $background: 'gray_600' }}
+      $bg={{ $background: 'gray_500' }}
       $space={{ $py: 'm24' }}
     >
       <BoxAtoms

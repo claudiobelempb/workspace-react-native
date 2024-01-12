@@ -32,7 +32,7 @@ export function SectionListHistoryMolecules({
   const renderSectionItem: SectionListRenderItem<
     HistoryDTO,
     SectionHistoryDTO
-  > = ({ item }) => <CardHistoryMolecules exercise={item} />;
+  > = ({ item }) => <CardHistoryMolecules data={item} />;
 
   return (
     <SectionList

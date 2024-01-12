@@ -52,14 +52,10 @@ export function HomeOrganismis() {
     <DefaultTemplates>
       <ContentAtoms $bg={{ $background: 'gray_700' }}>
         <BoxAtoms $height={{ $height: 50 }} $space={{ $mx: 'l32', $mt: 's5' }}>
-          {isLoading ? (
-            <LoadingAtoms $bg={{ $background: 'transparent' }} size={'small'} />
-          ) : (
-            <CategoryFlatListMolecules
-              category={categorySelected}
-              onButtomSelected={handleButtomSelected}
-            />
-          )}
+          <CategoryFlatListMolecules
+            category={categorySelected}
+            onButtomSelected={handleButtomSelected}
+          />
         </BoxAtoms>
       </ContentAtoms>
       <ContentAtoms

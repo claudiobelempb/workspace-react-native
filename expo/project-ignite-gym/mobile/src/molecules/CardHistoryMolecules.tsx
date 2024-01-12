@@ -3,10 +3,10 @@ import { TextAtoms } from '@atoms/TextAtoms';
 import { HistoryDTO } from 'src/dtos/HistoryDTO';
 
 type Props = {
-  exercise: HistoryDTO;
+  data: HistoryDTO;
 };
 
-export function CardHistoryMolecules({ exercise }: Props) {
+export function CardHistoryMolecules({ data }: Props) {
   return (
     <BoxAtoms
       $bg={{ $background: 'gray_500' }}
@@ -24,14 +24,14 @@ export function CardHistoryMolecules({ exercise }: Props) {
           $text={{ $transform: 'capitalize' }}
           numberOfLines={1}
         >
-          {exercise.group}
+          {data.group}
         </TextAtoms>
         <TextAtoms $color={{ $color: 'gray_100' }} numberOfLines={1}>
-          {exercise.name}
+          {data.name}
         </TextAtoms>
       </BoxAtoms>
       <BoxAtoms>
-        <TextAtoms $color={{ $color: 'gray_300' }}>{exercise.hour}</TextAtoms>
+        <TextAtoms $color={{ $color: 'gray_300' }}>{data.hour}</TextAtoms>
       </BoxAtoms>
     </BoxAtoms>
   );
