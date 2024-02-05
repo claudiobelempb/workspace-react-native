@@ -17,6 +17,7 @@ export type AuthContextProps = {
   contextIsLoadingUser: boolean;
   contextSingIn: (email: string, password: string) => Promise<void>;
   contextSignOut: () => Promise<void>;
+  contextUpdateUserProfile: (user: UserDTO) => Promise<void>;
 };
 
 export type AuthContextProviderProps = {
@@ -36,11 +37,15 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     setContextUser(dto);
   }
 
-  async function contextCreateAndTokenStorage(dto: UserDTO, token: string) {
+  async function contextCreateAndTokenStorage(
+    dto: UserDTO,
+    token: string,
+    refresh_token: string
+  ) {
     try {
       setContextIsLoadingUser(true);
       await userCreateStorage(dto);
-      await userCreateAuthTokenStorage(token);
+      await userCreateAuthTokenStorage({ token, refresh_token });
     } catch (error) {
       throw error;
     } finally {
@@ -55,11 +60,13 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         password
       });
 
-      console.log(data);
-
-      if (data.user && data.token) {
+      if (data.user && data.token && data.refresh_token) {
         setContextIsLoadingUser(true);
-        await contextCreateAndTokenStorage(data.user, data.token);
+        await contextCreateAndTokenStorage(
+          data.user,
+          data.token,
+          data.refresh_token
+        );
         await contextCreateHeaderAndToken(data.user, data.token);
       }
     } catch (error) {
@@ -86,9 +93,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     try {
       setContextIsLoadingUser(true);
       const userLogged = await userShowStorage();
-      const userToken = await userFindAuthTokenStotage();
-      if (userLogged && userToken) {
-        contextCreateHeaderAndToken(userLogged, userToken);
+      const { token } = await userFindAuthTokenStotage();
+      if (userLogged && token) {
+        contextCreateHeaderAndToken(userLogged, token);
       }
     } catch (error) {
       throw error;
@@ -97,9 +104,25 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }
 
+  async function contextUpdateUserProfile(user: UserDTO) {
+    try {
+      setContextUser(user);
+      await userCreateStorage(user);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   useEffect(() => {
     contextLoadingUser();
   }, []);
+
+  useEffect(() => {
+    const subscribe = api.registerInterceptTokenManager(contextSignOut);
+    return () => {
+      subscribe();
+    };
+  }, [contextSignOut]);
 
   return (
     <AuthContext.Provider
@@ -107,7 +130,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         contextUser,
         contextSingIn,
         contextSignOut,
-        contextIsLoadingUser
+        contextIsLoadingUser,
+        contextUpdateUserProfile
       }}
     >
       {children}

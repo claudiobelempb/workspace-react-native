@@ -44,7 +44,7 @@ const signUpSchema = yup.object({
 export function SignupOrganismis() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
   const [isLoading, setIsloading] = useState(true);
-  const { singIn } = useAuth();
+  const { contextSingIn } = useAuth();
 
   const {
     control,
@@ -62,7 +62,7 @@ export function SignupOrganismis() {
     try {
       setIsloading(true);
       await api.post('/users', { name, email, password });
-      await singIn(email, password);
+      await contextSingIn(email, password);
       Toast.show({
         type: 'success',
         text1: 'Cadastro com sucesso.',

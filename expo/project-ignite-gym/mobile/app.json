@@ -15,6 +15,14 @@
           "//": "Disables the microphone permission",
           "microphonePermission": false
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
       ]
     ],
     "splash": {
@@ -32,7 +40,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET",
+        "RECEIVE_BOOT_COMPLETED",
+        "WAKE_LOCK",
+        "BILLING",
+        "POST_NOTIFICATIONS",
+        "ACCESS_NETWORK_STATE"
+      ]
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
